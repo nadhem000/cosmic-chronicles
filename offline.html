@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Chronicles - Offline</title>
+    <link rel="stylesheet" href="main.css">
+    <style>
+        .AN-offline-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .AN-offline-icon {
+            font-size: 72px;
+            color: var(--AN-primary-color);
+            margin-bottom: 20px;
+            opacity: 0.7;
+        }
+        
+        .AN-offline-title {
+            font-size: 32px;
+            color: var(--AN-text-color);
+            margin-bottom: 15px;
+        }
+        
+        .AN-offline-message {
+            font-size: 18px;
+            color: var(--AN-text-color);
+            opacity: 0.8;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+        
+        .AN-offline-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .AN-offline-btn {
+            padding: 12px 24px;
+            border-radius: var(--AN-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--AN-transition);
+        }
+        
+        .AN-offline-primary {
+            background-color: var(--AN-primary-color);
+            color: white;
+        }
+        
+        .AN-offline-secondary {
+            background-color: transparent;
+            border: 2px solid var(--AN-primary-color);
+            color: var(--AN-primary-color);
+        }
+    </style>
+</head>
+<body class="AN-body">
+    <div class="AN-offline-container">
+        <div class="AN-offline-icon">
+            <i class="fas fa-satellite-dish"></i>
+        </div>
+        
+        <h1 class="AN-offline-title">Connection Lost in Space</h1>
+        
+        <p class="AN-offline-message">
+            You're currently offline. Cosmic Chronicles needs an internet connection 
+            to fetch the latest astronomy news and updates. Please check your 
+            connection and try again.
+        </p>
+        
+        <div class="AN-offline-actions">
+            <button class="AN-offline-btn AN-offline-primary" onclick="window.location.reload()">
+                <i class="fas fa-redo"></i> Retry Connection
+            </button>
+            
+            <a href="/index.html" class="AN-offline-btn AN-offline-secondary">
+                <i class="fas fa-home"></i> Go to Homepage
+            </a>
+        </div>
+        
+        <p style="margin-top: 40px; font-size: 14px; opacity: 0.6;">
+            Some features may be available offline if you've visited them before.
+        </p>
+    </div>
+    
+    <script>
+        // Check for connection periodically
+        setInterval(() => {
+            if (navigator.onLine) {
+                window.location.href = '/index.html';
+            }
+        }, 5000);
+        
+        // Listen for connection restore
+        window.addEventListener('online', () => {
+            window.location.href = '/index.html';
+        });
+    </script>
+</body>
+</html>
