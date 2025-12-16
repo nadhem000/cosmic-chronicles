@@ -10,7 +10,7 @@ const AN_about_data = {
             name: 'Mejri Ziad',
             role: 'Project Lead & Developer',
             bio: 'Passionate astronomer and full-stack developer with over 5 years of experience in web development and 3 years in astronomy outreach. Created Cosmic Chronicles to make astronomy accessible to everyone, combining technical expertise with a love for celestial exploration. Leads the AstroMed Club and organizes stargazing events across Tunisia.',
-            email: 'ziad@cosmic-chronicles.com',
+            email: 'ziad@universe-chronicles.com',
             github: 'github.com/ziadmejri',
             linkedin: 'linkedin.com/in/ziadmejri'
         },
@@ -18,7 +18,7 @@ const AN_about_data = {
             name: 'Mejri Ziad',
             role: 'Chef de Projet & Développeur',
             bio: 'Astronome passionné et développeur full-stack avec plus de 5 ans d\'expérience en développement web et 3 ans en vulgarisation astronomique. A créé Cosmic Chronicles pour rendre l\'astronomie accessible à tous, combinant expertise technique et passion pour l\'exploration céleste. Dirige le Club AstroMed et organise des événements d\'observation des étoiles à travers la Tunisie.',
-            email: 'ziad@cosmic-chronicles.com',
+            email: 'ziad@universe-chronicles.com',
             github: 'github.com/ziadmejri',
             linkedin: 'linkedin.com/in/ziadmejri'
         },
@@ -26,7 +26,7 @@ const AN_about_data = {
             name: 'ماجري زياد',
             role: 'قائد المشروع والمطور',
             bio: 'عالم فلك شغوف ومطور Full-stack مع أكثر من 5 سنوات من الخبرة في تطوير الويب و3 سنوات في التوعية الفلكية. أنشأ Cosmic Chronicles لجعل علم الفلك في متناول الجميع، مزجاً بين الخبرة التقنية وحب استكشاف السماء. يقود نادي أسترو ميد وينظم أحداث مراقبة النجوم في جميع أنحاء تونس.',
-            email: 'ziad@cosmic-chronicles.com',
+            email: 'ziad@universe-chronicles.com',
             github: 'github.com/ziadmejri',
             linkedin: 'linkedin.com/in/ziadmejri'
         }

@@ -3,7 +3,7 @@
  * Handles caching, offline functionality, and push notifications
  */
 
-const CACHE_NAME = 'cosmic-chronicles-v1.0.0';
+const CACHE_NAME = 'universe-chronicles-v1.0.1';
 const CACHE_ASSETS = [
     // Core pages
     '/',
@@ -45,8 +45,8 @@ const CACHE_ASSETS = [
     '/offline.html'
 ];
 
-const DYNAMIC_CACHE = 'cosmic-chronicles-dynamic-v1';
-const API_CACHE = 'cosmic-chronicles-api-v1';
+const DYNAMIC_CACHE = 'universe-chronicles-dynamic-v1';
+const API_CACHE = 'universe-chronicles-api-v1';
 
 // Skip waiting and claim clients immediately
 self.addEventListener('install', event => {
@@ -80,7 +80,7 @@ self.addEventListener('activate', event => {
                     if (cacheName !== CACHE_NAME && 
                         cacheName !== DYNAMIC_CACHE && 
                         cacheName !== API_CACHE &&
-                        cacheName.startsWith('cosmic-chronicles-')) {
+                        cacheName.startsWith('universe-chronicles-')) {
                         console.log('[Service Worker] Deleting old cache:', cacheName);
                         return caches.delete(cacheName);
                     }

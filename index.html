@@ -180,6 +180,7 @@
         </div>
     </div>
 
+    <script src="pwa-main.js"></script>
     <script src="data.js"></script>
 <script src="data_processing.js"></script>
     <script src="translation.js"></script>
@@ -248,6 +249,12 @@
                 notificationHeader.appendChild(refreshBtn);
             }
         });
+   // Initialize PWA if not already
+   if ('serviceWorker' in navigator && !window.AN_PWA) {
+       navigator.serviceWorker.register('/sw.js')
+           .then(() => console.log('Service Worker registered'))
+           .catch(err => console.error('Service Worker registration failed:', err));
+   }
     </script>
 </body>
 </html>
