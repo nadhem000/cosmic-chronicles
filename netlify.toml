@@ -60,7 +60,7 @@
       style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com/ajax/libs/;
       font-src 'self' https://cdnjs.cloudflare.com/ajax/libs/;
       img-src 'self' data: https: http:;
-      connect-src 'self' https://*.netlify.app https://api.cosmic-chronicles.com;
+      connect-src 'self' https://*.netlify.app https://api.universe-chronicles.com;
       manifest-src 'self';
       worker-src 'self';
       frame-ancestors 'none';
@@ -91,16 +91,17 @@
 # Environment variables for production (if needed)
 [context.production]
   [context.production.environment]
-    PUBLIC_URL = "https://cosmic-chronicles.netlify.app"
+    PUBLIC_URL = "https://universe-chronicles.netlify.app"
 
 # Deploy preview settings
 [context.deploy-preview]
   publish = "."
   [context.deploy-preview.environment]
-    PUBLIC_URL = "{branch}--cosmic-chronicles.netlify.app"
+    PUBLIC_URL = "{branch}--universe-chronicles.netlify.app"
 
 # Branch deploy settings
 [context.branch-deploy]
   publish = "."
   [context.branch-deploy.environment]
-    PUBLIC_URL = "{branch}--cosmic-chronicles.netlify.app"
+
+    PUBLIC_URL = "{branch}--universe-chronicles.netlify.app"
