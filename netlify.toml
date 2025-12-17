@@ -62,10 +62,4 @@
 [[redirects]]
   from = "/article/:article"
   to = "/AN_news.html?article=:article"
-  status = 200
-
-
-[[redirects]]
-  from = "/news/:article"
-  to = "/AN_news.html?article=:article"
-  status = 200
+  status = 301
