@@ -16,14 +16,17 @@
 		<!-- Open Graph Meta Tags for Social Sharing -->
 <meta id="og-title" property="og:title" content="Cosmic Chronicles - Astronomy News">
 <meta id="og-description" property="og:description" content="Latest discoveries and updates from the universe">
-<meta id="og-image" property="og:image" content="https://universe-chronicles.netlify.app/assets/icons/icon-192x192.png">
+<meta id="og-image" property="og:image" content="/assets/icons/icon-512x512.png">
 <meta id="og-url" property="og:url" content="https://universe-chronicles.netlify.app/AN_news.html">
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:site_name" content="Cosmic Chronicles">
 <meta name="twitter:card" content="summary_large_image">
 <meta id="twitter-title" name="twitter:title" content="Cosmic Chronicles - Astronomy News">
 <meta id="twitter-description" name="twitter:description" content="Latest discoveries and updates from the universe">
-<meta id="twitter-image" name="twitter:image" content="https://universe-chronicles.netlify.app/assets/icons/icon-192x192.png">
+<meta id="twitter-image" name="twitter:image" content="/assets/icons/icon-512x512.png">
+<meta property="article:author" content="Cosmic Chronicles">
+<meta property="article:published_time" id="article-published-time">
+<meta property="article:modified_time" id="article-modified-time">
 	</head>
 	<body class="AN-body">
 		<!-- Header Section -->
@@ -348,136 +351,241 @@
 
     // Function to load and display an article
     function AN_loadArticle(articleId, language) {
-        const mainArticle = document.getElementById('AN-main-article');
-        const articleData = AN_getDataById(articleId);
-        
-        if (!mainArticle || !articleData) return;
-        
-        const content = articleData[language] || articleData.en;
-        
-        // Get related articles (same category, excluding current)
-        const relatedArticles = AN_data
-            .filter(item => item.type === 'news' && 
-                           item.category === articleData.category && 
-                           item.id !== articleId)
-            .slice(0, 3);
-        
-        // Calculate read time
-        const wordCount = content.body.split(' ').length;
-        const readTime = Math.ceil(wordCount / 200);
-        
-        mainArticle.innerHTML = `
-            <article class="AN-article">
-                <div class="AN-article-header">
-                    <div class="AN-article-category">
-                        <span class="AN-article-badge ${articleData.category === 'local' ? 'AN-local-badge' : 'AN-global-badge'}">
-                            ${articleData.category === 'local' ? AN_translations[language]['An.index.localNews'] : AN_translations[language]['An.index.globalNews']}
-                        </span>
-                        <span class="AN-article-date">${AN_formatDate(articleData.date, language)}</span>
-                    </div>
-                    <h1 class="AN-article-title">${content.title}</h1>
-                    <p class="AN-article-subtitle">${content.subtitle}</p>
-                    <div class="AN-article-meta">
-                        <span class="AN-article-readtime">
-                            <i class="far fa-clock"></i> ${readTime} ${AN_translations[language]['An.news.readTime'] || 'min read'}
-                        </span>
-                        <button class="AN-article-share">
-                            <i class="fas fa-share-alt"></i> ${AN_translations[language]['An.news.share'] || 'Share'}
-                        </button>
-                    </div>
+    const mainArticle = document.getElementById('AN-main-article');
+    const articleData = AN_getDataById(articleId);
+    
+    if (!mainArticle || !articleData) return;
+    
+    const content = articleData[language] || articleData.en;
+    
+    // Get related articles (same category, excluding current)
+    const relatedArticles = AN_data
+        .filter(item => item.type === 'news' && 
+                       item.category === articleData.category && 
+                       item.id !== articleId)
+        .slice(0, 3);
+    
+    // Calculate read time
+    const wordCount = content.body.split(' ').length;
+    const readTime = Math.ceil(wordCount / 200);
+    
+    // Create the article HTML
+    mainArticle.innerHTML = `
+        <article class="AN-article" data-article-id="${articleId}">
+            <div class="AN-article-header">
+                <div class="AN-article-category">
+                    <span class="AN-article-badge ${articleData.category === 'local' ? 'AN-local-badge' : 'AN-global-badge'}">
+                        ${articleData.category === 'local' ? AN_translations[language]['An.index.localNews'] : AN_translations[language]['An.index.globalNews']}
+                    </span>
+                    <span class="AN-article-date">${AN_formatDate(articleData.date, language)}</span>
+                </div>
+                <h1 class="AN-article-title">${content.title}</h1>
+                <p class="AN-article-subtitle">${content.subtitle}</p>
+                <div class="AN-article-meta">
+                    <span class="AN-article-readtime">
+                        <i class="far fa-clock"></i> ${readTime} ${AN_translations[language]['An.news.readTime'] || 'min read'}
+                    </span>
+                    <button class="AN-article-share" onclick="shareArticle('${articleId}', '${language}')">
+                        <i class="fas fa-share-alt"></i> ${AN_translations[language]['An.news.share'] || 'Share'}
+                    </button>
+                </div>
+            </div>
+            
+            <div class="AN-article-image">
+                <div class="AN-article-image-inner" style="background-image: url('${articleData.image}')">
+                    ${!articleData.image ? `<div class="AN-image-placeholder ${articleData.category === 'local' ? 'AN-mars-rover' : 'AN-james-webb'}"></div>` : ''}
+                </div>
+            </div>
+            
+            <div class="AN-article-content">
+                <div class="AN-article-body">
+                    ${content.body.split('\n').map(paragraph => `<p>${paragraph}</p>`).join('')}
                 </div>
                 
-                <div class="AN-article-image">
-                    <div class="AN-article-image-inner" style="background-image: url('${articleData.image}')">
-                        ${!articleData.image ? `<div class="AN-image-placeholder ${articleData.category === 'local' ? 'AN-mars-rover' : 'AN-james-webb'}"></div>` : ''}
+                ${relatedArticles.length > 0 ? `
+                <div class="AN-article-related">
+                    <h3 class="AN-article-related-title">
+                        <i class="fas fa-newspaper"></i> ${AN_translations[language]['An.news.related'] || 'Related News'}
+                    </h3>
+                    <div class="AN-article-related-grid">
+                        ${relatedArticles.map(related => {
+                            const relatedContent = related[language] || related.en;
+                            return `
+                                <div class="AN-related-article" data-id="${related.id}">
+                                    <div class="AN-related-image" style="background-image: url('${related.image}')"></div>
+                                    <h4>${relatedContent.title}</h4>
+                                    <p>${relatedContent.subtitle || relatedContent.body.substring(0, 60)}...</p>
+                                    <a href="#" class="AN-related-link">${AN_translations[language]['An.index.readMore']} →</a>
+                                </div>
+                            `;
+                        }).join('')}
                     </div>
                 </div>
-                
-                <div class="AN-article-content">
-                    <div class="AN-article-body">
-                        ${content.body.split('\n').map(paragraph => `<p>${paragraph}</p>`).join('')}
-                    </div>
-                    
-                    ${relatedArticles.length > 0 ? `
-                    <div class="AN-article-related">
-                        <h3 class="AN-article-related-title">
-                            <i class="fas fa-newspaper"></i> ${AN_translations[language]['An.news.related'] || 'Related News'}
-                        </h3>
-                        <div class="AN-article-related-grid">
-                            ${relatedArticles.map(related => {
-                                const relatedContent = related[language] || related.en;
-                                return `
-                                    <div class="AN-related-article" data-id="${related.id}">
-                                        <div class="AN-related-image" style="background-image: url('${related.image}')"></div>
-                                        <h4>${relatedContent.title}</h4>
-                                        <p>${relatedContent.subtitle || relatedContent.body.substring(0, 60)}...</p>
-                                        <a href="#" class="AN-related-link">${AN_translations[language]['An.index.readMore']} →</a>
-                                    </div>
-                                `;
-                            }).join('')}
-                        </div>
-                    </div>
-                    ` : ''}
-                </div>
-            </article>
-        `;
-        
-        // Add click events to related articles
-        document.querySelectorAll('.AN-related-article').forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.preventDefault();
-                const relatedId = this.getAttribute('data-id');
-                
-                // Update active state in list
-                document.querySelectorAll('.AN-news-item').forEach(listItem => {
-                    listItem.classList.remove('AN-news-item-active');
-                    if (listItem.getAttribute('data-id') === relatedId) {
-                        listItem.classList.add('AN-news-item-active');
-                    }
-                });
-                
-                // Load the related article
-                AN_loadArticle(relatedId, language);
-                
-                // Scroll to top of article on mobile
-                if (window.innerWidth < 768) {
-                    mainArticle.scrollIntoView({ behavior: 'smooth' });
+                ` : ''}
+            </div>
+        </article>
+    `;
+    
+    // Update Open Graph meta tags for social sharing
+    updateMetaTags(articleData, content, language);
+    
+    // Add click events to related articles
+    document.querySelectorAll('.AN-related-article').forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            const relatedId = this.getAttribute('data-id');
+            
+            // Update active state in list
+            document.querySelectorAll('.AN-news-item').forEach(listItem => {
+                listItem.classList.remove('AN-news-item-active');
+                if (listItem.getAttribute('data-id') === relatedId) {
+                    listItem.classList.add('AN-news-item-active');
                 }
             });
+            
+            // Load the related article
+            AN_loadArticle(relatedId, language);
+            
+            // Scroll to top of article on mobile
+            if (window.innerWidth < 768) {
+                mainArticle.scrollIntoView({ behavior: 'smooth' });
+            }
         });
-        
-        // Add share functionality - FIXED VERSION
-        const shareBtn = mainArticle.querySelector('.AN-article-share');
-if (shareBtn) {
-    shareBtn.addEventListener('click', function() {
-        // Create article-specific URL - USE THIS CORRECT VERSION
-        
-// Create article URL - FIXED
-const articleUrl = `${window.location.origin}${window.location.pathname}?article=${articleId}`;
+    });
+    
+    // Update browser URL for sharing (without reloading page)
+    if (history.pushState) {
+        const newUrl = `${window.location.origin}${window.location.pathname}?article=${articleId}`;
+        window.history.pushState({ path: newUrl }, '', newUrl);
+    }
+}
 
-// Update Open Graph tags for social sharing
-updateOpenGraphTags(articleData, language, articleUrl);
-        
-        if (navigator.share) {
-            navigator.share({
-                title: content.title,
-                text: content.subtitle,
-                url: articleUrl
-            });
-        } else {
-            // Fallback: Copy to clipboard
-            navigator.clipboard.writeText(articleUrl);
-            alert('Link copied to clipboard!');
-        }
+// Function to update meta tags for social sharing
+function updateMetaTags(articleData, content, language) {
+    // Get full image URL
+    const imageUrl = articleData.image ? 
+        `${window.location.origin}${window.location.pathname.replace('AN_news.html', '')}${articleData.image}` : 
+        `${window.location.origin}/assets/icons/icon-512x512.png`;
+    
+    // Get current page URL
+    const pageUrl = `${window.location.origin}${window.location.pathname}?article=${articleData.id}`;
+    
+    // Update Open Graph meta tags
+    const ogTitle = document.getElementById('og-title');
+    const ogDesc = document.getElementById('og-description');
+    const ogImg = document.getElementById('og-image');
+    const ogUrl = document.getElementById('og-url');
+    const twitterTitle = document.getElementById('twitter-title');
+    const twitterDesc = document.getElementById('twitter-description');
+    const twitterImg = document.getElementById('twitter-image');
+    const articlePublishedTime = document.getElementById('article-published-time');
+    const articleModifiedTime = document.getElementById('article-modified-time');
+    
+    if (ogTitle) ogTitle.setAttribute('content', `${content.title} | Cosmic Chronicles`);
+    if (ogDesc) ogDesc.setAttribute('content', content.subtitle || content.body.substring(0, 150));
+    if (ogImg) ogImg.setAttribute('content', imageUrl);
+    if (ogUrl) ogUrl.setAttribute('content', pageUrl);
+    
+    if (twitterTitle) twitterTitle.setAttribute('content', `${content.title} | Cosmic Chronicles`);
+    if (twitterDesc) twitterDesc.setAttribute('content', content.subtitle || content.body.substring(0, 150));
+    if (twitterImg) twitterImg.setAttribute('content', imageUrl);
+    
+    if (articlePublishedTime) {
+        articlePublishedTime.setAttribute('content', articleData.date);
+    }
+    if (articleModifiedTime) {
+        articleModifiedTime.setAttribute('content', new Date().toISOString());
+    }
+    
+    // Update page title
+    document.title = `${content.title} | Cosmic Chronicles`;
+    
+    // Update canonical link
+    let canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (!canonicalLink) {
+        canonicalLink = document.createElement('link');
+        canonicalLink.rel = 'canonical';
+        document.head.appendChild(canonicalLink);
+    }
+    canonicalLink.href = pageUrl;
+}
+// Function to handle article sharing
+function shareArticle(articleId, language) {
+    const articleData = AN_getDataById(articleId);
+    const content = articleData[language] || articleData.en;
+    
+    // Create article URL
+    const articleUrl = `${window.location.origin}${window.location.pathname}?article=${articleId}`;
+    
+    if (navigator.share) {
+        // Use Web Share API if available
+        navigator.share({
+            title: content.title,
+            text: content.subtitle || content.body.substring(0, 100),
+            url: articleUrl
+        }).catch(err => {
+            console.log('Error sharing:', err);
+            fallbackShare(articleUrl);
+        });
+    } else {
+        fallbackShare(articleUrl);
+    }
+}
+
+
+// Fallback share function
+function fallbackShare(url) {
+    // Copy URL to clipboard
+    navigator.clipboard.writeText(url).then(() => {
+        // Show toast notification
+        showToast('Link copied to clipboard!');
+    }).catch(err => {
+        // Fallback to prompt
+        prompt('Copy this link to share:', url);
     });
 }
-        
-        // Update browser URL for sharing (without reloading page)
-        if (history.pushState) {
-            const newUrl = `${window.location.origin}${window.location.pathname}?article=${articleId}`;
-            window.history.pushState({ path: newUrl }, '', newUrl);
+
+// Function to show toast notification
+function showToast(message) {
+    // Remove existing toast
+    const existingToast = document.querySelector('.AN-toast');
+    if (existingToast) existingToast.remove();
+    
+    // Create toast
+    const toast = document.createElement('div');
+    toast.className = 'AN-toast';
+    toast.innerHTML = `
+        <div class="AN-toast-content">
+            <i class="fas fa-check-circle"></i>
+            <span>${message}</span>
+        </div>
+    `;
+    
+    document.body.appendChild(toast);
+    
+    // Show toast
+    setTimeout(() => toast.classList.add('AN-toast-show'), 10);
+    
+    // Hide after 3 seconds
+    setTimeout(() => {
+        toast.classList.remove('AN-toast-show');
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
+}
+
+// Initialize meta tags on page load
+function initializeMetaTags() {
+    const articleId = AN_getQueryParam('article');
+    if (articleId) {
+        const articleData = AN_getDataById(articleId);
+        if (articleData) {
+            const language = document.getElementById('AN-language-select')?.value || 'en';
+            const content = articleData[language] || articleData.en;
+            updateMetaTags(articleData, content, language);
         }
     }
+}
+        
 // Function to update Open Graph tags
 function updateOpenGraphTags(articleData, language, articleUrl) {
     const content = articleData[language] || articleData.en;
@@ -505,6 +613,9 @@ function updateOpenGraphTags(articleData, language, articleUrl) {
 }
     // Function to apply translations for news page
     function AN_applyNewsTranslations(language) {
+    
+    // Initialize meta tags for the current article
+    initializeMetaTags();
         AN_applyTranslations(language);
         
         // Get current filter and sort
@@ -547,6 +658,8 @@ function updateOpenGraphTags(articleData, language, articleUrl) {
 
     // DOMContentLoaded event listener
     document.addEventListener('DOMContentLoaded', function() {
+// Initialize meta tags on page load
+initializeMetaTags();
         // Theme toggle functionality
         const themeSwitch = document.getElementById('AN-theme-switch');
         const body = document.body;
@@ -1145,6 +1258,11 @@ function updateOpenGraphTags(articleData, language, articleUrl) {
         style.textContent = newsPageStyles;
         document.head.appendChild(style);
     });
+
+// Add event listener for URL changes (when using back/forward buttons)
+window.addEventListener('popstate', function() {
+    setTimeout(initializeMetaTags, 100);
+});
 </script>
 </body>
 </html>			
