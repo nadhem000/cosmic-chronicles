@@ -3,32 +3,44 @@ const AN_about_data = {
     developer: {
         id: 'dev-001',
         name: 'Mejri Ziad',
-        image: 'assets/images/about/ziad.jpg',
+        image: 'assets2/images/about/ziad.jpg',
         role: 'Project Lead & Developer',
-        skills: ['JavaScript', 'HTML/CSS', 'Astronomy', 'Data Visualization', 'UI/UX Design', 'Science Communication'],
+        skills: ['JavaScript', 'HTML/CSS', 'Astronomy', 'Data Visualization', 'UI/UX Design', 'Science Communication', 'Full-Stack Development', 'WordPress'],
         en: {
             name: 'Mejri Ziad',
             role: 'Project Lead & Developer',
-            bio: 'Passionate astronomer and full-stack developer with over 5 years of experience in web development and 3 years in astronomy outreach. Created Cosmic Chronicles to make astronomy accessible to everyone, combining technical expertise with a love for celestial exploration. Leads the AstroMed Club and organizes stargazing events across Tunisia.',
-            email: 'ziad@universe-chronicles.com',
-            github: 'github.com/ziadmejri',
-            linkedin: 'linkedin.com/in/ziadmejri'
+            bio: 'Passionate astronomy enthusiast and developer with over 15 years of experience in web publishing and astronomy outreach. Created Cosmic Chronicles to make astronomy accessible to everyone, combining technical expertise with a love for celestial exploration. Leads the AstroMed astronomy club in Majaz al-Bab, Beja governorate, and participates in numerous stargazing events across Tunisia. Also manages a page about science and astronomy called the Tunisian Science Club.',
+            email: 'nouveau.dep@gmail.com',
+            github: 'https://github.com/nadhem000',
+            linkedin: 'https://www.linkedin.com/in/zied-mejri-6a786835a/',
+            instagram: 'https://www.instagram.com/mejri.ziad/',
+            facebook: 'https://www.facebook.com/mejri.ziad.1',
+            blog: 'https://homeofmystery.wordpress.com/',
+            discord: 'hermes052'
         },
         fr: {
             name: 'Mejri Ziad',
             role: 'Chef de Projet & Développeur',
-            bio: 'Astronome passionné et développeur full-stack avec plus de 5 ans d\'expérience en développement web et 3 ans en vulgarisation astronomique. A créé Cosmic Chronicles pour rendre l\'astronomie accessible à tous, combinant expertise technique et passion pour l\'exploration céleste. Dirige le Club AstroMed et organise des événements d\'observation des étoiles à travers la Tunisie.',
-            email: 'ziad@universe-chronicles.com',
-            github: 'github.com/ziadmejri',
-            linkedin: 'linkedin.com/in/ziadmejri'
+            bio: 'Passionné d\'astronomie et développeur avec plus de 15 ans d\'expérience dans la publication web et la vulgarisation astronomique. A créé Cosmic Chronicles pour rendre l\'astronomie accessible à tous, alliant expertise technique et passion pour l\'exploration céleste. Dirige le club d\'astronomie AstroMed à Majaz al-Bab, gouvernorat de Béja, et participe à de nombreux événements d\'observation des étoiles à travers la Tunisie. Gère également une page sur les sciences et l\'astronomie appelée le Club Tunisien des Sciences.',
+            email: 'nouveau.dep@gmail.com',
+            github: 'https://github.com/nadhem000',
+            linkedin: 'https://www.linkedin.com/in/zied-mejri-6a786835a/',
+            instagram: 'https://www.instagram.com/mejri.ziad/',
+            facebook: 'https://www.facebook.com/mejri.ziad.1',
+            blog: 'https://homeofmystery.wordpress.com/',
+            discord: 'hermes052'
         },
         ar: {
             name: 'ماجري زياد',
             role: 'قائد المشروع والمطور',
-            bio: 'عالم فلك شغوف ومطور Full-stack مع أكثر من 5 سنوات من الخبرة في تطوير الويب و3 سنوات في التوعية الفلكية. أنشأ Cosmic Chronicles لجعل علم الفلك في متناول الجميع، مزجاً بين الخبرة التقنية وحب استكشاف السماء. يقود نادي أسترو ميد وينظم أحداث مراقبة النجوم في جميع أنحاء تونس.',
-            email: 'ziad@universe-chronicles.com',
-            github: 'github.com/ziadmejri',
-            linkedin: 'linkedin.com/in/ziadmejri'
+            bio: 'هاوي فلك شغوف ومطور مع أكثر من 15 سنة من الخبرة في النشر على الويب و في التوعية الفلكية. أنشأ السجلات الكونية لجعل علم الفلك في متناول الجميع، مزجاً بين الخبرة التقنية وحب استكشاف السماء. يقود نادي أسترو ميد نادي الفلك بمجاز الباب من ولاية باجة ويشارك في عديد تظاهرات مراقبة النجوم في جميع أنحاء تونس. يدير أيضاً صفحة عن العلوم والفلك تسمى النادي التونسي للعلوم.',
+            email: 'nouveau.dep@gmail.com',
+            github: 'https://github.com/nadhem000',
+            linkedin: 'https://www.linkedin.com/in/zied-mejri-6a786835a/',
+            instagram: 'https://www.instagram.com/mejri.ziad/',
+            facebook: 'https://www.facebook.com/mejri.ziad.1',
+            blog: 'https://homeofmystery.wordpress.com/',
+            discord: 'hermes052'
         }
     },
     team: [
@@ -36,88 +48,88 @@ const AN_about_data = {
             id: 'team-001',
             name: 'Sarah Chen',
             role: 'Astronomy Researcher',
-            image: 'assets/images/about/sarah.jpg',
+            image: 'assets2/images/about/empty_profile.jpg',
             icon: 'fa-star',
             en: {
-                name: 'Sarah Chen',
-                role: 'Astronomy Researcher',
-                bio: 'PhD in Astrophysics with specialization in exoplanet detection. Responsible for verifying scientific accuracy of all astronomical content and keeping the team updated with latest research.'
+                name: 'soon',
+                role: 'soon',
+                bio: 'soon'
             },
             fr: {
-                name: 'Sarah Chen',
-                role: 'Chercheuse en Astronomie',
-                bio: 'Doctorat en astrophysique avec spécialisation en détection d\'exoplanètes. Responsable de vérifier l\'exactitude scientifique de tout le contenu astronomique et de tenir l\'équipe à jour avec les dernières recherches.'
+                name: 'Bientôt',
+                role: 'Bientôt',
+                bio: 'Bientôt'
             },
             ar: {
-                name: 'سارة تشين',
-                role: 'باحثة في علم الفلك',
-                bio: 'دكتوراه في الفيزياء الفلكية مع تخصص في اكتشاف الكواكب الخارجية. مسؤولة عن التحقق من الدقة العلمية لجميع المحتويات الفلكية وإبقاء الفريق على اطلاع بأحدث الأبحاث.'
+                name: 'قريبا',
+                role: 'قريبا',
+                bio: 'قريبا'
             }
         },
         {
             id: 'team-002',
-            name: 'Ahmed Mansouri',
+            name: 'soon',
             role: 'Frontend Developer',
-            image: 'assets/images/about/ahmed.jpg',
+            image: 'assets2/images/about/empty_profile.jpg',
             icon: 'fa-code',
             en: {
-                name: 'Ahmed Mansouri',
-                role: 'Frontend Developer',
-                bio: 'Specializes in creating responsive, accessible web interfaces. Passionate about making complex astronomical data understandable through intuitive visualizations.'
+                name: 'soon',
+                role: 'soon',
+                bio: 'soon'
             },
             fr: {
-                name: 'Ahmed Mansouri',
-                role: 'Développeur Frontend',
-                bio: 'Spécialisé dans la création d\'interfaces web réactives et accessibles. Passionné par la compréhension des données astronomiques complexes grâce à des visualisations intuitives.'
+                name: 'Bientôt',
+                role: 'Bientôt',
+                bio: 'Bientôt'
             },
             ar: {
-                name: 'أحمد المنصوري',
-                role: 'مطور واجهة المستخدم',
-                bio: 'يتخصص في إنشاء واجهات ويب متجاوبة وسهلة الوصول. شغوف بجعل البيانات الفلكية المعقدة مفهومة من خلال التصورات البصرية البديهية.'
+                name: 'قريبا',
+                role: 'قريبا',
+                bio: 'قريبا'
             }
         },
         {
             id: 'team-003',
-            name: 'Lina Bouchard',
+            name: 'soon',
             role: 'Content Writer & Translator',
-            image: 'assets/images/about/lina.jpg',
+            image: 'assets2/images/about/empty_profile.jpg',
             icon: 'fa-language',
             en: {
-                name: 'Lina Bouchard',
-                role: 'Content Writer & Translator',
-                bio: 'Science communicator with background in journalism and multilingual translation. Ensures all content is engaging, accurate, and accessible across all supported languages.'
+                name: 'soon',
+                role: 'soon',
+                bio: 'soon'
             },
             fr: {
-                name: 'Lina Bouchard',
-                role: 'Rédactrice & Traductrice',
-                bio: 'Communicatrice scientifique avec une formation en journalisme et en traduction multilingue. Veille à ce que tout le contenu soit engageant, précis et accessible dans toutes les langues prises en charge.'
+                name: 'Bientôt',
+                role: 'Bientôt',
+                bio: 'Bientôt'
             },
             ar: {
-                name: 'لينا بوشار',
-                role: 'كاتبة المحتوى والمترجمة',
-                bio: 'متحدثة علمية بخلفية في الصحافة والترجمة متعددة اللغات. تضمن أن يكون جميع المحتوى جذاباً ودقيقاً ويمكن الوصول إليه في جميع اللغات المدعومة.'
+                name: 'قريبا',
+                role: 'قريبا',
+                bio: 'قريبا'
             }
         },
         {
             id: 'team-004',
-            name: 'Karim Jlassi',
+            name: 'soon',
             role: 'Data Analyst',
-            image: 'assets/images/about/karim.jpg',
+            image: 'assets2/images/about/empty_profile.jpg',
             icon: 'fa-chart-line',
             en: {
-                name: 'Karim Jlassi',
-                role: 'Data Analyst',
-                bio: 'Processes and analyzes astronomical data from various sources. Creates interactive charts and simulations to help users understand complex cosmic phenomena.'
+                name: 'soon',
+                role: 'soon',
+                bio: 'soon'
             },
             fr: {
-                name: 'Karim Jlassi',
-                role: 'Analyste de Données',
-                bio: 'Traite et analyse les données astronomiques provenant de diverses sources. Crée des graphiques interactifs et des simulations pour aider les utilisateurs à comprendre les phénomènes cosmiques complexes.'
+                name: 'Bientôt',
+                role: 'Bientôt',
+                bio: 'Bientôt'
             },
             ar: {
-                name: 'كريم الجلاصي',
-                role: 'محلل البيانات',
-                bio: 'يعالج ويحلل البيانات الفلكية من مصادر مختلفة. ينشئ مخططات ومحاكاة تفاعلية لمساعدة المستخدمين على فهم الظواهر الكونية المعقدة.'
+                name: 'قريبا',
+                role: 'قريبا',
+                bio: 'قريبا'
             }
         }
     ],

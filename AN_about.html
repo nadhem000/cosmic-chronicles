@@ -216,6 +216,7 @@
         
         .AN-developer-contact {
             display: flex;
+            flex-wrap: wrap;
             gap: 15px;
             margin-top: 25px;
         }
@@ -237,6 +238,16 @@
             background-color: var(--AN-accent-color);
             color: var(--AN-primary-color);
             transform: translateY(-2px);
+        }
+        
+        .AN-discord-tag {
+            background-color: #5865F2 !important;
+            color: white !important;
+        }
+        
+        .AN-discord-tag:hover {
+            background-color: #4752C4 !important;
+            transform: translateY(-2px) !important;
         }
         
         /* Team Section */
@@ -482,13 +493,16 @@
             }
             
             .AN-developer-contact {
-                flex-direction: column;
-                align-items: flex-start;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
             }
             
             .AN-contact-link {
                 width: 100%;
                 justify-content: center;
+                padding: 8px 12px;
+                font-size: 14px;
             }
             
             .AN-mission-section {
@@ -515,6 +529,16 @@
             
             .AN-developer-skills {
                 justify-content: center;
+            }
+            
+            .AN-developer-contact {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .AN-developer-contact {
+                grid-template-columns: 1fr;
             }
         }
         
@@ -618,8 +642,8 @@
             <section class="AN-developer-section">
                 <div class="AN-developer-card">
                     <div class="AN-developer-image">
-                        <img src="assets/images/about/ziad.jpg" alt="Mejri Ziad" id="AN-developer-img">
-                        <div class="AN-image-placeholder" style="background: linear-gradient(135deg, var(--AN-primary-color), var(--AN-accent-color)); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 72px;">
+                        <img src="assets2/images/about/ziad.jpg" alt="Mejri Ziad" id="AN-developer-img">
+                        <div class="AN-image-placeholder" style="background: linear-gradient(135deg, var(--AN-primary-color), var(--AN-accent-color)); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 72px; display: none;">
                             <i class="fas fa-user-astronaut"></i>
                         </div>
                     </div>
@@ -629,23 +653,15 @@
                         </h2>
                         <div class="AN-developer-role" id="AN-developer-role">Project Lead & Developer</div>
                         <p class="AN-developer-bio" id="AN-developer-bio">
-                            Passionate astronomer and full-stack developer with over 5 years of experience in web development and 3 years in astronomy outreach. Created Cosmic Chronicles to make astronomy accessible to everyone, combining technical expertise with a love for celestial exploration.
+                            Passionate astronomer and full-stack developer with over 5 years of experience in web development and 3 years in astronomy outreach. Created Cosmic Chronicles to make astronomy accessible to everyone, combining technical expertise with a love for celestial exploration. Leads the AstroMed Club and organizes stargazing events across Tunisia. Also runs a mystery/astronomy blog at Home of Mystery.
                         </p>
                         
                         <div class="AN-developer-skills" id="AN-developer-skills">
                             <!-- Skills will be populated by JavaScript -->
                         </div>
                         
-                        <div class="AN-developer-contact">
-                            <a href="mailto:ziad@universe-chronicles.com" class="AN-contact-link">
-                                <i class="fas fa-envelope"></i> <span data-i18n="An.about.email">Email</span>
-                            </a>
-                            <a href="https://github.com/ziadmejri" target="_blank" class="AN-contact-link">
-                                <i class="fab fa-github"></i> <span data-i18n="An.about.github">GitHub</span>
-                            </a>
-                            <a href="https://linkedin.com/in/ziadmejri" target="_blank" class="AN-contact-link">
-                                <i class="fab fa-linkedin"></i> <span data-i18n="An.about.linkedin">LinkedIn</span>
-                            </a>
+                        <div class="AN-developer-contact" id="AN-developer-contact">
+                            <!-- Contact links will be dynamically generated -->
                         </div>
                     </div>
                 </div>
@@ -741,7 +757,7 @@
     </div>
 
     <script src="data.js"></script>
-<script src="data_processing.js"></script>
+    <script src="data_processing.js"></script>
     <script src="translation.js"></script>
     <script src="data_about.js"></script>
     <script>
@@ -758,6 +774,10 @@
                 'An.about.email': 'Email',
                 'An.about.github': 'GitHub',
                 'An.about.linkedin': 'LinkedIn',
+                'An.about.instagram': 'Instagram',
+                'An.about.facebook': 'Facebook',
+                'An.about.blog': 'Blog',
+                'An.about.discord': 'Discord',
                 'An.about.accuracy': 'Scientific Accuracy',
                 'An.about.accessibility': 'Accessibility',
                 'An.about.innovation': 'Innovation',
@@ -778,6 +798,10 @@
                 'An.about.email': 'Email',
                 'An.about.github': 'GitHub',
                 'An.about.linkedin': 'LinkedIn',
+                'An.about.instagram': 'Instagram',
+                'An.about.facebook': 'Facebook',
+                'An.about.blog': 'Blog',
+                'An.about.discord': 'Discord',
                 'An.about.accuracy': 'Exactitude Scientifique',
                 'An.about.accessibility': 'Accessibilité',
                 'An.about.innovation': 'Innovation',
@@ -789,8 +813,8 @@
             },
             ar: {
                 'An.about.title': 'عن فريقنا',
-                'An.about.subtitle': 'تعرف على العقول الشغوفة وراء Cosmic Chronicles - التي تربط علم الفلك بالتكنولوجيا لتقريب الكون للجميع.',
-                'An.about.teamTitle': 'نادي أسترو ميد',
+                'An.about.subtitle': 'تعرف على العقول الشغوفة وراء السجلات الكونية - التي تربط علم الفلك بالتكنولوجيا لتقريب الكون للجميع.',
+                'An.about.teamTitle': 'نادي نادي علم الفلك بمجاز الباب',
                 'An.about.teamSubtitle': 'فريق متعدد التخصصات من هواة علم الفلك والمطورين ومتحدثي العلوم المكرسين لجعل استكشاف الفضاء في متناول الجميع.',
                 'An.about.missionTitle': 'مهمتنا',
                 'An.about.missionText': 'لإضفاء الطابع الديمقراطي على الوصول إلى المعرفة الفلكية وتحديثات استكشاف الفضاء من خلال المنصات الرقمية المبتكرة. نحن نعتقد أن فهم الكون يجب أن يكون في متناول الجميع، بغض النظر عن الخلفية أو الموقع. من خلال الجمع بين المعلومات العلمية الدقيقة والتجارب الرقمية الجذابة، نهدف إلى إلهام الجيل القادم من علماء الفلك والعلماء وهواة الفضاء.',
@@ -798,6 +822,10 @@
                 'An.about.email': 'البريد الإلكتروني',
                 'An.about.github': 'جيت هاب',
                 'An.about.linkedin': 'لينكد إن',
+                'An.about.instagram': 'إنستغرام',
+                'An.about.facebook': 'فيسبوك',
+                'An.about.blog': 'المدونة',
+                'An.about.discord': 'ديسكورد',
                 'An.about.accuracy': 'الدقة العلمية',
                 'An.about.accessibility': 'سهولة الوصول',
                 'An.about.innovation': 'الابتكار',
@@ -824,7 +852,7 @@
             return AN_translations['en'][key] || key;
         }
 
-        // Function to render developer information
+        // Function to render developer information with enhanced contact links
         function AN_renderDeveloperInfo(language) {
             const developerData = AN_about_data.developer;
             const content = developerData[language] || developerData.en;
@@ -849,14 +877,89 @@
             
             // Update developer skills
             const skillsContainer = document.getElementById('AN-developer-skills');
-            if (skillsContainer && content.skills) {
+            if (skillsContainer && developerData.skills) {
                 skillsContainer.innerHTML = '';
-                content.skills.forEach(skill => {
+                developerData.skills.forEach(skill => {
                     const skillElement = document.createElement('span');
                     skillElement.className = 'AN-skill-tag';
                     skillElement.textContent = skill;
                     skillsContainer.appendChild(skillElement);
                 });
+            }
+            
+            // Update developer contact links
+            const contactContainer = document.getElementById('AN-developer-contact');
+            if (contactContainer) {
+                contactContainer.innerHTML = '';
+                
+                // Email
+                if (content.email) {
+                    const emailLink = document.createElement('a');
+                    emailLink.href = `mailto:${content.email}`;
+                    emailLink.className = 'AN-contact-link';
+                    emailLink.innerHTML = `<i class="fas fa-envelope"></i> <span data-i18n="An.about.email">Email</span>`;
+                    contactContainer.appendChild(emailLink);
+                }
+                
+                // GitHub
+                if (content.github) {
+                    const githubLink = document.createElement('a');
+                    githubLink.href = content.github;
+                    githubLink.className = 'AN-contact-link';
+                    githubLink.target = '_blank';
+                    githubLink.innerHTML = `<i class="fab fa-github"></i> <span data-i18n="An.about.github">GitHub</span>`;
+                    contactContainer.appendChild(githubLink);
+                }
+                
+                // LinkedIn
+                if (content.linkedin) {
+                    const linkedinLink = document.createElement('a');
+                    linkedinLink.href = content.linkedin;
+                    linkedinLink.className = 'AN-contact-link';
+                    linkedinLink.target = '_blank';
+                    linkedinLink.innerHTML = `<i class="fab fa-linkedin"></i> <span data-i18n="An.about.linkedin">LinkedIn</span>`;
+                    contactContainer.appendChild(linkedinLink);
+                }
+                
+                // Instagram
+                if (content.instagram) {
+                    const instagramLink = document.createElement('a');
+                    instagramLink.href = content.instagram;
+                    instagramLink.className = 'AN-contact-link';
+                    instagramLink.target = '_blank';
+                    instagramLink.innerHTML = `<i class="fab fa-instagram"></i> <span data-i18n="An.about.instagram">Instagram</span>`;
+                    contactContainer.appendChild(instagramLink);
+                }
+                
+                // Facebook
+                if (content.facebook) {
+                    const facebookLink = document.createElement('a');
+                    facebookLink.href = content.facebook;
+                    facebookLink.className = 'AN-contact-link';
+                    facebookLink.target = '_blank';
+                    facebookLink.innerHTML = `<i class="fab fa-facebook"></i> <span data-i18n="An.about.facebook">Facebook</span>`;
+                    contactContainer.appendChild(facebookLink);
+                }
+                
+                // Blog
+                if (content.blog) {
+                    const blogLink = document.createElement('a');
+                    blogLink.href = content.blog;
+                    blogLink.className = 'AN-contact-link';
+                    blogLink.target = '_blank';
+                    blogLink.innerHTML = `<i class="fas fa-blog"></i> <span data-i18n="An.about.blog">Blog</span>`;
+                    contactContainer.appendChild(blogLink);
+                }
+                
+                // Discord (no link, just username)
+                if (content.discord) {
+                    const discordDiv = document.createElement('div');
+                    discordDiv.className = 'AN-contact-link AN-discord-tag';
+                    discordDiv.innerHTML = `<i class="fab fa-discord"></i> <span>${content.discord}</span>`;
+                    discordDiv.title = AN_getTranslatedText('An.about.discord', language);
+                    discordDiv.style.cursor = 'default';
+                    contactContainer.appendChild(discordDiv);
+                }
             }
             
             // Update developer image if available
@@ -941,7 +1044,9 @@
             AN_renderValues(language);
             
             // Re-render notifications
-            AN_renderNotifications(language);
+            if (typeof AN_renderNotifications === 'function') {
+                AN_renderNotifications(language);
+            }
         }
 
         // Initialize when DOM is loaded
@@ -974,17 +1079,22 @@
             const notificationPanel = document.getElementById('AN-notification-panel');
             const closeNotifications = document.getElementById('AN-close-notifications');
             
-            notificationToggle.addEventListener('click', function() {
-                notificationPanel.classList.toggle('AN-active');
-            });
+            if (notificationToggle) {
+                notificationToggle.addEventListener('click', function() {
+                    notificationPanel.classList.toggle('AN-active');
+                });
+            }
             
-            closeNotifications.addEventListener('click', function() {
-                notificationPanel.classList.remove('AN-active');
-            });
+            if (closeNotifications) {
+                closeNotifications.addEventListener('click', function() {
+                    notificationPanel.classList.remove('AN-active');
+                });
+            }
             
             // Close notification panel when clicking outside
             document.addEventListener('click', function(event) {
-                if (!notificationToggle.contains(event.target) && 
+                if (notificationToggle && notificationPanel && 
+                    !notificationToggle.contains(event.target) && 
                     !notificationPanel.contains(event.target)) {
                     notificationPanel.classList.remove('AN-active');
                 }

@@ -84,19 +84,20 @@
     <main class="AN-main">
         <div class="AN-container">
             <!-- Hero Section -->
-            <section class="AN-hero">
-                <div class="AN-hero-content">
-                    <h2 class="AN-hero-title" data-i18n="An.index.heroTitle">Exploring the Universe</h2>
-                    <p class="AN-hero-text" data-i18n="An.index.heroText">Latest discoveries, missions, and cosmic events from across the universe</p>
-                    <button class="AN-btn AN-btn-primary" data-i18n="An.index.exploreBtn">Explore News</button>
-                </div>
-                <div class="AN-hero-image">
-                    <div class="AN-planet AN-planet-1"></div>
-                    <div class="AN-planet AN-planet-2"></div>
-                    <div class="AN-planet AN-planet-3"></div>
-                    <div class="AN-stars"></div>
-                </div>
-            </section>
+            <!-- Hero Section -->
+<section class="AN-hero">
+    <div class="AN-hero-content">
+        <h2 class="AN-hero-title" data-i18n="An.index.heroTitle">Exploring the Universe</h2>
+        <p class="AN-hero-text" data-i18n="An.index.heroText">Latest discoveries, missions, and cosmic events from across the universe</p>
+        <a href="AN_explore.html" class="AN-btn AN-btn-primary" data-i18n="An.index.exploreBtn">Explore News</a>
+    </div>
+    <div class="AN-hero-image">
+        <div class="AN-planet AN-planet-1"></div>
+        <div class="AN-planet AN-planet-2"></div>
+        <div class="AN-planet AN-planet-3"></div>
+        <div class="AN-stars"></div>
+    </div>
+</section>
             
             <!-- Featured News Section -->
             <section class="AN-section">
@@ -179,82 +180,289 @@
             <!-- Notifications will be dynamically generated here -->
         </div>
     </div>
-
+<!-- modal event -->
+<div class="AN-event-modal" id="AN-event-modal">
+    <div class="AN-event-modal-content">
+        <div class="AN-event-modal-header">
+            <h2 id="AN-event-modal-title"></h2>
+            <button class="AN-event-modal-close" id="AN-event-modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="AN-event-modal-body">
+            <div class="AN-event-modal-image" id="AN-event-modal-image"></div>
+            <div class="AN-event-modal-info">
+                <div class="AN-event-calendar" id="AN-event-calendar">
+                    <!-- Calendar will be generated here -->
+                </div>
+                <div class="AN-event-details">
+                    <h3 id="AN-event-modal-subtitle"></h3>
+                    <p id="AN-event-modal-body"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     <script src="pwa-main.js"></script>
     <script src="data.js"></script>
 <script src="data_processing.js"></script>
     <script src="translation.js"></script>
     <script>
-        // Theme toggle functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const themeSwitch = document.getElementById('AN-theme-switch');
-            const body = document.body;
-            
-            // Check for saved theme preference or use OS preference
-            const savedTheme = localStorage.getItem('AN-theme') || 
-                              (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-            
-            if (savedTheme === 'dark') {
+    // Theme toggle functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const themeSwitch = document.getElementById('AN-theme-switch');
+        const body = document.body;
+        
+        // Check for saved theme preference or use OS preference
+        const savedTheme = localStorage.getItem('AN-theme') || 
+                          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        
+        if (savedTheme === 'dark') {
+            body.classList.add('AN-dark-mode');
+            themeSwitch.checked = true;
+        }
+        
+        // Toggle theme
+        themeSwitch.addEventListener('change', function() {
+            if (this.checked) {
                 body.classList.add('AN-dark-mode');
-                themeSwitch.checked = true;
-            }
-            
-            // Toggle theme
-            themeSwitch.addEventListener('change', function() {
-                if (this.checked) {
-                    body.classList.add('AN-dark-mode');
-                    localStorage.setItem('AN-theme', 'dark');
-                } else {
-                    body.classList.remove('AN-dark-mode');
-                    localStorage.setItem('AN-theme', 'light');
-                }
-            });
-            
-            // Notification panel toggle
-            const notificationToggle = document.getElementById('AN-notification-toggle');
-            const notificationPanel = document.getElementById('AN-notification-panel');
-            const closeNotifications = document.getElementById('AN-close-notifications');
-            
-            notificationToggle.addEventListener('click', function() {
-                notificationPanel.classList.toggle('AN-active');
-            });
-            
-            closeNotifications.addEventListener('click', function() {
-                notificationPanel.classList.remove('AN-active');
-            });
-            
-            // Close notification panel when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!notificationToggle.contains(event.target) && 
-                    !notificationPanel.contains(event.target)) {
-                    notificationPanel.classList.remove('AN-active');
-                }
-            });
-            
-            // Add refresh button for notifications (optional)
-            const refreshBtn = document.createElement('button');
-            refreshBtn.className = 'AN-notification-refresh';
-            refreshBtn.innerHTML = '<i class="fas fa-sync-alt"></i>';
-            refreshBtn.title = 'Refresh notifications';
-            refreshBtn.addEventListener('click', function() {
-                const language = document.getElementById('AN-language-select').value;
-                // Clear saved notifications to force refresh
-                localStorage.removeItem(`AN_notifications_${language}`);
-                AN_renderNotifications(language);
-            });
-            
-            // Add refresh button to notification header
-            const notificationHeader = document.querySelector('.AN-notification-header');
-            if (notificationHeader) {
-                notificationHeader.appendChild(refreshBtn);
+                localStorage.setItem('AN-theme', 'dark');
+            } else {
+                body.classList.remove('AN-dark-mode');
+                localStorage.setItem('AN-theme', 'light');
             }
         });
-   // Initialize PWA if not already
-   if ('serviceWorker' in navigator && !window.AN_PWA) {
-       navigator.serviceWorker.register('/sw.js')
-           .then(() => console.log('Service Worker registered'))
-           .catch(err => console.error('Service Worker registration failed:', err));
-   }
-    </script>
+        
+        // Notification panel toggle
+        const notificationToggle = document.getElementById('AN-notification-toggle');
+        const notificationPanel = document.getElementById('AN-notification-panel');
+        const closeNotifications = document.getElementById('AN-close-notifications');
+        
+        notificationToggle.addEventListener('click', function() {
+            notificationPanel.classList.toggle('AN-active');
+        });
+        
+        closeNotifications.addEventListener('click', function() {
+            notificationPanel.classList.remove('AN-active');
+        });
+        
+        // Close notification panel when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!notificationToggle.contains(event.target) && 
+                !notificationPanel.contains(event.target)) {
+                notificationPanel.classList.remove('AN-active');
+            }
+        });
+        
+        // Add refresh button for notifications (optional)
+        const refreshBtn = document.createElement('button');
+        refreshBtn.className = 'AN-notification-refresh';
+        refreshBtn.innerHTML = '<i class="fas fa-sync-alt"></i>';
+        refreshBtn.title = 'Refresh notifications';
+        refreshBtn.addEventListener('click', function() {
+            const language = document.getElementById('AN-language-select').value;
+            // Clear saved notifications to force refresh
+            localStorage.removeItem(`AN_notifications_${language}`);
+            AN_renderNotifications(language);
+        });
+        
+        // Add refresh button to notification header
+        const notificationHeader = document.querySelector('.AN-notification-header');
+        if (notificationHeader) {
+            notificationHeader.appendChild(refreshBtn);
+        }
+        
+        // ============ EVENT MODAL FUNCTIONALITY ============
+        
+        // Function to generate calendar for event date
+        function generateEventCalendar(eventDate, language = 'en') {
+            const date = new Date(eventDate);
+            const year = date.getFullYear();
+            const month = date.getMonth();
+            const day = date.getDate();
+            
+            // Month names for different languages
+            const monthNames = {
+                en: ['January', 'February', 'March', 'April', 'May', 'June',
+                     'July', 'August', 'September', 'October', 'November', 'December'],
+                fr: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
+                     'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+                ar: ['جانفي', 'فيفري', 'مارس', 'أفريل', 'ماي', 'جوان',
+                     'جويلية', 'أوت', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر']
+            };
+            
+            // Day names for different languages
+            const dayNames = {
+                en: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+                fr: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+                ar: ['ح', 'ن', 'ث', 'ر', 'خ', 'ج', 'س']
+            };
+            
+            // Get first day of month
+            const firstDay = new Date(year, month, 1);
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const startingDay = firstDay.getDay();
+            
+            let calendarHTML = `
+                <div class="AN-event-calendar-header">
+                    ${monthNames[language][month]} ${year}
+                </div>
+                <div class="AN-event-calendar-grid">
+            `;
+            
+            // Add day headers
+            for (let i = 0; i < 7; i++) {
+                calendarHTML += `<div class="AN-calendar-day">${dayNames[language][i]}</div>`;
+            }
+            
+            // Add empty cells for days before the first day of month
+            for (let i = 0; i < startingDay; i++) {
+                calendarHTML += '<div class="AN-calendar-date"></div>';
+            }
+            
+            // Add days of month
+            for (let i = 1; i <= daysInMonth; i++) {
+                const isEventDay = i === day;
+                const dateClass = isEventDay ? 'AN-calendar-date AN-current-month AN-event-day' : 'AN-calendar-date AN-current-month';
+                calendarHTML += `<div class="${dateClass}">${i}</div>`;
+            }
+            
+            calendarHTML += '</div>';
+            
+            // Add event date display
+            calendarHTML += `
+                <div class="AN-event-date-display">
+                    <div class="AN-event-date-label">${language === 'en' ? 'Event Date' : language === 'fr' ? 'Date de l\'événement' : 'تاريخ الحدث'}:</div>
+                    <div class="AN-event-date-value">${day} ${monthNames[language][month]} ${year}</div>
+                </div>
+            `;
+            
+            return calendarHTML;
+        }
+        
+        // Function to open event modal
+        function openEventModal(eventId, language) {
+            const event = AN_getDataById(eventId);
+            if (!event) return;
+            
+            const modal = document.getElementById('AN-event-modal');
+            const modalTitle = document.getElementById('AN-event-modal-title');
+            const modalSubtitle = document.getElementById('AN-event-modal-subtitle');
+            const modalBody = document.getElementById('AN-event-modal-body');
+            const modalImage = document.getElementById('AN-event-modal-image');
+            const calendarContainer = document.getElementById('AN-event-calendar');
+            
+            // Set modal content
+            modalTitle.textContent = event[language].title;
+            modalSubtitle.textContent = event[language].subtitle;
+            modalBody.textContent = event[language].body;
+            
+            // Set image
+            modalImage.style.backgroundImage = `url('${event.image}')`;
+            modalImage.style.backgroundSize = 'cover';
+            modalImage.style.backgroundPosition = 'center';
+            
+            // Generate and set calendar
+            calendarContainer.innerHTML = generateEventCalendar(event.date, language);
+            
+            // Show modal
+            modal.classList.add('AN-active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Function to close event modal
+        function closeEventModal() {
+            const modal = document.getElementById('AN-event-modal');
+            modal.classList.remove('AN-active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Function to render events with "Read more" buttons
+        function AN_renderEvents(language = 'en') {
+            const eventsContainer = document.getElementById('AN-events-container');
+            const events = AN_getDataByType('event');
+            
+            if (!eventsContainer || events.length === 0) return;
+            
+            eventsContainer.innerHTML = '';
+            
+            events.forEach(event => {
+                const eventDate = new Date(event.date);
+                const day = eventDate.getDate().toString().padStart(2, '0');
+                const month = AN_getMonthName(event.date, language);
+                
+                const eventElement = document.createElement('div');
+                eventElement.className = 'AN-event-item';
+                eventElement.innerHTML = `
+                    <div class="AN-event-date">
+                        <div class="AN-event-day">${day}</div>
+                        <div class="AN-event-month">${month}</div>
+                    </div>
+                    <div class="AN-event-details">
+                        <h3 class="AN-event-title">${event[language].title}</h3>
+                        <p class="AN-event-description">${event[language].subtitle}</p>
+                        <button class="AN-read-more AN-event-read-more" 
+                                data-id="${event.id}"
+                                data-i18n="An.index.readMore">
+                            ${language === 'en' ? 'Read More' : language === 'fr' ? 'Lire la suite' : 'اقرأ المزيد'}
+                        </button>
+                    </div>
+                `;
+                
+                eventsContainer.appendChild(eventElement);
+            });
+            
+            // Add event listeners to "Read more" buttons
+            document.querySelectorAll('.AN-event-read-more').forEach(button => {
+                button.addEventListener('click', function() {
+                    const eventId = this.getAttribute('data-id');
+                    openEventModal(eventId, language);
+                });
+            });
+        }
+        
+        // Initialize event modal functionality
+        const eventModal = document.getElementById('AN-event-modal');
+        const closeEventModalBtn = document.getElementById('AN-event-modal-close');
+        
+        // Close modal when close button is clicked
+        if (closeEventModalBtn) {
+            closeEventModalBtn.addEventListener('click', closeEventModal);
+        }
+        
+        // Close modal when clicking outside
+        if (eventModal) {
+            eventModal.addEventListener('click', function(e) {
+                if (e.target === eventModal) {
+                    closeEventModal();
+                }
+            });
+        }
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && eventModal.classList.contains('AN-active')) {
+                closeEventModal();
+            }
+        });
+        
+        // Render events on page load
+        const initialLanguage = document.getElementById('AN-language-select').value;
+        AN_renderEvents(initialLanguage);
+        
+        // Update events when language changes
+        document.getElementById('AN-language-select').addEventListener('change', function() {
+            const language = this.value;
+            AN_renderEvents(language);
+        });
+    });
+    
+    // Initialize PWA if not already
+    if ('serviceWorker' in navigator && !window.AN_PWA) {
+        navigator.serviceWorker.register('/sw.js')
+            .then(() => console.log('Service Worker registered'))
+            .catch(err => console.error('Service Worker registration failed:', err));
+    }
+</script>
 </body>
 </html>

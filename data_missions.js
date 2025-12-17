@@ -9,7 +9,7 @@ const AN_missions_data = [
         category: 'moon',
         agency: 'NASA',
         date: '1969-07-20',
-        image: 'assets/images/missions/apollo11.jpg',
+        image: 'assets2/images/missions/apollo11.jpg',
         en: {
             title: 'Apollo 11',
             subtitle: 'First crewed mission to land on the Moon',
@@ -36,7 +36,7 @@ const AN_missions_data = [
         category: 'mars',
         agency: 'NASA',
         date: '2021-02-18',
-        image: 'assets/images/missions/perseverance.jpg',
+        image: 'assets2/images/missions/perseverance.jpg',
         en: {
             title: 'Mars 2020: Perseverance Rover',
             subtitle: 'Searching for signs of ancient life on Mars',
@@ -63,7 +63,7 @@ const AN_missions_data = [
         category: 'deep-space',
         agency: 'ESA/NASA',
         date: '2021-12-25',
-        image: 'assets/images/missions/james-webb.jpg',
+        image: 'assets2/images/missions/james-webb.jpg',
         en: {
             title: 'James Webb Space Telescope',
             subtitle: 'Next-generation space observatory',
@@ -90,53 +90,53 @@ const AN_missions_data = [
         category: 'moon',
         agency: 'NASA',
         date: '2025-11-01',
-        image: 'assets/images/missions/artemis.jpg',
+        image: 'assets2/images/missions/artemis.jpg',
         en: {
             title: 'Artemis Program',
             subtitle: 'Returning humans to the Moon',
-            body: 'Artemis is NASA\'s program to return astronauts to the lunar surface by 2025. The program will land the first woman and first person of color on the Moon. Artemis I, an uncrewed test flight, was successfully completed in 2022. Artemis II will carry astronauts around the Moon in 2024, and Artemis III will land astronauts on the lunar surface in 2025. The program aims to establish a sustainable human presence on the Moon by the end of the decade, serving as a stepping stone for future Mars missions.',
+            body: 'Artemis is NASA\'s program to return astronauts to the lunar surface by 2026. The program will land the first woman and first person of color on the Moon. Artemis I, an uncrewed test flight, was successfully completed in 2022. Artemis II will carry astronauts around the Moon in 2026, and Artemis III will land astronauts on the lunar surface in 2026. The program aims to establish a sustainable human presence on the Moon by the end of the decade, serving as a stepping stone for future Mars missions.',
             agency: 'National Aeronautics and Space Administration (NASA)'
         },
         fr: {
             title: 'Programme Artemis',
             subtitle: 'Retour des humains sur la Lune',
-            body: 'Artemis est le programme de la NASA pour ramener des astronautes à la surface lunaire d\'ici 2025. Le programme fera atterrir la première femme et la première personne de couleur sur la Lune. Artemis I, un vol d\'essai sans équipage, a été achevé avec succès en 2022. Artemis II transportera des astronautes autour de la Lune en 2024, et Artemis III fera atterrir des astronautes sur la surface lunaire en 2025. Le programme vise à établir une présence humaine durable sur la Lune d\'ici la fin de la décennie, servant de tremplin pour les futures missions vers Mars.',
+            body: 'Artemis est le programme de la NASA pour ramener des astronautes à la surface lunaire d\'ici 2026. Le programme fera atterrir la première femme et la première personne de couleur sur la Lune. Artemis I, un vol d\'essai sans équipage, a été achevé avec succès en 2022. Artemis II transportera des astronautes autour de la Lune en 2026, et Artemis III fera atterrir des astronautes sur la surface lunaire en 2026. Le programme vise à établir une présence humaine durable sur la Lune d\'ici la fin de la décennie, servant de tremplin pour les futures missions vers Mars.',
             agency: 'Administration nationale de l\'aéronautique et de l\'espace (NASA)'
         },
         ar: {
             title: 'برنامج أرتميس',
             subtitle: 'عودة البشر إلى القمر',
-            body: 'أرتميس هو برنامج ناسا لإعادة رواد الفضاء إلى سطح القمر بحلول عام 2025. سيهبط البرنامج بأول امرأة وأول شخص من ذوي البشرة الملونة على القمر. تم الانتهاء بنجاح من أرتميس الأول، وهي رحلة تجريبية بدون طاقم، في عام 2022. ستحمل أرتميس الثاني رواد فضاء حول القمر في عام 2024، وستهبط أرتميس الثالث برواد فضاء على سطح القمر في عام 2025. يهدف البرنامج إلى إنشاء وجود بشري مستدام على القمر بحلول نهاية العقد، ليكون بمثابة نقطة انطلاق للبعثات المستقبلية إلى المريخ.',
+            body: 'أرتميس هو برنامج ناسا لإعادة رواد الفضاء إلى سطح القمر بحلول عام 2026. سيهبط البرنامج بأول امرأة وأول شخص من ذوي البشرة الملونة على القمر. تم الانتهاء بنجاح من أرتميس الأول، وهي رحلة تجريبية بدون طاقم، في عام 2022. ستحمل أرتميس الثاني رواد فضاء حول القمر في عام 2026، وستهبط أرتميس الثالث برواد فضاء على سطح القمر في عام 2025. يهدف البرنامج إلى إنشاء وجود بشري مستدام على القمر بحلول نهاية العقد، ليكون بمثابة نقطة انطلاق للبعثات المستقبلية إلى المريخ.',
             agency: 'الإدارة الوطنية للملاحة الجوية والفضاء (ناسا)'
         }
     },
     {
-        id: 'mission-005',
-        type: 'mission',
-        status: 'active',
-        category: 'tunisia',
-        agency: 'TASA',
-        date: '2023-03-22',
-        image: 'assets/images/missions/tunisia-satellite.jpg',
-        en: {
-            title: 'Tunisia\'s First Educational Satellite',
-            subtitle: 'Advancing space technology in Tunisia',
-            body: 'Tunisia launched its first educational satellite developed by Tunisian students and researchers from the Tunisian Association for Space Activities (TASA). The satellite, named "Challenge One," is a CubeSat designed for educational and technological demonstration purposes. It carries payloads for IoT connectivity testing and serves as a platform for training the next generation of Tunisian space engineers and scientists. This mission marks a significant step in Tunisia\'s space program and demonstrates the country\'s commitment to developing indigenous space capabilities.',
-            agency: 'Tunisian Association for Space Activities (TASA)'
-        },
-        fr: {
-            title: 'Premier satellite éducatif tunisien',
-            subtitle: 'Développement de la technologie spatiale en Tunisie',
-            body: 'La Tunisie a lancé son premier satellite éducatif développé par des étudiants et des chercheurs tunisiens de l\'Association Tunisienne des Activités Spatiales (ATAS). Le satellite, nommé "Challenge One", est un CubeSat conçu à des fins éducatives et de démonstration technologique. Il transporte des charges utiles pour les tests de connectivité IoT et sert de plateforme pour former la prochaine génération d\'ingénieurs et de scientifiques spatiaux tunisiens. Cette mission marque une étape importante dans le programme spatial tunisien et démontre l\'engagement du pays à développer des capacités spatiales indigènes.',
-            agency: 'Association Tunisienne des Activités Spatiales (ATAS)'
-        },
-        ar: {
-            title: 'أول قمر صناعي تعليمي تونسي',
-            subtitle: 'تطوير تكنولوجيا الفضاء في تونس',
-            body: 'أطلقت تونس أول قمر صناعي تعليمي تم تطويره من قبل الطلاب والباحثين التونسيين من الجمعية التونسية للأنشطة الفضائية. القمر الصناعي، المسمى "تحدي واحد"، هو قمر صناعي مكعب مصمم لأغراض التعليم والتوضيح التكنولوجي. يحمل حمولات لاختبار اتصال إنترنت الأشياء ويخدم كمنصة لتدريب الجيل القادم من المهندسين والعلماء الفضائيين التونسيين. تمثل هذه المهمة خطوة مهمة في البرنامج الفضائي التونسي وتظهر التزام البلاد بتطوير قدرات فضائية محلية.',
-            agency: 'الجمعية التونسية للأنشطة الفضائية'
-        }
+    id: 'mission-005',
+    type: 'mission',
+    status: 'completed',
+    category: 'tunisia',
+    agency: 'Telnet',
+    date: '2021-03-22',
+    image: 'assets2/images/missions/tunisia-satellite.jpg',
+    en: {
+        title: 'Challenge One',
+        subtitle: 'First Tunisian-built satellite for IoT communications',
+        body: 'Challenge One is the first Tunisian-built satellite, developed by Telnet Group. It was successfully launched on March 22, 2021, aboard a Russian Soyuz-2 rocket from the Baikonur Cosmodrome in Kazakhstan. The satellite is designed for Internet of Things (IoT) communications using LoRaWAN protocol, marking Tunisia\'s entry into space technology. Built entirely by Tunisian engineers, the satellite represents a milestone in the country\'s technological development and is part of a broader project to deploy a constellation of 30 satellites by 2023. The mission faced several delays, initially planned for 2020 but postponed due to technical and pandemic-related issues.',
+        agency: 'Telnet Group'
     },
+    fr: {
+        title: 'Challenge One',
+        subtitle: 'Premier satellite tunisien pour les communications IoT',
+        body: 'Challenge One est le premier satellite construit en Tunisie, développé par le groupe Telnet. Il a été lancé avec succès le 22 mars 2021 à bord d\'une fusée russe Soyouz-2 depuis le cosmodrome de Baïkonour au Kazakhstan. Le satellite est conçu pour les communications Internet des objets (IoT) utilisant le protocole LoRaWAN, marquant l\'entrée de la Tunisie dans la technologie spatiale. Construit entièrement par des ingénieurs tunisiens, le satellite représente une étape importante dans le développement technologique du pays et fait partie d\'un projet plus large visant à déployer une constellation de 30 satellites d\'ici 2023. La mission a connu plusieurs retards, initialement prévue pour 2020 mais reportée en raison de problèmes techniques et de la pandémie.',
+        agency: 'Groupe Telnet'
+    },
+    ar: {
+        title: 'تحدي واحد',
+        subtitle: 'أول قمر صناعي تونسي الصنع لاتصالات إنترنت الأشياء',
+        body: 'تحدي واحد هو أول قمر صناعي تونسي الصنع، طورته مجموعة تلنات. تم إطلاقه بنجاح في 22 مارس 2021 على متن الصاروخ الروسي سويوز 2 من ميناء بايكونور الفضائي في كازاخستان. تم تصميم القمر الصناعي لاتصالات إنترنت الأشياء باستخدام بروتوكول LoRaWAN، مما يمثل دخول تونس إلى تكنولوجيا الفضاء. تم بناء القمر الصناعي بالكامل بواسطة مهندسين تونسيين، وهو يمثل علامة فارقة في التطور التكنولوجي للبلاد وهو جزء من مشروع أوسع لنشر كوكبة من 30 قمراً صناعياً بحلول عام 2023. واجهت المهمة عدة تأخيرات، حيث كان مخططاً لها في الأصل عام 2020 ولكن تم تأجيلها بسبب مشاكل تقنية وجائحة كورونا.',
+        agency: 'مجموعة تلنات'
+    }
+},
     {
         id: 'mission-006',
         type: 'mission',
@@ -144,7 +144,7 @@ const AN_missions_data = [
         category: 'mars',
         agency: 'ESA',
         date: '2028-09-01',
-        image: 'assets/images/missions/exomars.jpg',
+        image: 'assets2/images/missions/exomars.jpg',
         en: {
             title: 'ExoMars Rover',
             subtitle: 'European search for life on Mars',
@@ -163,7 +163,61 @@ const AN_missions_data = [
             body: 'تم تصميم مركبة إكسومارس، المسماة روزاليند فرانكلين، للبحث عن أدلة على الحياة السابقة على المريخ. ستحفر حتى عمق مترين تحت السطح لتحليل عينات التربة المحمية من الظروف السطحية القاسية للمريخ. تحمل المركبة مجموعة متطورة من الأدوات تسمى باستور ستقوم بإجراء تحليل عضوي وجيوكيميائي. تم تأجيل المهمة، التي كانت مقررة أصلاً لعام 2022، بسبب اعتبارات جيوسياسية ومن المقرر إطلاقها الآن في عام 2028. إكسومارس هو برنامج مشترك بين الوكالة الفضائية الأوروبية وروسكوسموس.',
             agency: 'الوكالة الفضائية الأوروبية (ESA)'
         }
+    },
+	{
+    id: 'mission-007',
+    type: 'mission',
+    status: 'active',
+    category: 'deep-space',
+    agency: 'NASA',
+    date: '1977-09-05',
+    image: 'assets2/images/missions/voyager.jpg',
+    en: {
+        title: 'Voyager Program',
+        subtitle: 'Exploring the outer planets and interstellar space',
+        body: 'Voyager 1 and Voyager 2 were launched in 1977 to explore the outer planets. They provided the first detailed images of Jupiter, Saturn, Uranus, and Neptune, and discovered many of their moons. Voyager 1 entered interstellar space in 2012, followed by Voyager 2 in 2018. Both spacecraft continue to send data about magnetic fields, plasma, and particles from beyond the heliosphere. Each carries a Golden Record with sounds and images representing Earth.',
+        agency: 'National Aeronautics and Space Administration (NASA)'
+    },
+    fr: {
+        title: 'Programme Voyager',
+        subtitle: 'Exploration des planètes externes et de l’espace interstellaire',
+        body: 'Voyager 1 et Voyager 2 ont été lancés en 1977 pour explorer les planètes externes. Ils ont fourni les premières images détaillées de Jupiter, Saturne, Uranus et Neptune, et ont découvert de nombreuses lunes. Voyager 1 est entré dans l’espace interstellaire en 2012, suivi de Voyager 2 en 2018. Les deux sondes continuent d’envoyer des données sur les champs magnétiques, le plasma et les particules au-delà de l’héliosphère. Chacune transporte un disque d’or contenant des sons et des images représentant la Terre.',
+        agency: 'Administration nationale de l’aéronautique et de l’espace (NASA)'
+    },
+    ar: {
+        title: 'برنامج فوييجر',
+        subtitle: 'استكشاف الكواكب الخارجية والفضاء بين النجوم',
+        body: 'تم إطلاق فوييجر 1 وفوييجر 2 في عام 1977 لاستكشاف الكواكب الخارجية. قدما أول صور مفصلة للمشتري وزحل وأورانوس ونبتون، واكتشفا العديد من أقمارها. دخل فوييجر 1 الفضاء بين النجوم في عام 2012، وتبعه فوييجر 2 في عام 2018. لا تزال المركبتان ترسلان بيانات عن المجالات المغناطيسية والبلازما والجسيمات من خارج الغلاف الشمسي. يحمل كل منهما سجلًا ذهبيًا يحتوي على أصوات وصور تمثل الأرض.',
+        agency: 'الإدارة الوطنية للملاحة الجوية والفضاء (ناسا)'
     }
+},
+{
+    id: 'mission-008',
+    type: 'mission',
+    status: 'active',
+    category: 'space-observatory',
+    agency: 'NASA/ESA',
+    date: '1990-04-24',
+    image: 'assets2/images/missions/hubble.jpg',
+    en: {
+        title: 'Hubble Space Telescope',
+        subtitle: 'Revolutionizing our view of the universe',
+        body: 'The Hubble Space Telescope was launched on April 24, 1990, aboard Space Shuttle Discovery. Orbiting Earth at about 547 km altitude, Hubble has captured iconic images of galaxies, nebulae, and exoplanets. It provided deep-field views revealing thousands of galaxies in tiny patches of sky and measured the expansion rate of the universe with great precision. Hubble remains operational and continues to complement the James Webb Space Telescope.',
+        agency: 'National Aeronautics and Space Administration (NASA) / European Space Agency (ESA)'
+    },
+    fr: {
+        title: 'Télescope spatial Hubble',
+        subtitle: 'Révolutionnant notre vision de l’univers',
+        body: 'Le télescope spatial Hubble a été lancé le 24 avril 1990 à bord de la navette spatiale Discovery. En orbite autour de la Terre à environ 547 km d’altitude, Hubble a capturé des images emblématiques de galaxies, de nébuleuses et d’exoplanètes. Il a fourni des vues profondes révélant des milliers de galaxies dans de minuscules zones du ciel et a mesuré avec précision le taux d’expansion de l’univers. Hubble reste opérationnel et continue de compléter le télescope spatial James Webb.',
+        agency: 'Administration nationale de l’aéronautique et de l’espace (NASA) / Agence spatiale européenne (ESA)'
+    },
+    ar: {
+        title: 'تلسكوب هابل الفضائي',
+        subtitle: 'ثورة في رؤيتنا للكون',
+        body: 'تم إطلاق تلسكوب هابل الفضائي في 24 أبريل 1990 على متن مكوك الفضاء ديسكفري. يدور حول الأرض على ارتفاع حوالي 547 كم، وقد التقط هابل صورًا أيقونية للمجرات والسدم والكواكب الخارجية. قدم مشاهد عميقة كشفت آلاف المجرات في بقع صغيرة من السماء وقاس معدل تمدد الكون بدقة كبيرة. لا يزال هابل يعمل ويكمل تلسكوب جيمس ويب الفضائي.',
+        agency: 'الإدارة الوطنية للملاحة الجوية والفضاء (ناسا) / وكالة الفضاء الأوروبية (ESA)'
+    }
+}
 ];
 
 // Timeline data - Expanded with more events
@@ -335,5 +389,74 @@ const AN_timeline_data = [
         fr: { title: 'Chandrayaan-3', desc: 'L\'Inde atterrit avec succès un vaisseau spatial sur le pôle sud de la Lune' },
         ar: { title: 'تشاندرايان-3', desc: 'الهند تهبط بنجاح بمركبة فضائية على القطب الجنوبي للقمر' },
         icon: 'fa-globe-asia' 
-    }
+    },
+  { 
+    year: '2025', 
+    en: { 
+      title: 'Blue Ghost Mission 1', 
+      desc: 'Firefly Aerospace successfully lands on the Moon and transmits over 110 GB of scientific data' 
+    },
+    fr: { 
+      title: 'Blue Ghost Mission 1', 
+      desc: 'Firefly Aerospace atterrit avec succès sur la Lune et transmet plus de 110 Go de données scientifiques' 
+    },
+    ar: { 
+      title: 'بلو غوست المهمة 1', 
+      desc: 'شركة فايرفلاي تهبط بنجاح على القمر وتنقل أكثر من 110 جيجابايت من البيانات العلمية' 
+    },
+    icon: 'fa-moon' 
+  },
+  { 
+    year: '2024', 
+    en: { title: 'Europa Clipper', desc: 'NASA launches mission to study Jupiter’s moon Europa for signs of habitability' },
+    fr: { title: 'Europa Clipper', desc: 'La NASA lance une mission pour étudier la lune Europe de Jupiter à la recherche d’habitabilité' },
+    ar: { title: 'مسبار أوروبا كليبر', desc: 'ناسا تطلق مهمة لدراسة قمر المشتري أوروبا بحثًا عن قابلية السكن' },
+    icon: 'fa-space-shuttle' 
+  },
+  { 
+    year: '2024', 
+    en: { title: 'Hera', desc: 'ESA launches mission to study asteroid Dimorphos after DART impact for planetary defense' },
+    fr: { title: 'Hera', desc: 'L’ESA lance une mission pour étudier l’astéroïde Dimorphos après l’impact de DART pour la défense planétaire' },
+    ar: { title: 'هيرا', desc: 'وكالة الفضاء الأوروبية تطلق مهمة لدراسة الكويكب ديمورفوس بعد اصطدام DART لأغراض الدفاع الكوكبي' },
+    icon: 'fa-meteor' 
+  },
+  { 
+    year: '2024', 
+    en: { title: 'Chang’e 6', desc: 'China returns first-ever lunar samples from the far side of the Moon' },
+    fr: { title: 'Chang’e 6', desc: 'La Chine rapporte les premiers échantillons lunaires de la face cachée de la Lune' },
+    ar: { title: 'تشانغ آه-6', desc: 'الصين تعيد أول عينات قمرية من الجانب البعيد للقمر' },
+    icon: 'fa-moon' 
+  },
+  { 
+    year: '2025', 
+    en: { 
+      title: 'Solar Orbiter Venus Flyby', 
+      desc: 'ESA spacecraft uses Venus gravity assist to capture first-ever images of the Sun’s south pole' 
+    },
+    fr: { 
+      title: 'Survol de Vénus par Solar Orbiter', 
+      desc: 'La sonde de l’ESA utilise l’assistance gravitationnelle de Vénus pour capturer les premières images du pôle sud du Soleil' 
+    },
+    ar: { 
+      title: 'مركبة سولار أوربيتر - تحليق قرب الزهرة', 
+      desc: 'مركبة وكالة الفضاء الأوروبية تستخدم جاذبية الزهرة لالتقاط أول صور لقطب الشمس الجنوبي' 
+    },
+    icon: 'fa-sun' 
+  },
+  { 
+    year: '2025', 
+    en: { 
+      title: 'Lucy Flyby of Donaldjohanson', 
+      desc: 'NASA’s Lucy spacecraft performs first close-up study of asteroid Donaldjohanson in the main belt' 
+    },
+    fr: { 
+      title: 'Survol de Donaldjohanson par Lucy', 
+      desc: 'La sonde Lucy de la NASA réalise la première étude rapprochée de l’astéroïde Donaldjohanson dans la ceinture principale' 
+    },
+    ar: { 
+      title: 'تحليق لوسي قرب الكويكب دونالدجوهانسون', 
+      desc: 'مركبة ناسا لوسي تقوم بأول دراسة عن قرب للكويكب دونالدجوهانسون في الحزام الرئيسي' 
+    },
+    icon: 'fa-asterisk' 
+  }
 ];

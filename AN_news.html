@@ -455,21 +455,49 @@
 
         // Function to apply translations for news page
         function AN_applyNewsTranslations(language) {
-            AN_applyTranslations(language);
-            
-            // Get current filter and sort
-            const activeFilter = document.querySelector('.AN-filter-active')?.getAttribute('data-filter') || 'all';
-            const activeSort = document.querySelector('.AN-filter-active[data-filter="latest"], .AN-filter-active[data-filter="oldest"]')?.getAttribute('data-filter') || 'latest';
-            
-            // Render news list with current settings
-            AN_renderNewsList(language, activeFilter, activeSort);
-            
-            // Re-render notifications
-            AN_renderNotifications(language);
-        }
+    AN_applyTranslations(language);
+    
+    // Get current filter and sort
+    const activeFilter = document.querySelector('.AN-filter-active')?.getAttribute('data-filter') || 'all';
+    const activeSort = document.querySelector('.AN-filter-active[data-filter="latest"], .AN-filter-active[data-filter="oldest"]')?.getAttribute('data-filter') || 'latest';
+    
+    // Render news list with current settings
+    AN_renderNewsList(language, activeFilter, activeSort);
+    
+    // Check for article ID in URL
+    const articleIdFromUrl = AN_getQueryParam('article');
+    if (articleIdFromUrl) {
+        // Small delay to ensure DOM is rendered
+        setTimeout(() => {
+            const newsItem = document.querySelector(`.AN-news-item[data-id="${articleIdFromUrl}"]`);
+            if (newsItem) {
+                // Remove active class from all items
+                document.querySelectorAll('.AN-news-item').forEach(item => {
+                    item.classList.remove('AN-news-item-active');
+                });
+                
+                // Add active class to the target item
+                newsItem.classList.add('AN-news-item-active');
+                
+                // Load the article
+                AN_loadArticle(articleIdFromUrl, language);
+            }
+        }, 50);
+    }
+    
+    // Re-render notifications
+    AN_renderNotifications(language);
+}
 
-        // Initialize when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
+        
+// Add this function at the beginning of the script in AN_news.html
+function AN_getQueryParam(name) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(name);
+}
+
+// Modify the DOMContentLoaded event listener
+document.addEventListener('DOMContentLoaded', function() {
             // Theme toggle functionality
             const themeSwitch = document.getElementById('AN-theme-switch');
             const body = document.body;
@@ -513,68 +541,98 @@
                     notificationPanel.classList.remove('AN-active');
                 }
             });
+    
+    // Language selection
+    const languageSelect = document.getElementById('AN-language-select');
+    const savedLanguage = localStorage.getItem('AN-language-preference') || 'en';
+    
+    if (languageSelect) {
+        languageSelect.value = savedLanguage;
+        languageSelect.addEventListener('change', function() {
+            AN_applyNewsTranslations(this.value);
+        });
+    }
+    
+    // Get article ID from URL parameter
+    const articleIdFromUrl = AN_getQueryParam('article');
+    
+    // Filter button functionality
+    const filterButtons = document.querySelectorAll('.AN-filter-btn');
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove active class from all filter buttons
+            filterButtons.forEach(btn => btn.classList.remove('AN-filter-active'));
             
-            // Language selection
-            const languageSelect = document.getElementById('AN-language-select');
-            const savedLanguage = localStorage.getItem('AN-language-preference') || 'en';
+            // Add active class to clicked button
+            this.classList.add('AN-filter-active');
             
-            if (languageSelect) {
-                languageSelect.value = savedLanguage;
-                languageSelect.addEventListener('change', function() {
-                    AN_applyNewsTranslations(this.value);
-                });
-            }
+            // Get filter and sort values
+            const filter = this.getAttribute('data-filter');
+            const language = languageSelect ? languageSelect.value : 'en';
             
-            // Filter button functionality
-            const filterButtons = document.querySelectorAll('.AN-filter-btn');
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Remove active class from all filter buttons
-                    filterButtons.forEach(btn => btn.classList.remove('AN-filter-active'));
-                    
-                    // Add active class to clicked button
-                    this.classList.add('AN-filter-active');
-                    
-                    // Get filter and sort values
-                    const filter = this.getAttribute('data-filter');
-                    const language = languageSelect ? languageSelect.value : 'en';
-                    
-                    // Determine if this is a sort button
-                    const isSort = filter === 'latest' || filter === 'oldest';
-                    
-                    // Get current active filter (excluding sort)
-                    let activeFilter = 'all';
-                    filterButtons.forEach(btn => {
-                        const btnFilter = btn.getAttribute('data-filter');
-                        if (btn.classList.contains('AN-filter-active') && 
-                            btnFilter !== 'latest' && btnFilter !== 'oldest') {
-                            activeFilter = btnFilter;
-                        }
-                    });
-                    
-                    // Get current sort
-                    let activeSort = 'latest';
-                    filterButtons.forEach(btn => {
-                        const btnFilter = btn.getAttribute('data-filter');
-                        if (btn.classList.contains('AN-filter-active') && 
-                            (btnFilter === 'latest' || btnFilter === 'oldest')) {
-                            activeSort = btnFilter;
-                        }
-                    });
-                    
-                    // Apply the appropriate action
-                    if (isSort) {
-                        // This is a sort button, keep current filter
-                        AN_renderNewsList(language, activeFilter, filter);
-                    } else {
-                        // This is a filter button, keep current sort
-                        AN_renderNewsList(language, filter, activeSort);
-                    }
-                });
+            // Determine if this is a sort button
+            const isSort = filter === 'latest' || filter === 'oldest';
+            
+            // Get current active filter (excluding sort)
+            let activeFilter = 'all';
+            filterButtons.forEach(btn => {
+                const btnFilter = btn.getAttribute('data-filter');
+                if (btn.classList.contains('AN-filter-active') && 
+                    btnFilter !== 'latest' && btnFilter !== 'oldest') {
+                    activeFilter = btnFilter;
+                }
             });
             
-            // Initialize with saved language
-            AN_applyNewsTranslations(savedLanguage);
+            // Get current sort
+            let activeSort = 'latest';
+            filterButtons.forEach(btn => {
+                const btnFilter = btn.getAttribute('data-filter');
+                if (btn.classList.contains('AN-filter-active') && 
+                    (btnFilter === 'latest' || btnFilter === 'oldest')) {
+                    activeSort = btnFilter;
+                }
+            });
+            
+            // Apply the appropriate action
+            if (isSort) {
+                // This is a sort button, keep current filter
+                AN_renderNewsList(language, activeFilter, filter);
+            } else {
+                // This is a filter button, keep current sort
+                AN_renderNewsList(language, filter, activeSort);
+            }
+        });
+    });
+    
+    // Initialize with saved language and check for article ID
+    AN_applyNewsTranslations(savedLanguage);
+    
+    // If there's an article ID in the URL, load it after a short delay
+    if (articleIdFromUrl) {
+        setTimeout(() => {
+            const newsItem = document.querySelector(`.AN-news-item[data-id="${articleIdFromUrl}"]`);
+            if (newsItem) {
+                newsItem.click();
+                
+                // Remove active class from all items first
+                document.querySelectorAll('.AN-news-item').forEach(item => {
+                    item.classList.remove('AN-news-item-active');
+                });
+                
+                // Add active class to the clicked item
+                newsItem.classList.add('AN-news-item-active');
+                
+                // Scroll to the article on mobile
+                if (window.innerWidth < 768) {
+                    const mainArticle = document.getElementById('AN-main-article');
+                    if (mainArticle) {
+                        mainArticle.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            }
+        }, 100); // Small delay to ensure DOM is ready
+    }
+    
             
             // Add CSS for news page
             const newsPageStyles = `
@@ -1038,7 +1096,7 @@
             const style = document.createElement('style');
             style.textContent = newsPageStyles;
             document.head.appendChild(style);
-        });
+});
     </script>
 </body>
 </html>

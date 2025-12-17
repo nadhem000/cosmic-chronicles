@@ -29,7 +29,9 @@ const AN_translations = {
         'An.index.notifications': 'Notifications',
         'An.index.markAllRead': 'Mark all as read',
         'An.index.noNotifications': 'No new notifications',
-        'An.index.timeAgo': '2 hours ago'
+        'An.index.timeAgo': '2 hours ago',
+        'An.index.eventDetails': 'Event Details',
+        'An.index.close': 'Close'
     },
     fr: {
         'An.index.title': 'Chroniques Cosmiques',
@@ -49,6 +51,8 @@ const AN_translations = {
         'An.index.globalNews': 'Actualités Mondiales',
         'An.index.localNews': 'Actualités Tunisie',
         'An.index.readMore': 'Lire la suite',
+        'An.index.eventDetails': 'Détails de l\'événement',
+        'An.index.close': 'Fermer',
         'An.index.upcomingEvents': 'Événements à venir',
         'An.index.aboutUs': 'À propos de nous',
         'An.index.aboutText': 'Chroniques Cosmiques vous apporte les dernières nouvelles et découvertes du monde de l\'astronomie et de l\'exploration spatiale.',
@@ -80,6 +84,8 @@ const AN_translations = {
         'An.index.globalNews': 'الأخبار العالمية',
         'An.index.localNews': 'أخبار تونس',
         'An.index.readMore': 'اقرأ المزيد',
+        'An.index.eventDetails': 'تفاصيل الحدث',
+        'An.index.close': 'إغلاق',
         'An.index.upcomingEvents': 'الأحداث القادمة',
         'An.index.aboutUs': 'معلومات عنا',
         'An.index.aboutText': 'تقدم لك السجلات الكونية آخر الأخبار والاكتشافات من عالم الفلك واستكشاف الفضاء.',
@@ -351,7 +357,7 @@ function AN_renderNews(language, category = 'all') {
         <p class="AN-news-excerpt">${content.body.substring(0, 150)}${content.body.length > 150 ? '...' : ''}</p>
         <div class="AN-news-meta">
             <span class="AN-news-date">${AN_formatDate(item.date, language)}</span>
-            <a href="#" class="AN-read-more" data-i18n="An.index.readMore">${AN_translations[language]['An.index.readMore']}</a>
+            <a href="AN_news.html?article=${item.id}" class="AN-read-more" data-i18n="An.index.readMore">${AN_translations[language]['An.index.readMore']}</a>
         </div>
     </div>
 `;
