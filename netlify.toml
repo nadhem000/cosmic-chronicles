@@ -23,6 +23,19 @@
   to = "/AN_news.html?article=:article"
   status = 200
 
+# Social media sharing redirect
+[[redirects]]
+  from = "/share/:article"
+  to = "/social-image.html?article=:article"
+  status = 200
+
+# Force HTTPS for all social media crawlers
+[[headers]]
+  for = "/social-image.html"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    X-Robots-Tag = "noindex, nofollow"
+
 # Cache headers for performance
 [[headers]]
   for = "/*"

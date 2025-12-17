@@ -1,34 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Cosmic Chronicles - Astronomy News</title>
-		<link rel="stylesheet" href="main.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-		<link rel="manifest" href="/manifest.json">
-		<meta name="theme-color" content="#4a6fa5">
-		<meta name="mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-		<meta name="apple-mobile-web-app-title" content="Cosmic Chronicles">
-		<link rel="apple-touch-icon" href="assets/icons/icon-192x192.png">
-		
-		<!-- Open Graph Meta Tags for Social Sharing -->
-<meta id="og-title" property="og:title" content="Cosmic Chronicles - Astronomy News">
-<meta id="og-description" property="og:description" content="Latest discoveries and updates from the universe">
-<meta id="og-image" property="og:image" content="/assets/icons/icon-512x512.png">
-<meta id="og-url" property="og:url" content="https://universe-chronicles.netlify.app/AN_news.html">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="Cosmic Chronicles">
-<meta name="twitter:card" content="summary_large_image">
-<meta id="twitter-title" name="twitter:title" content="Cosmic Chronicles - Astronomy News">
-<meta id="twitter-description" name="twitter:description" content="Latest discoveries and updates from the universe">
-<meta id="twitter-image" name="twitter:image" content="/assets/icons/icon-512x512.png">
-<meta property="article:author" content="Cosmic Chronicles">
-<meta property="article:published_time" id="article-published-time">
-<meta property="article:modified_time" id="article-modified-time">
-	</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Chronicles - Astronomy News</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#4a6fa5">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Cosmic Chronicles">
+    <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png">
+    
+    <!-- DEFAULT Open Graph Meta Tags (for when no article is specified) -->
+    <meta property="og:title" content="Cosmic Chronicles - Astronomy News">
+    <meta property="og:description" content="Latest discoveries and updates from the universe">
+    <meta property="og:image" content="https://universe-chronicles.netlify.app/assets/icons/icon-512x512.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://universe-chronicles.netlify.app/AN_news.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Cosmic Chronicles">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cosmic Chronicles - Astronomy News">
+    <meta name="twitter:description" content="Latest discoveries and updates from the universe">
+    <meta name="twitter:image" content="https://universe-chronicles.netlify.app/assets/icons/icon-512x512.png">
+    
+    <!-- Dynamic meta tags will be updated by JavaScript -->
+    <meta id="dynamic-og-title" property="og:title" content="">
+    <meta id="dynamic-og-description" property="og:description" content="">
+    <meta id="dynamic-og-image" property="og:image" content="">
+    <meta id="dynamic-og-url" property="og:url" content="">
+    
+    <!-- Important: Preload article data for immediate access -->
+    <script>
+        // Store article data in a global variable that's accessible immediately
+        window.articleData = {
+            "article1": {
+                "title": "James Webb Space Telescope Discovers New Exoplanet",
+                "subtitle": "NASA's telescope finds potentially habitable planet 100 light-years away",
+                "image": "https://universe-chronicles.netlify.app/assets2/images/explore/big-bang-quest.jpg",
+                "body": "Detailed article content here..."
+            },
+            "article2": {
+                "title": "Tunisian Astronomers Discover New Asteroid",
+                "subtitle": "Local research team identifies near-Earth object",
+                "image": "https://universe-chronicles.netlify.app/assets/icons/icon-512x512.png",
+                "body": "Detailed article content here..."
+            }
+            // Add all  articles here with their IDs
+        };
+    </script>
+</head>
 	<body class="AN-body">
+    <!-- IMPORTANT: This script runs IMMEDIATELY when page loads -->
+    <script>
+    // This runs BEFORE anything else on the page
+    (function() {
+        // Get article ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const articleId = urlParams.get('article');
+        
+        // If there's an article ID in the URL
+        if (articleId && window.articleData && window.articleData[articleId]) {
+            const article = window.articleData[articleId];
+            
+            // Update ALL meta tags immediately
+            document.title = article.title + " | Cosmic Chronicles";
+            
+            // Update Open Graph tags
+            document.querySelector('meta[property="og:title"]').content = article.title;
+            document.querySelector('meta[property="og:description"]').content = article.subtitle;
+            document.querySelector('meta[property="og:image"]').content = article.image;
+            document.querySelector('meta[property="og:url"]').content = window.location.href;
+            
+            // Update Twitter tags
+            document.querySelector('meta[name="twitter:title"]').content = article.title;
+            document.querySelector('meta[name="twitter:description"]').content = article.subtitle;
+            document.querySelector('meta[name="twitter:image"]').content = article.image;
+            
+            // Also update dynamic meta tags (if they exist)
+            const dynamicOgTitle = document.getElementById('dynamic-og-title');
+            if (dynamicOgTitle) {
+                dynamicOgTitle.content = article.title;
+            }
+            
+            console.log("Meta tags updated for article:", articleId);
+        }
+    })();
+    </script>
+    
 		<!-- Header Section -->
 		<header class="AN-header">
 			<div class="AN-container">
@@ -514,22 +578,94 @@ function shareArticle(articleId, language) {
     const articleData = AN_getDataById(articleId);
     const content = articleData[language] || articleData.en;
     
-    // Create article URL
+    // Create the ACTUAL article URL that includes the article ID
     const articleUrl = `${window.location.origin}${window.location.pathname}?article=${articleId}`;
     
+    // Prepare share text
+    const shareText = `${content.title} - ${content.subtitle}`;
+    
+    // Use Web Share API if available (for mobile devices)
     if (navigator.share) {
-        // Use Web Share API if available
         navigator.share({
             title: content.title,
             text: content.subtitle || content.body.substring(0, 100),
             url: articleUrl
         }).catch(err => {
-            console.log('Error sharing:', err);
-            fallbackShare(articleUrl);
+            console.log('Error using Web Share API:', err);
+            // Fallback to clipboard
+            copyToClipboard(articleUrl, content.title);
         });
     } else {
-        fallbackShare(articleUrl);
+        // For desktop, use a simple share dialog
+        showShareDialog(articleUrl, content.title);
     }
+}
+
+// Simple function to copy to clipboard with feedback
+function copyToClipboard(url, title) {
+    navigator.clipboard.writeText(`${title}\n\n${url}`).then(() => {
+        alert('Link copied to clipboard! You can now paste it anywhere.');
+    }).catch(err => {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = `${title}\n\n${url}`;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        alert('Link copied to clipboard!');
+    });
+}
+
+// Simple share dialog for desktop
+function showShareDialog(url, title) {
+    // Create a simple modal
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+    `;
+    
+    modal.innerHTML = `
+        <div style="
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            width: 90%;
+        ">
+            <h3>Share Article</h3>
+            <p>Copy this link to share:</p>
+            <input type="text" value="${url}" readonly style="width: 100%; padding: 8px; margin: 10px 0;">
+            <div style="display: flex; gap: 10px; margin-top: 15px;">
+                <button onclick="copyToClipboard('${url}', '${title}'); this.parentElement.parentElement.parentElement.remove()" 
+                        style="flex: 1; padding: 10px; background: #4a6fa5; color: white; border: none; border-radius: 5px;">
+                    Copy Link
+                </button>
+                <button onclick="this.parentElement.parentElement.parentElement.remove()" 
+                        style="flex: 1; padding: 10px; background: #ccc; border: none; border-radius: 5px;">
+                    Close
+                </button>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Close when clicking outside
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            document.body.removeChild(modal);
+        }
+    });
 }
 
 

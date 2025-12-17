@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    
+    <!-- This page ONLY exists for social media crawlers -->
+    <!-- It will redirect to the actual article page -->
+    
+    <script>
+    // Get article ID from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const articleId = urlParams.get('article');
+    
+    // Redirect to the actual article page
+    if (articleId) {
+        window.location.href = `/AN_news.html?article=${articleId}`;
+    } else {
+        window.location.href = '/AN_news.html';
+    }
+    </script>
+    
+    <!-- Meta tags for social media (these WILL be read by crawlers) -->
+    <meta property="og:title" content="Cosmic Chronicles - Astronomy News">
+    <meta property="og:description" content="Latest discoveries and updates from the universe">
+    <meta property="og:image" content="https://universe-chronicles.netlify.app/assets/icons/icon-512x512.png">
+    <meta property="og:url" content="https://universe-chronicles.netlify.app/AN_news.html">
+    <meta property="og:type" content="article">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cosmic Chronicles - Astronomy News">
+    <meta name="twitter:description" content="Latest discoveries and updates from the universe">
+    <meta name="twitter:image" content="https://universe-chronicles.netlify.app/assets/icons/icon-512x512.png">
+    
+    <title>Cosmic Chronicles - Astronomy News</title>
+</head>
+<body>
+    <p>Redirecting to article...</p>
+</body>
+</html>
