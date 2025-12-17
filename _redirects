@@ -1,6 +1,0 @@
-# Main redirects
-/an_news      /AN_news.html          301
-/an_news/*    /AN_news.html          301
-/news/*       /AN_news.html          200
-/article/*    /AN_news.html          200
-/share/*      /AN_news.html          200
