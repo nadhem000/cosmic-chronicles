@@ -36,6 +36,18 @@
     Cache-Control = "no-cache, no-store, must-revalidate"
     X-Robots-Tag = "noindex, nofollow"
 
+[[redirects]]
+  from = "/an_news"
+  to = "/AN_news.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/an_news/*"
+  to = "/AN_news.html:article"
+  status = 301
+  force = true
+
 # Cache headers for performance
 [[headers]]
   for = "/*"

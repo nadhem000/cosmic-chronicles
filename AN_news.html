@@ -1,59 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
+<html lang="en" prefix="og: https://ogp.me/ns#">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Base title -->
     <title>Cosmic Chronicles - Astronomy News</title>
+    
+    <!-- DEFAULT Open Graph Meta Tags -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Cosmic Chronicles">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@CosmicChronicles">
+    <meta name="twitter:creator" content="@CosmicChronicles">
+    
+    <!-- Dynamic meta tags that will be updated by JavaScript -->
+    <meta id="dynamic-og-title" property="og:title" content="Cosmic Chronicles - Astronomy News">
+    <meta id="dynamic-og-description" property="og:description" content="Latest discoveries and updates from the universe">
+    <meta id="dynamic-og-image" property="og:image" content="https://universe-chronicles.netlify.app/assets/icons/icon-512x512.png">
+    <meta id="dynamic-og-url" property="og:url" content="https://universe-chronicles.netlify.app/AN_news.html">
+    <meta id="dynamic-twitter-title" name="twitter:title" content="Cosmic Chronicles - Astronomy News">
+    <meta id="dynamic-twitter-description" name="twitter:description" content="Latest discoveries and updates from the universe">
+    <meta id="dynamic-twitter-image" name="twitter:image" content="https://universe-chronicles.netlify.app/assets/icons/icon-512x512.png">
+    
+    <!-- Static meta tags (these are the ones Facebook reads first) -->
+    <meta property="og:title" content="Cosmic Chronicles - Astronomy News">
+    <meta property="og:description" content="Latest discoveries and updates from the universe">
+    <meta property="og:image" content="https://universe-chronicles.netlify.app/assets/icons/icon-512x512.png">
+    <meta property="og:url" content="https://universe-chronicles.netlify.app/AN_news.html">
+    
+    <!-- Preload article data -->
+    <script>
+        window.articleData = {
+            "news-001": {
+                "title": "Record-Breaking Gamma-Ray Burst Stuns Astronomers",
+                "subtitle": "Unprecedented seven-hour event challenges existing astrophysical models",
+                "image": "https://universe-chronicles.netlify.app/assets2/images/news/gamma-ray-burst.jpg"
+            },
+            "news-002": {
+                "title": "Juice and Hubble Observe Interstellar Comet 3I/Atlas",
+                "subtitle": "Spacecraft and telescope provide unique data on the mysterious visitor before its closest approach to Earth",
+                "image": "https://universe-chronicles.netlify.app/assets2/images/news/comet-3i-atlas.jpg"
+            },
+            "news-003": {
+                "title": "Tunisian Association of Young Astronomers Hosted Dr. Mayssa El Yazidi on Planetary Geology",
+                "subtitle": "Conference on Mercury exploration and remote sensing applications successfully held in Tunis",
+                "image": "https://universe-chronicles.netlify.app/assets2/images/news/tunisia-conference.jpg"
+            },
+            "news-004": {
+                "title": "Astrophotographers Capture Comet Lemmon's Ion Tail in Stunning Detail",
+                "subtitle": "Hafedh Driss and Makrem Akrout reveal chaotic beauty of comet's plasma structures",
+                "image": "https://universe-chronicles.netlify.app/assets2/images/news/comet-lemmon-tail.jpg"
+            },
+            "news-005": {
+                "title": "Never seen before: Astronomers discover the largest rotating structure in the Universe and it defies our models",
+                "subtitle": "Cosmic filament of galaxies rotating together challenges understanding of galaxy formation",
+                "image": "https://universe-chronicles.netlify.app/assets2/images/news/cosmic-filament.jpg"
+            },
+            "news-006": {
+                "title": "Launch of First Astronomical Project for People with Disabilities in the Arab World",
+                "subtitle": "Iraq, Syria, and Tunisia Coordinators under IAU supervision announced the 'Astronomy for All' project",
+                "image": "https://universe-chronicles.netlify.app/assets2/images/news/astronomy-IAU.jpg"
+            }
+        };
+        
+        // IMMEDIATELY update meta tags when page loads
+        (function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const articleId = urlParams.get('article');
+            
+            if (articleId && window.articleData[articleId]) {
+                const article = window.articleData[articleId];
+                const currentUrl = window.location.href;
+                
+                // Update static meta tags (these are what Facebook reads)
+                document.querySelector('meta[property="og:title"]').content = article.title;
+                document.querySelector('meta[property="og:description"]').content = article.subtitle;
+                document.querySelector('meta[property="og:image"]').content = article.image;
+                document.querySelector('meta[property="og:url"]').content = currentUrl;
+                
+                // Update dynamic meta tags
+                document.getElementById('dynamic-og-title').content = article.title;
+                document.getElementById('dynamic-og-description').content = article.subtitle;
+                document.getElementById('dynamic-og-image').content = article.image;
+                document.getElementById('dynamic-og-url').content = currentUrl;
+                document.getElementById('dynamic-twitter-title').content = article.title;
+                document.getElementById('dynamic-twitter-description').content = article.subtitle;
+                document.getElementById('dynamic-twitter-image').content = article.image;
+                
+                // Update page title
+                document.title = article.title + " | Cosmic Chronicles";
+            }
+        })();
+    </script>
+    
+    <!-- CSS and other resources -->
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#4a6fa5">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Cosmic Chronicles">
-    <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png">
-    
-    <!-- DEFAULT Open Graph Meta Tags (for when no article is specified) -->
-    <meta property="og:title" content="Cosmic Chronicles - Astronomy News">
-    <meta property="og:description" content="Latest discoveries and updates from the universe">
-    <meta property="og:image" content="https://universe-chronicles.netlify.app/assets/icons/icon-512x512.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:url" content="https://universe-chronicles.netlify.app/AN_news.html">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Cosmic Chronicles">
-    
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Cosmic Chronicles - Astronomy News">
-    <meta name="twitter:description" content="Latest discoveries and updates from the universe">
-    <meta name="twitter:image" content="https://universe-chronicles.netlify.app/assets/icons/icon-512x512.png">
-    
-    <!-- Dynamic meta tags will be updated by JavaScript -->
-    <meta id="dynamic-og-title" property="og:title" content="">
-    <meta id="dynamic-og-description" property="og:description" content="">
-    <meta id="dynamic-og-image" property="og:image" content="">
-    <meta id="dynamic-og-url" property="og:url" content="">
-    
-    <!-- Important: Preload article data for immediate access -->
-    <script>
-        // Store article data in a global variable that's accessible immediately
-        window.articleData = {
-            "article1": {
-                "title": "James Webb Space Telescope Discovers New Exoplanet",
-                "subtitle": "NASA's telescope finds potentially habitable planet 100 light-years away",
-                "image": "https://universe-chronicles.netlify.app/assets2/images/explore/big-bang-quest.jpg",
-                "body": "Detailed article content here..."
-            },
-            "article2": {
-                "title": "Tunisian Astronomers Discover New Asteroid",
-                "subtitle": "Local research team identifies near-Earth object",
-                "image": "https://universe-chronicles.netlify.app/assets/icons/icon-512x512.png",
-                "body": "Detailed article content here..."
-            }
-            // Add all  articles here with their IDs
-        };
-    </script>
 </head>
 	<body class="AN-body">
     <!-- IMPORTANT: This script runs IMMEDIATELY when page loads -->
@@ -576,31 +626,52 @@ function updateMetaTags(articleData, content, language) {
 // Function to handle article sharing
 function shareArticle(articleId, language) {
     const articleData = AN_getDataById(articleId);
+    if (!articleData) return;
+    
     const content = articleData[language] || articleData.en;
-    
-    // Create the ACTUAL article URL that includes the article ID
     const articleUrl = `${window.location.origin}${window.location.pathname}?article=${articleId}`;
-    
-    // Prepare share text
     const shareText = `${content.title} - ${content.subtitle}`;
     
-    // Use Web Share API if available (for mobile devices)
+    // Use the social sharing URL that points to the correct OG tags
+    const shareUrl = `${window.location.origin}/share/${articleId}`;
+    
     if (navigator.share) {
         navigator.share({
             title: content.title,
-            text: content.subtitle || content.body.substring(0, 100),
-            url: articleUrl
-        }).catch(err => {
-            console.log('Error using Web Share API:', err);
-            // Fallback to clipboard
-            copyToClipboard(articleUrl, content.title);
-        });
+            text: content.subtitle,
+            url: shareUrl
+        }).catch(console.error);
     } else {
-        // For desktop, use a simple share dialog
-        showShareDialog(articleUrl, content.title);
+        // Fallback: copy to clipboard
+        navigator.clipboard.writeText(`${content.title}\n\n${shareUrl}`)
+            .then(() => {
+                alert('Link copied to clipboard!');
+            })
+            .catch(() => {
+                // Show share dialog
+                const shareDialog = `
+                    <div style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:flex;justify-content:center;align-items:center;z-index:10000;">
+                        <div style="background:white;padding:20px;border-radius:10px;max-width:400px;width:90%;">
+                            <h3>Share Article</h3>
+                            <p>Copy this link:</p>
+                            <input type="text" value="${shareUrl}" readonly style="width:100%;padding:8px;margin:10px 0;">
+                            <div style="display:flex;gap:10px;margin-top:15px;">
+                                <button onclick="navigator.clipboard.writeText('${shareUrl}').then(()=>alert('Copied!')).catch(()=>alert('Failed to copy'))" 
+                                        style="flex:1;padding:10px;background:#4a6fa5;color:white;border:none;border-radius:5px;">
+                                    Copy Link
+                                </button>
+                                <button onclick="this.parentElement.parentElement.parentElement.remove()" 
+                                        style="flex:1;padding:10px;background:#ccc;border:none;border-radius:5px;">
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                document.body.insertAdjacentHTML('beforeend', shareDialog);
+            });
     }
 }
-
 // Simple function to copy to clipboard with feedback
 function copyToClipboard(url, title) {
     navigator.clipboard.writeText(`${title}\n\n${url}`).then(() => {

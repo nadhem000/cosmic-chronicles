@@ -1,39 +1,104 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- This page ONLY exists for social media crawlers -->
-    <!-- It will redirect to the actual article page -->
-    
+    <!-- Dynamic Open Graph tags based on article parameter -->
     <script>
-    // Get article ID from URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const articleId = urlParams.get('article');
-    
-    // Redirect to the actual article page
-    if (articleId) {
-        window.location.href = `/AN_news.html?article=${articleId}`;
-    } else {
-        window.location.href = '/AN_news.html';
-    }
+        const articleData = {
+            "news-001": {
+                "title": "Record-Breaking Gamma-Ray Burst Stuns Astronomers | Cosmic Chronicles",
+                "description": "Unprecedented seven-hour event challenges existing astrophysical models",
+                "image": "https://universe-chronicles.netlify.app/assets2/images/news/gamma-ray-burst.jpg"
+            },
+            "news-002": {
+                "title": "Juice and Hubble Observe Interstellar Comet 3I/Atlas | Cosmic Chronicles",
+                "description": "Spacecraft and telescope provide unique data on the mysterious visitor before its closest approach to Earth",
+                "image": "https://universe-chronicles.netlify.app/assets2/images/news/comet-3i-atlas.jpg"
+            },
+            "news-003": {
+                "title": "Tunisian Association of Young Astronomers Hosted Dr. Mayssa El Yazidi | Cosmic Chronicles",
+                "description": "Conference on Mercury exploration and remote sensing applications successfully held in Tunis",
+                "image": "https://universe-chronicles.netlify.app/assets2/images/news/tunisia-conference.jpg"
+            },
+            "news-004": {
+                "title": "Astrophotographers Capture Comet Lemmon's Ion Tail | Cosmic Chronicles",
+                "description": "Hafedh Driss and Makrem Akrout reveal chaotic beauty of comet's plasma structures",
+                "image": "https://universe-chronicles.netlify.app/assets2/images/news/comet-lemmon-tail.jpg"
+            },
+            "news-005": {
+                "title": "Largest rotating structure in the Universe discovered | Cosmic Chronicles",
+                "description": "Cosmic filament of galaxies rotating together challenges understanding of galaxy formation",
+                "image": "https://universe-chronicles.netlify.app/assets2/images/news/cosmic-filament.jpg"
+            },
+            "news-006": {
+                "title": "First Astronomical Project for People with Disabilities in Arab World | Cosmic Chronicles",
+                "description": "Iraq, Syria, and Tunisia Coordinators under IAU supervision announced the 'Astronomy for All' project",
+                "image": "https://universe-chronicles.netlify.app/assets2/images/news/astronomy-IAU.jpg"
+            }
+        };
+        
+        const urlParams = new URLSearchParams(window.location.search);
+        const articleId = urlParams.get('article');
+        
+        if (articleId && articleData[articleId]) {
+            const article = articleData[articleId];
+            const articleUrl = `https://universe-chronicles.netlify.app/AN_news.html?article=${articleId}`;
+            
+            // Set meta tags for Facebook crawler
+            document.title = article.title;
+            
+            // Create meta tags dynamically
+            const metaTags = [
+                { property: 'og:title', content: article.title },
+                { property: 'og:description', content: article.description },
+                { property: 'og:image', content: article.image },
+                { property: 'og:url', content: articleUrl },
+                { property: 'og:type', content: 'article' },
+                { property: 'og:site_name', content: 'Cosmic Chronicles' },
+                { name: 'twitter:card', content: 'summary_large_image' },
+                { name: 'twitter:title', content: article.title },
+                { name: 'twitter:description', content: article.description },
+                { name: 'twitter:image', content: article.image }
+            ];
+            
+            metaTags.forEach(tag => {
+                const meta = document.createElement('meta');
+                if (tag.property) meta.setAttribute('property', tag.property);
+                if (tag.name) meta.setAttribute('name', tag.name);
+                meta.setAttribute('content', tag.content);
+                document.head.appendChild(meta);
+            });
+            
+            // Add canonical link
+            const link = document.createElement('link');
+            link.rel = 'canonical';
+            link.href = articleUrl;
+            document.head.appendChild(link);
+        }
     </script>
     
-    <!-- Meta tags for social media (these WILL be read by crawlers) -->
+    <!-- Default/fallback meta tags -->
     <meta property="og:title" content="Cosmic Chronicles - Astronomy News">
     <meta property="og:description" content="Latest discoveries and updates from the universe">
     <meta property="og:image" content="https://universe-chronicles.netlify.app/assets/icons/icon-512x512.png">
     <meta property="og:url" content="https://universe-chronicles.netlify.app/AN_news.html">
-    <meta property="og:type" content="article">
+    <meta property="og:type" content="website">
     
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Cosmic Chronicles - Astronomy News">
-    <meta name="twitter:description" content="Latest discoveries and updates from the universe">
-    <meta name="twitter:image" content="https://universe-chronicles.netlify.app/assets/icons/icon-512x512.png">
-    
-    <title>Cosmic Chronicles - Astronomy News</title>
+    <!-- Redirect after meta tags are set -->
+    <meta http-equiv="refresh" content="0;url=https://universe-chronicles.netlify.app/AN_news.html">
 </head>
 <body>
     <p>Redirecting to article...</p>
+    <script>
+        // JavaScript redirect as fallback
+        const articleId = new URLSearchParams(window.location.search).get('article');
+        if (articleId) {
+            window.location.href = `/AN_news.html?article=${articleId}`;
+        } else {
+            window.location.href = '/AN_news.html';
+        }
+    </script>
 </body>
 </html>
