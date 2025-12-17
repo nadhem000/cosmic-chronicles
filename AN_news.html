@@ -14,18 +14,16 @@
 		<link rel="apple-touch-icon" href="assets/icons/icon-192x192.png">
 		
 		<!-- Open Graph Meta Tags for Social Sharing -->
-		<meta property="og:url" content="https://universe-chronicles.netlify.app/AN_news.html" id="og-url">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Cosmic Chronicles - Astronomy News" id="og-title">
-<meta property="og:description" content="Latest discoveries and updates from the universe" id="og-description">
-<meta property="og:image" content="https://universe-chronicles.netlify.app/assets/icons/icon-192x192.png" id="og-image">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+<meta property="og:title" content="Cosmic Chronicles - Astronomy News">
+<meta property="og:description" content="Latest discoveries and updates from the universe">
+<meta property="og:image" content="https://universe-chronicles.netlify.app/assets/icons/icon-192x192.png">
+<meta property="og:url" content="https://universe-chronicles.netlify.app/AN_news.html">
+<meta property="og:type" content="website">
 <meta property="og:site_name" content="Cosmic Chronicles">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Cosmic Chronicles - Astronomy News" id="twitter-title">
-<meta name="twitter:description" content="Latest discoveries and updates from the universe" id="twitter-description">
-<meta name="twitter:image" content="https://universe-chronicles.netlify.app/assets/icons/icon-192x192.png" id="twitter-image">
+<meta name="twitter:title" content="Cosmic Chronicles - Astronomy News">
+<meta name="twitter:description" content="Latest discoveries and updates from the universe">
+<meta name="twitter:image" content="https://universe-chronicles.netlify.app/assets/icons/icon-192x192.png">
 	</head>
 	<body class="AN-body">
 		<!-- Header Section -->
@@ -452,11 +450,8 @@
         const shareBtn = mainArticle.querySelector('.AN-article-share');
 if (shareBtn) {
     shareBtn.addEventListener('click', function() {
-        // Create article-specific URL with server-side path
+        // Create article-specific URL - USE THIS CORRECT VERSION
         const articleUrl = `${window.location.origin}/news/${articleId}`;
-        
-        // Update Open Graph tags for the current page
-        updateOpenGraphTags(articleData, language, articleUrl);
         
         if (navigator.share) {
             navigator.share({

@@ -12,12 +12,16 @@
 [context.deploy-preview.environment]
   NODE_ENV = "preview"
 
-# Redirects for SPA-like routing
+# News article redirects - FIXED VERSION
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
+  from = "/news/:article"
+  to = "/AN_news.html?article=:article"
   status = 200
-  conditions = { Status = "404" }
+
+[[redirects]]
+  from = "/article/:article"
+  to = "/AN_news.html?article=:article"
+  status = 200
 
 # Cache headers for performance
 [[headers]]
@@ -49,17 +53,3 @@
   [headers.values]
     Cache-Control = "no-cache, no-store, must-revalidate"
     Service-Worker-Allowed = "/"
-
-# News article redirects
-[[redirects]]
-  from = "/AN_news.html"
-  to = "/AN_news.html"
-  status = 200
-  force = false
-  query = {article = ":article"}
-  
-# Canonical URL for sharing
-[[redirects]]
-  from = "/article/:article"
-  to = "/AN_news.html?article=:article"
-  status = 301
