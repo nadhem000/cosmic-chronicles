@@ -12,37 +12,16 @@
 [context.deploy-preview.environment]
   NODE_ENV = "preview"
 
-# News article redirects - SIMPLIFIED VERSION
+# News article redirects - FIXED VERSION
 [[redirects]]
   from = "/news/:article"
   to = "/AN_news.html?article=:article"
   status = 200
-  force = true
 
 [[redirects]]
   from = "/article/:article"
   to = "/AN_news.html?article=:article"
   status = 200
-  force = true
-
-# Social media sharing - redirect to correct case
-[[redirects]]
-  from = "/share/:article"
-  to = "/AN_news.html?article=:article"
-  status = 200
-  force = true
-
-# Remove lowercase an_news redirects to avoid loops
-[[redirects]]
-  from = "/an_news"
-  to = "/AN_news.html"
-  status = 301
-  conditions = {Language = ["en"]}
-
-[[redirects]]
-  from = "/an_news/*"
-  to = "/AN_news.html"
-  status = 301
 
 # Cache headers for performance
 [[headers]]

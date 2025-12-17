@@ -3,7 +3,7 @@
  * Handles caching, offline functionality, and push notifications
  */
 
-const CACHE_NAME = 'universe-chronicles-v1.1.3';
+const CACHE_NAME = 'universe-chronicles-v1.1.4';
 const CACHE_ASSETS = [
     // Core pages
     '/',
@@ -13,7 +13,6 @@ const CACHE_ASSETS = [
     '/AN_gallery.html',
     '/AN_explore.html',
     '/AN_about.html',
-    '/social-image.html',
     
     // Core assets
     '/main.css',
@@ -47,8 +46,8 @@ const CACHE_ASSETS = [
     '/offline.html'
 ];
 
-const DYNAMIC_CACHE = 'universe-chronicles-dynamic-v13';
-const API_CACHE = 'universe-chronicles-api-v13';
+const DYNAMIC_CACHE = 'universe-chronicles-dynamic-v14';
+const API_CACHE = 'universe-chronicles-api-v14';
 
 // Skip waiting and claim clients immediately
 self.addEventListener('install', event => {
