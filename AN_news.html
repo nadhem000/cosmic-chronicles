@@ -14,16 +14,16 @@
 		<link rel="apple-touch-icon" href="assets/icons/icon-192x192.png">
 		
 		<!-- Open Graph Meta Tags for Social Sharing -->
-<meta property="og:title" content="Cosmic Chronicles - Astronomy News">
-<meta property="og:description" content="Latest discoveries and updates from the universe">
-<meta property="og:image" content="https://universe-chronicles.netlify.app/assets/icons/icon-192x192.png">
-<meta property="og:url" content="https://universe-chronicles.netlify.app/AN_news.html">
+<meta id="og-title" property="og:title" content="Cosmic Chronicles - Astronomy News">
+<meta id="og-description" property="og:description" content="Latest discoveries and updates from the universe">
+<meta id="og-image" property="og:image" content="https://universe-chronicles.netlify.app/assets/icons/icon-192x192.png">
+<meta id="og-url" property="og:url" content="https://universe-chronicles.netlify.app/AN_news.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Cosmic Chronicles">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Cosmic Chronicles - Astronomy News">
-<meta name="twitter:description" content="Latest discoveries and updates from the universe">
-<meta name="twitter:image" content="https://universe-chronicles.netlify.app/assets/icons/icon-192x192.png">
+<meta id="twitter-title" name="twitter:title" content="Cosmic Chronicles - Astronomy News">
+<meta id="twitter-description" name="twitter:description" content="Latest discoveries and updates from the universe">
+<meta id="twitter-image" name="twitter:image" content="https://universe-chronicles.netlify.app/assets/icons/icon-192x192.png">
 	</head>
 	<body class="AN-body">
 		<!-- Header Section -->
@@ -451,7 +451,12 @@
 if (shareBtn) {
     shareBtn.addEventListener('click', function() {
         // Create article-specific URL - USE THIS CORRECT VERSION
-        const articleUrl = `${window.location.origin}/news/${articleId}`;
+        
+// Create article URL - FIXED
+const articleUrl = `${window.location.origin}${window.location.pathname}?article=${articleId}`;
+
+// Update Open Graph tags for social sharing
+updateOpenGraphTags(articleData, language, articleUrl);
         
         if (navigator.share) {
             navigator.share({
@@ -473,24 +478,30 @@ if (shareBtn) {
             window.history.pushState({ path: newUrl }, '', newUrl);
         }
     }
-
-
 // Function to update Open Graph tags
 function updateOpenGraphTags(articleData, language, articleUrl) {
     const content = articleData[language] || articleData.en;
     const imageUrl = articleData.image ? 
-        new URL(articleData.image, window.location.origin).href : 
+        `${window.location.origin}${window.location.pathname.replace('AN_news.html', '')}${articleData.image}` : 
         `${window.location.origin}/assets/icons/icon-192x192.png`;
     
     // Update meta tags in the head
-    document.getElementById('og-title').setAttribute('content', content.title);
-    document.getElementById('og-description').setAttribute('content', content.subtitle || content.body.substring(0, 150));
-    document.getElementById('og-image').setAttribute('content', imageUrl);
-    document.getElementById('og-url').setAttribute('content', articleUrl);
+    const ogTitle = document.getElementById('og-title');
+    const ogDesc = document.getElementById('og-description');
+    const ogImg = document.getElementById('og-image');
+    const ogUrl = document.getElementById('og-url');
+    const twTitle = document.getElementById('twitter-title');
+    const twDesc = document.getElementById('twitter-description');
+    const twImg = document.getElementById('twitter-image');
     
-    document.getElementById('twitter-title').setAttribute('content', content.title);
-    document.getElementById('twitter-description').setAttribute('content', content.subtitle || content.body.substring(0, 150));
-    document.getElementById('twitter-image').setAttribute('content', imageUrl);
+    if (ogTitle) ogTitle.setAttribute('content', content.title);
+    if (ogDesc) ogDesc.setAttribute('content', content.subtitle || content.body.substring(0, 150));
+    if (ogImg) ogImg.setAttribute('content', imageUrl);
+    if (ogUrl) ogUrl.setAttribute('content', articleUrl);
+    
+    if (twTitle) twTitle.setAttribute('content', content.title);
+    if (twDesc) twDesc.setAttribute('content', content.subtitle || content.body.substring(0, 150));
+    if (twImg) twImg.setAttribute('content', imageUrl);
 }
     // Function to apply translations for news page
     function AN_applyNewsTranslations(language) {
