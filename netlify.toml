@@ -50,4 +50,16 @@
     Cache-Control = "no-cache, no-store, must-revalidate"
     Service-Worker-Allowed = "/"
 
-
+# News article redirects
+[[redirects]]
+  from = "/AN_news.html"
+  to = "/AN_news.html"
+  status = 200
+  force = false
+  query = {article = ":article"}
+  
+# Canonical URL for sharing
+[[redirects]]
+  from = "/article/:article"
+  to = "/AN_news.html?article=:article"
+  status = 301

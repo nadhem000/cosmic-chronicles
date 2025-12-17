@@ -3,7 +3,7 @@
  * Handles caching, offline functionality, and push notifications
  */
 
-const CACHE_NAME = 'universe-chronicles-v1.0.2';
+const CACHE_NAME = 'universe-chronicles-v1.0.3';
 const CACHE_ASSETS = [
     // Core pages
     '/',
@@ -35,6 +35,7 @@ const CACHE_ASSETS = [
     '/assets/icons/icon-192x192.png',
     '/assets/icons/icon-384x384.png',
     '/assets/icons/icon-512x512.png',
+    '/assets2/images/explore/big-bang-quest.jpg',
     
     // Font Awesome (CDN)
     'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
@@ -45,8 +46,8 @@ const CACHE_ASSETS = [
     '/offline.html'
 ];
 
-const DYNAMIC_CACHE = 'universe-chronicles-dynamic-v2';
-const API_CACHE = 'universe-chronicles-api-v2';
+const DYNAMIC_CACHE = 'universe-chronicles-dynamic-v3';
+const API_CACHE = 'universe-chronicles-api-v3';
 
 // Skip waiting and claim clients immediately
 self.addEventListener('install', event => {
