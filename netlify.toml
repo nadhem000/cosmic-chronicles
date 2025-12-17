@@ -12,41 +12,37 @@
 [context.deploy-preview.environment]
   NODE_ENV = "preview"
 
-# News article redirects - FIXED VERSION
+# News article redirects - SIMPLIFIED VERSION
 [[redirects]]
   from = "/news/:article"
   to = "/AN_news.html?article=:article"
   status = 200
+  force = true
 
 [[redirects]]
   from = "/article/:article"
   to = "/AN_news.html?article=:article"
   status = 200
+  force = true
 
-# Social media sharing redirect
+# Social media sharing - redirect to correct case
 [[redirects]]
   from = "/share/:article"
-  to = "/social-image.html?article=:article"
+  to = "/AN_news.html?article=:article"
   status = 200
+  force = true
 
-# Force HTTPS for all social media crawlers
-[[headers]]
-  for = "/social-image.html"
-  [headers.values]
-    Cache-Control = "no-cache, no-store, must-revalidate"
-    X-Robots-Tag = "noindex, nofollow"
-
+# Remove lowercase an_news redirects to avoid loops
 [[redirects]]
   from = "/an_news"
   to = "/AN_news.html"
   status = 301
-  force = true
+  conditions = {Language = ["en"]}
 
 [[redirects]]
   from = "/an_news/*"
-  to = "/AN_news.html:article"
+  to = "/AN_news.html"
   status = 301
-  force = true
 
 # Cache headers for performance
 [[headers]]

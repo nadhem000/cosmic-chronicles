@@ -98,6 +98,19 @@
             }
         })();
     </script>
+<script>
+// Vérifier et corriger l'URL immédiatement
+(function() {
+    const currentUrl = window.location.href;
+    const correctUrl = currentUrl.replace(/an_news/i, 'AN_news');
+    
+    // Si l'URL a la mauvaise casse, rediriger une seule fois
+    if (currentUrl !== correctUrl && !sessionStorage.getItem('redirected')) {
+        sessionStorage.setItem('redirected', 'true');
+        window.location.replace(correctUrl);
+    }
+})();
+</script>
     
     <!-- CSS and other resources -->
     <link rel="stylesheet" href="main.css">
@@ -629,48 +642,60 @@ function shareArticle(articleId, language) {
     if (!articleData) return;
     
     const content = articleData[language] || articleData.en;
-    const articleUrl = `${window.location.origin}${window.location.pathname}?article=${articleId}`;
-    const shareText = `${content.title} - ${content.subtitle}`;
+    // Use the CORRECT URL with proper case
+    const articleUrl = `https://universe-chronicles.netlify.app/AN_news.html?article=${articleId}`;
     
-    // Use the social sharing URL that points to the correct OG tags
-    const shareUrl = `${window.location.origin}/share/${articleId}`;
+    // Update meta tags for current page
+    updateMetaTagsForSharing(articleData, content);
     
     if (navigator.share) {
         navigator.share({
             title: content.title,
             text: content.subtitle,
-            url: shareUrl
-        }).catch(console.error);
+            url: articleUrl
+        }).catch(err => {
+            console.log('Share failed:', err);
+            copyToClipboard(articleUrl, content.title);
+        });
     } else {
-        // Fallback: copy to clipboard
-        navigator.clipboard.writeText(`${content.title}\n\n${shareUrl}`)
-            .then(() => {
-                alert('Link copied to clipboard!');
-            })
-            .catch(() => {
-                // Show share dialog
-                const shareDialog = `
-                    <div style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:flex;justify-content:center;align-items:center;z-index:10000;">
-                        <div style="background:white;padding:20px;border-radius:10px;max-width:400px;width:90%;">
-                            <h3>Share Article</h3>
-                            <p>Copy this link:</p>
-                            <input type="text" value="${shareUrl}" readonly style="width:100%;padding:8px;margin:10px 0;">
-                            <div style="display:flex;gap:10px;margin-top:15px;">
-                                <button onclick="navigator.clipboard.writeText('${shareUrl}').then(()=>alert('Copied!')).catch(()=>alert('Failed to copy'))" 
-                                        style="flex:1;padding:10px;background:#4a6fa5;color:white;border:none;border-radius:5px;">
-                                    Copy Link
-                                </button>
-                                <button onclick="this.parentElement.parentElement.parentElement.remove()" 
-                                        style="flex:1;padding:10px;background:#ccc;border:none;border-radius:5px;">
-                                    Close
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                document.body.insertAdjacentHTML('beforeend', shareDialog);
-            });
+        copyToClipboard(articleUrl, content.title);
     }
+}
+
+function updateMetaTagsForSharing(articleData, content) {
+    // Update Open Graph tags dynamically
+    const metaTags = [
+        { property: 'og:title', content: content.title },
+        { property: 'og:description', content: content.subtitle },
+        { property: 'og:image', content: articleData.image || '/assets/icons/icon-512x512.png' },
+        { property: 'og:url', content: window.location.href },
+        { name: 'twitter:title', content: content.title },
+        { name: 'twitter:description', content: content.subtitle },
+        { name: 'twitter:image', content: articleData.image || '/assets/icons/icon-512x512.png' }
+    ];
+    
+    metaTags.forEach(tag => {
+        let meta;
+        if (tag.property) {
+            meta = document.querySelector(`meta[property="${tag.property}"]`);
+        } else if (tag.name) {
+            meta = document.querySelector(`meta[name="${tag.name}"]`);
+        }
+        
+        if (meta) {
+            meta.setAttribute('content', tag.content);
+        } else {
+            // Create if doesn't exist
+            meta = document.createElement('meta');
+            if (tag.property) meta.setAttribute('property', tag.property);
+            if (tag.name) meta.setAttribute('name', tag.name);
+            meta.setAttribute('content', tag.content);
+            document.head.appendChild(meta);
+        }
+    });
+    
+    // Update page title
+    document.title = `${content.title} | Cosmic Chronicles`;
 }
 // Simple function to copy to clipboard with feedback
 function copyToClipboard(url, title) {
