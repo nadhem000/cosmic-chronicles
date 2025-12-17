@@ -8,21 +8,24 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 		<link rel="manifest" href="/manifest.json">
 		<meta name="theme-color" content="#4a6fa5">
-		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 		<meta name="apple-mobile-web-app-title" content="Cosmic Chronicles">
 		<link rel="apple-touch-icon" href="assets/icons/icon-192x192.png">
 		
 		<!-- Open Graph Meta Tags for Social Sharing -->
-		<meta property="og:title" content="Cosmic Chronicles - Astronomy News">
-		<meta property="og:description" content="Latest discoveries and updates from the universe">
-		<meta property="og:image" content="assets/icons/icon-192x192.png">
-		<meta property="og:url" content="AN_news.html">
-		<meta property="og:type" content="website">
-		<meta name="twitter:card" content="summary_large_image">
-		<meta name="twitter:title" content="Cosmic Chronicles - Astronomy News">
-		<meta name="twitter:description" content="Latest discoveries and updates from the universe">
-		<meta name="twitter:image" content="assets/icons/icon-192x192.png">
+		<meta property="og:url" content="https://universe-chronicles.netlify.app/AN_news.html" id="og-url">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cosmic Chronicles - Astronomy News" id="og-title">
+<meta property="og:description" content="Latest discoveries and updates from the universe" id="og-description">
+<meta property="og:image" content="https://universe-chronicles.netlify.app/assets/icons/icon-192x192.png" id="og-image">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Cosmic Chronicles">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cosmic Chronicles - Astronomy News" id="twitter-title">
+<meta name="twitter:description" content="Latest discoveries and updates from the universe" id="twitter-description">
+<meta name="twitter:image" content="https://universe-chronicles.netlify.app/assets/icons/icon-192x192.png" id="twitter-image">
 	</head>
 	<body class="AN-body">
 		<!-- Header Section -->
@@ -447,24 +450,27 @@
         
         // Add share functionality - FIXED VERSION
         const shareBtn = mainArticle.querySelector('.AN-article-share');
-        if (shareBtn) {
-            shareBtn.addEventListener('click', function() {
-                // Create article-specific URL
-                const articleUrl = `${window.location.origin}${window.location.pathname}?article=${articleId}`;
-                
-                if (navigator.share) {
-                    navigator.share({
-                        title: content.title,
-                        text: content.subtitle,
-                        url: articleUrl
-                    });
-                } else {
-                    // Fallback: Copy to clipboard
-                    navigator.clipboard.writeText(articleUrl);
-                    alert('Link copied to clipboard!');
-                }
+if (shareBtn) {
+    shareBtn.addEventListener('click', function() {
+        // Create article-specific URL with server-side path
+        const articleUrl = `${window.location.origin}/news/${articleId}`;
+        
+        // Update Open Graph tags for the current page
+        updateOpenGraphTags(articleData, language, articleUrl);
+        
+        if (navigator.share) {
+            navigator.share({
+                title: content.title,
+                text: content.subtitle,
+                url: articleUrl
             });
+        } else {
+            // Fallback: Copy to clipboard
+            navigator.clipboard.writeText(articleUrl);
+            alert('Link copied to clipboard!');
         }
+    });
+}
         
         // Update browser URL for sharing (without reloading page)
         if (history.pushState) {
@@ -473,6 +479,24 @@
         }
     }
 
+
+// Function to update Open Graph tags
+function updateOpenGraphTags(articleData, language, articleUrl) {
+    const content = articleData[language] || articleData.en;
+    const imageUrl = articleData.image ? 
+        new URL(articleData.image, window.location.origin).href : 
+        `${window.location.origin}/assets/icons/icon-192x192.png`;
+    
+    // Update meta tags in the head
+    document.getElementById('og-title').setAttribute('content', content.title);
+    document.getElementById('og-description').setAttribute('content', content.subtitle || content.body.substring(0, 150));
+    document.getElementById('og-image').setAttribute('content', imageUrl);
+    document.getElementById('og-url').setAttribute('content', articleUrl);
+    
+    document.getElementById('twitter-title').setAttribute('content', content.title);
+    document.getElementById('twitter-description').setAttribute('content', content.subtitle || content.body.substring(0, 150));
+    document.getElementById('twitter-image').setAttribute('content', imageUrl);
+}
     // Function to apply translations for news page
     function AN_applyNewsTranslations(language) {
         AN_applyTranslations(language);
