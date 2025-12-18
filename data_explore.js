@@ -1812,5 +1812,494 @@ sources: [
             }
         ]
     }
+},
+{
+    id: 'article-007',
+    category: 'cosmology',
+    image: 'assets2/images/explore/astrology-pseudoscience.jpg',
+    date: '2025-12-15',
+    en: {
+        title: 'At the End of the Year: Why Do People Believe in Astrology Despite Its Classification as Pseudoscience?',
+        author: 'Majda Amdouni',
+        introduction: 'As the end of each year approaches, social media and traditional media turn into open spaces for promoting "astrological predictions," with clips about "your luck in 2026" and "horoscope predictions" topping viewership lists, and astrologers presented as possessing special knowledge about human futures.',
+        excerpt: 'An examination of the roots of the astrology phenomenon and the scientific evidence associated with it, using studies in astronomy and psychology to answer the question "Do stars have any effect on humans?"',
+        body: `As the end of each year approaches, social media and traditional media turn into open spaces for promoting "astrological predictions," with clips about "your luck in 2026" and "horoscope predictions" topping viewership lists, and astrologers presented as possessing special knowledge about human futures.
+
+But on the other side, the scientific community stands with a clear position: what is known as astrology is not a science, and is not based on any reliable empirical evidence.
+
+In this article, we examine the roots of the astrology phenomenon and the scientific evidence associated with it, using studies in astronomy and psychology to answer the question "Do stars have any effect on humans?"
+
+## Astrology and Horoscopes
+
+### What is the scientific classification of astrology?
+
+Astrology is globally classified under what is known as Pseudoscience, a classification that doesn't come from an ideological position, but from precise philosophical and scientific criteria.
+
+According to a research paper published by Canada's University of Waterloo, astrology fails to meet a fundamental condition of science: falsifiability or testability, which is the criterion established by Austrian philosopher of science Karl Popper to distinguish science from non-science.
+
+According to the same paper, Popper considered astrology "the clearest example of non-scientific theories," because its predictions are formulated in such a vague way that they appear correct in all cases, and therefore cannot be tested or proven wrong.
+
+In this context, Hisham Ben Yahia, vice president of the Tunisian Astronomy Society, explained to the media that the end of each calendar year witnesses remarkable interest from some media outlets in astrologers and fortune-tellers under the pretext of exploring what stars and planets carry as "predictions" for the new year, with these individuals sometimes presented as astronomers, which perpetuates a common confusion among the public between astrology and astronomy.
+
+Ben Yahia clarified that astronomy is an independent academic science specializing in studying celestial bodies and phenomena occurring outside Earth's atmosphere, taught in the world's most prestigious universities, with its name originating from "al-falak" meaning what revolves, and "falak" being the path of a planet.
+
+In contrast, astrology relies on employing the apparent positions of stars, planets, and galaxies to predict future events and their alleged influence on human life, which leads some to believe that astrology is a science based on fixed foundations, while in reality it is not based on any scientific basis, but rather consists of astrologers drawing baseless opinions, often for purely material motives.
+
+He added that modern sciences have definitively proven that there is no correlation between human destiny or future and the movement of stars, making the predictions promoted by astrologers without any scientific basis, relying solely on exploiting psychological factors and individuals' personal beliefs, while completely ignoring scientific evidence that contradicts them.
+
+In the same framework, the French Academy of Sciences declared since its founding in 1666, in a historical report published by World Socialist Web Site, and by decision of King Louis XIV's minister Jean-Baptiste Colbert, its official rejection of astrology and prohibition of its teaching, considering it a non-scientific practice not based on evidence.
+
+### No scientific evidence for horoscope influence on personality or destiny
+
+Despite widespread belief that horoscopes determine human personality or life path, scientific studies have found no measurable relationship between the two. A recent study published in 2024 in the scientific journal Kyklos indicates that there is no statistically significant correlation between zodiac signs and happiness, mental health, financial satisfaction, and general health.
+
+According to the study, which relied on data from over 12,000 participants in a broad representative social survey, the predictive power of horoscopes for individuals' moods or life events is "almost equivalent to a random variable."
+
+The study confirms that any feeling of alignment between astrological predictions and reality is not due to the accuracy of horoscopes, but to known psychological factors, such as confirmation bias.
+
+Ben Yahia believes that astronomy is an independent science concerned with studying celestial bodies and phenomena occurring outside Earth's atmosphere, and has no connection to astrology based on alleged predictions lacking any scientific basis.
+
+He pointed out that confusion between astrology and astronomy recurs among a segment of people, benefiting astrologers who exploit prominent astronomical events to appear in the media, especially with the arrival of the New Year, leading to their dominance over wide spaces in national and international media, contributing to deepening the gap between the public and correct scientific knowledge, in addition to perpetuating this confusion.
+
+He added that stars and star constellations are very far from Earth, separated by vast distances estimated at millions of light-years, explaining that the closest star to Earth in the Milky Way galaxy reaches us after four years, meaning its distance is measured as four light-years.
+
+Considering these enormous distances, he emphasized that there can be no talk of any actual influence of stars on human life, except for their aesthetic role in decorating the sky throughout the seasons. He reminded that ancestors benefited from stars in many aspects of daily life, such as travel, navigation, and architecture, in addition to determining prayer times in Islam, and some of these uses continue to this day in some societies.
+
+### Scientific experiments failed to prove astrology
+
+Attempts to scientifically test astrology are not new. Among the most famous experiments in this field is a study conducted in 1985 and published in the scientific journal Nature, where a number of astrologers underwent a double-blind test to evaluate their ability to match astrological charts with real personality descriptions.
+
+According to the experiment results, astrologers failed to provide predictions more accurate than random guessing, leading the researcher to conclude that "the astrological hypothesis was not experimentally supported."
+
+Other studies, including research by Dutch psychologist Peter Hartmann, based on analysis of two large samples (over 15,000 people), found no significant correlation between birth date and individual differences in personality or intelligence, and no scientific support for astrological predictions about zodiac signs and their influence on human traits.
+
+Ben Yahia explained in the same context that astrology remained prevalent until around the 16th century, and although the first separation between it and astronomy dates back to about fifty years BC, this association remained entrenched in human minds until the physicist-astronomer Isaac Newton came, proving that the falling of objects on Earth and the movement of celestial bodies are subject to the same law, the law of universal gravitation, which overthrew the idea of "fixity of things" that astrologers believe in.
+
+Newton also proved that the movement of celestial bodies is governed by precise scientific laws and principles, allowing calculation of their positions in advance with extreme accuracy.
+
+He continued that the great development achieved by astronomy through the ages contrasts with astrology's reliance on obsolete techniques closer to sorcery than scientific methodology. Astrologers still rely on a fixed celestial sphere whose observations date back about two thousand years, and they divide the zodiac into only twelve signs, while modern observations have proven that the sun, during its apparent annual path, passes through thirteen constellations, and astrologers' insistence on ignoring this is only to facilitate their erroneous calculations.
+
+Ben Yahia concluded by emphasizing that the renewed conflict between astronomers and astrologers is essentially a methodological conflict, aiming to establish scientific awareness and elevate knowledge based on facts.
+
+### NASA settles the debate: Astrology is not science
+
+One of the entities whose name is most misused in promoting horoscopes is the American space agency (NASA). According to an official clarification by the agency, astronomy is the scientific study of celestial bodies using physics and observation, while astrology is "a belief system not based on scientific evidence."
+
+NASA confirmed that horoscopes are not based on known physical forces, and that star positions do not affect human personality.
+
+According to a verification report previously published by the media, NASA denied the validity of circulating claims about "adding a new sign" or "changing horoscopes," clarifying that these divisions were never scientific.
+
+### Why do people believe in horoscopes despite the lack of evidence?
+
+Psychologists believe that belief in horoscopes is not due to their accuracy, but to known psychological mechanisms, as humans tend to believe general descriptions they think are personally directed to them.
+
+This is known as the Barnum effect, where horoscope predictions are formulated in vague phrases that could apply to anyone.
+
+People also tend to remember predictions that "came true" and ignore dozens of cases where no prophecy materialized. In times of anxiety and uncertainty, individuals seek simple explanations that give them a sense of control, even if unscientific.
+
+Psychological research also indicates that reading positive predictions may temporarily improve mood, not because of their accuracy, but due to psychological suggestion.
+
+## Historical roots of astrology: From celestial observation to organized superstition
+
+The emergence of astrology dates back to ancient times, before the emergence of science in the modern sense, when humans tried to interpret natural and cosmic phenomena based on observation and symbolic interpretation. According to historical studies published in the scientific encyclopedia Britannica, astrology originated in Mesopotamian civilization (Babylonian) over 3,000 years ago, when priests (astronomers at the time) observed the movement of planets and stars to use them in predicting major events like wars, famines, and the fate of kings, not individual destinies as is common today.
+
+According to the same encyclopedia, astrology in its beginnings was not separate from astronomy; the two were part of a single knowledge system, as there were no scientific tools or physical concepts allowing separation between observation and interpretation.
+
+With the transfer of Babylonian knowledge to Greek civilization, especially during the 4th century BC, astrology developed to take on a philosophical character. According to science historian James Evans, the Greeks relied on precise astronomical calculations but added an interpretive dimension, considering the universe a harmonious system whose parts influence each other, including humans.
+
+Then during the golden age of Islamic civilization, astronomy witnessed significant development based on observation and calculation, while astrology began to lose its scientific standing.
+
+According to history of science studies published on the scientific press site of Cambridge University, several Muslim scholars clearly distinguished between astronomy and astrology. Ibn Sina criticized astrology, considering linking human actions to the movement of celestial bodies "a claim not based on rational necessity nor sensory experience."
+
+Ibn Rushd also rejected the idea that planets have direct causal ability on human actions, emphasizing that this contradicts reason and demonstrative methodology.
+
+Science historians point out that these criticisms represent early beginnings of conceptual separation between astronomy as a scientific discipline and astrology as an unproven interpretive practice.
+
+Science historians agree that the decisive separation between astronomy and astrology occurred during the 16th and 17th centuries, with the emergence of the modern scientific method. According to the encyclopedia, the work of scientists like Nicolaus Copernicus, Galileo Galilei, Johannes Kepler, and Isaac Newton transformed the study of the sky from symbolic interpretation to a science based on precise observation, mathematics, and physical laws.
+
+Although some of these scientists practiced astrology in their beginnings, their scientific work itself contributed to undermining the philosophical foundations of astrology, leaving no room for assuming supernatural influence of planets on human behavior.
+
+### 17th century: Astrology outside scientific institutions
+
+This separation peaked with the establishment of modern scientific institutions. According to historical documentation, the French Academy of Sciences declared since its founding in 1666 the exclusion of astrology from research and education fields, considered a decisive institutional step to separate science from untestable beliefs.
+
+By the 18th century, astronomy became an independent science taught in universities and used in navigation and calendars, while astrology declined to the margins of popular culture.
+
+However, despite this clear scientific separation, astrology reappeared in the 20th century, not as a science, but as a cultural and media product. Sociological studies published in the Journal of Popular Culture spoke of the association of horoscope spread with newspapers, then radio and television, and finally social media platforms, where predictions are presented in an entertainment format not subject to any scientific scrutiny.
+
+Researchers confirm that this return does not reflect cognitive development, but rather the transformation of astrology into a content industry benefiting from collective anxiety and psychological need for explanation.`,
+        sources: [
+            {
+                title: 'At the End of the Year: Why Do People Believe in Astrology Despite Its Classification as Pseudoscience?',
+                journal: 'https://www.misbar.com/editorial/2025/12/15/%D9%85%D8%B9-%D9%86%D9%87%D8%A7%D9%8A%D8%A9-%D8%A7%D9%84%D8%B9%D8%A7%D9%85-%D9%84%D9%85%D8%A7%D8%B0%D8%A7-%D9%8A%D9%8F%D8%B5%D8%AF%D9%91%D9%82-%D8%A7%D9%84%D9%86%D8%A7%D8%B3-%D8%A7%D9%84%D8%AA%D9%86%D8%AC%D9%8A%D9%85-%D8%B1%D8%BA%D9%85-%D8%AA%D8%B5%D9%86%D9%8A%D9%81%D9%87-%D9%83%D8%B9%D9%84%D9%85-%D8%B2%D8%A7%D8%A6%D9%81%D8%9F?fbclid=iwy2xjawowimflehrua2flbqixmqbzcnrjbmfwcf9pzbaymjiwmzkxnzg4mjawodkyaaeerzdz4t8nfrynswfivqfbjuie1kde0t8bdtdx60ephle8jrgiesljzpbhqgu_aem_g7w2vzkxbvtcn871x1rb7a',
+                author: 'Majda Amdouni',
+                year: '2025'
+            },
+            {
+                title: 'Computational Epistemology Lab Home Page',
+                journal: 'https://cpl.uccs.edu/',
+                author: '',
+                year: ''
+            },
+            {
+                title: 'Stanford Encyclopedia of Philosophy',
+                journal: 'https://plato.stanford.edu/',
+                author: '',
+                year: ''
+            },
+            {
+                title: 'World Socialist Web Site',
+                journal: 'https://www.wsws.org/',
+                author: '',
+                year: ''
+            },
+            {
+                title: 'Nature Journal',
+                journal: 'https://www.nature.com/',
+                author: '',
+                year: ''
+            },
+            {
+                title: 'ScienceDirect',
+                journal: 'https://www.sciencedirect.com/',
+                author: '',
+                year: ''
+            },
+            {
+                title: 'Encyclopedia Britannica',
+                journal: 'https://www.britannica.com/',
+                author: '',
+                year: ''
+            },
+            {
+                title: 'Cambridge University Press',
+                journal: 'https://www.cambridge.org/',
+                author: '',
+                year: ''
+            }
+        ]
+    },
+    fr: {
+        title: 'À la fin de l\'année : pourquoi les gens croient-ils à l\'astrologie malgré sa classification comme pseudoscience ?',
+        author: 'Majda Amdouni',
+        introduction: 'À l\'approche de la fin de chaque année, les médias sociaux et les médias traditionnels se transforment en espaces ouverts pour promouvoir les "prédictions astrologiques", avec des clips sur "votre chance en 2026" et "prédictions horoscopiques" en tête des listes d\'audience, et les astrologues présentés comme possédant une connaissance spéciale de l\'avenir humain.',
+        excerpt: 'Un examen des racines du phénomène de l\'astrologie et des preuves scientifiques qui y sont associées, utilisant des études en astronomie et en psychologie pour répondre à la question "Les étoiles ont-elles un effet sur les humains ?"',
+        body: `À l'approche de la fin de chaque année, les médias sociaux et les médias traditionnels se transforment en espaces ouverts pour promouvoir les "prédictions astrologiques", avec des clips sur "votre chance en 2026" et "prédictions horoscopiques" en tête des listes d'audience, et les astrologues présentés comme possédant une connaissance spéciale de l'avenir humain.
+
+Mais de l'autre côté, la communauté scientifique se tient avec une position claire : ce qui est connu sous le nom d'astrologie n'est pas une science et ne repose sur aucune preuve empirique fiable.
+
+Dans cet article, nous examinons les racines du phénomène astrologique et les preuves scientifiques qui y sont associées, en utilisant des études en astronomie et en psychologie pour répondre à la question "Les étoiles ont-elles un effet sur les humains ?"
+
+## Astrologie et horoscopes
+
+### Quelle est la classification scientifique de l'astrologie ?
+
+L'astrologie est classée mondialement dans ce qu'on appelle la Pseudoscience, une classification qui ne vient pas d'une position idéologique, mais de critères philosophiques et scientifiques précis.
+
+Selon un article de recherche publié par l'Université de Waterloo au Canada, l'astrologie échoue à satisfaire une condition fondamentale de la science : la falsifiabilité ou la testabilité, qui est le critère établi par le philosophe des sciences autrichien Karl Popper pour distinguer la science de la non-science.
+
+Selon le même article, Popper considérait l'astrologie comme "l'exemple le plus clair de théories non scientifiques", car ses prédictions sont formulées de manière si vague qu'elles apparaissent correctes dans tous les cas, et ne peuvent donc pas être testées ou prouvées fausses.
+
+Dans ce contexte, Hisham Ben Yahia, vice-président de la Société tunisienne d'astronomie, a expliqué aux médias que la fin de chaque année civile témoigne d'un intérêt remarquable de certains médias pour les astrologues et les diseurs de bonne aventure sous prétexte d'explorer ce que les étoiles et les planètes portent comme "prédictions" pour la nouvelle année, ces individus étant parfois présentés comme des astronomes, ce qui perpétue une confusion courante chez le public entre l'astrologie et l'astronomie.
+
+Ben Yahia a clarifié que l'astronomie est une science académique indépendante spécialisée dans l'étude des corps célestes et des phénomènes se produisant en dehors de l'atmosphère terrestre, enseignée dans les universités les plus prestigieuses du monde, son nom provenant de "al-falak" signifiant ce qui tourne, et "falak" étant le chemin d'une planète.
+
+En revanche, l'astrologie repose sur l'utilisation des positions apparentes des étoiles, des planètes et des galaxies pour prédire les événements futurs et leur influence présumée sur la vie humaine, ce qui conduit certains à croire que l'astrologie est une science basée sur des fondements fixes, alors qu'en réalité elle ne repose sur aucune base scientifique, mais consiste plutôt en des astrologues tirant des opinions sans fondement, souvent pour des motifs purement matériels.
+
+Il a ajouté que les sciences modernes ont définitivement prouvé qu'il n'y a aucune corrélation entre le destin humain ou l'avenir et le mouvement des étoiles, rendant les prédictions promues par les astrologues sans aucune base scientifique, s'appuyant uniquement sur l'exploitation de facteurs psychologiques et des croyances personnelles des individus, tout en ignorant complètement les preuves scientifiques qui les contredisent.
+
+Dans le même cadre, l'Académie française des sciences a déclaré depuis sa fondation en 1666, dans un rapport historique publié par World Socialist Web Site, et par décision du ministre de Louis XIV Jean-Baptiste Colbert, son rejet officiel de l'astrologie et l'interdiction de son enseignement, la considérant comme une pratique non scientifique ne reposant pas sur des preuves.
+
+### Aucune preuve scientifique de l'influence des horoscopes sur la personnalité ou le destin
+
+Malgré la croyance répandue que les horoscopes déterminent la personnalité humaine ou le parcours de vie, les études scientifiques n'ont trouvé aucune relation mesurable entre les deux. Une étude récente publiée en 2024 dans la revue scientifique Kyklos indique qu'il n'y a aucune corrélation statistiquement significative entre les signes du zodiaque et le bonheur, la santé mentale, la satisfaction financière et la santé générale.
+
+Selon l'étude, qui s'est appuyée sur des données de plus de 12 000 participants à une vaste enquête sociale représentative, le pouvoir prédictif des horoscopes pour l'humeur des individus ou les événements de la vie est "presque équivalent à une variable aléatoire".
+
+L'étude confirme que tout sentiment d'alignement entre les prédictions astrologiques et la réalité n'est pas dû à l'exactitude des horoscopes, mais à des facteurs psychologiques connus, comme le biais de confirmation.
+
+Ben Yahia estime que l'astronomie est une science indépendante concernée par l'étude des corps célestes et des phénomènes se produisant en dehors de l'atmosphère terrestre, et n'a aucun lien avec l'astrologie basée sur des prédictions présumées manquant de toute base scientifique.
+
+Il a souligné que la confusion entre astrologie et astronomie se reproduit chez un segment de la population, profitant aux astrologues qui exploitent les événements astronomiques marquants pour apparaître dans les médias, surtout à l'arrivée du Nouvel An, conduisant à leur domination sur de vastes espaces dans les médias nationaux et internationaux, contribuant à approfondir le fossé entre le public et la connaissance scientifique correcte, en plus de perpétuer cette confusion.
+
+Il a ajouté que les étoiles et les constellations stellaires sont très éloignées de la Terre, séparées par de vastes distances estimées à des millions d'années-lumière, expliquant que l'étoile la plus proche de la Terre dans la galaxie de la Voie lactée nous atteint après quatre ans, ce qui signifie que sa distance est mesurée à quatre années-lumière.
+
+Compte tenu de ces distances énormes, il a souligné qu'on ne peut pas parler d'une influence réelle des étoiles sur la vie humaine, à l'exception de leur rôle esthétique dans la décoration du ciel tout au long des saisons. Il a rappelé que les ancêtres ont bénéficié des étoiles dans de nombreux aspects de la vie quotidienne, comme les voyages, la navigation et l'architecture, en plus de déterminer les heures de prière dans l'islam, et certaines de ces utilisations continuent à ce jour dans certaines sociétés.
+
+### Expériences scientifiques n'ayant pas réussi à prouver l'astrologie
+
+Les tentatives de tester scientifiquement l'astrologie ne sont pas nouvelles. Parmi les expériences les plus célèbres dans ce domaine, une étude menée en 1985 et publiée dans la revue scientifique Nature, où un certain nombre d'astrologues ont subi un test en double aveugle pour évaluer leur capacité à faire correspondre des cartes astrologiques avec des descriptions de personnalité réelles.
+
+Selon les résultats de l'expérience, les astrologues n'ont pas réussi à fournir des prédictions plus précises qu'une devinette aléatoire, conduisant le chercheur à conclure que "l'hypothèse astrologique n'était pas soutenue expérimentalement".
+
+D'autres études, dont les recherches du psychologue néerlandais Peter Hartmann, basées sur l'analyse de deux grands échantillons (plus de 15 000 personnes), n'ont trouvé aucune corrélation significative entre la date de naissance et les différences individuelles de personnalité ou d'intelligence, et aucun soutien scientifique aux prédictions astrologiques sur les signes du zodiaque et leur influence sur les traits humains.
+
+Ben Yahia a expliqué dans le même contexte que l'astrologie est restée prévalente jusqu'au XVIe siècle environ, et bien que la première séparation entre elle et l'astronomie remonte à environ cinquante ans avant J.-C., cette association est restée ancrée dans les esprits humains jusqu'à ce que le physicien-astronome Isaac Newton arrive, prouvant que la chute des objets sur Terre et le mouvement des corps célestes sont soumis à la même loi, la loi de la gravitation universelle, ce qui a renversé l'idée de "fixité des choses" à laquelle croient les astrologues.
+
+Newton a également prouvé que le mouvement des corps célestes est régi par des lois et des principes scientifiques précis, permettant le calcul de leurs positions à l'avance avec une extrême précision.
+
+Il a poursuivi que le grand développement atteint par l'astronomie à travers les âges contraste avec la dépendance de l'astrologie à des techniques obsolètes plus proches de la sorcellerie que de la méthodologie scientifique. Les astrologues s'appuient encore sur une sphère céleste fixe dont les observations remontent à environ deux mille ans, et ils divisent le zodiaque en seulement douze signes, tandis que les observations modernes ont prouvé que le soleil, pendant son parcours annuel apparent, traverse treize constellations, et l'insistance des astrologues à ignorer cela n'est que pour faciliter leurs calculs erronés.
+
+Ben Yahia a conclu en soulignant que le conflit renouvelé entre astronomes et astrologues est essentiellement un conflit méthodologique, visant à établir la conscience scientifique et à élever la connaissance basée sur les faits.
+
+### La NASA règle le débat : L'astrologie n'est pas une science
+
+L'une des entités dont le nom est le plus utilisé à mauvais escient dans la promotion des horoscopes est l'agence spatiale américaine (NASA). Selon une clarification officielle de l'agence, l'astronomie est l'étude scientifique des corps célestes utilisant la physique et l'observation, tandis que l'astrologie est "un système de croyance ne reposant pas sur des preuves scientifiques".
+
+La NASA a confirmé que les horoscopes ne sont pas basés sur des forces physiques connues, et que les positions des étoiles n'affectent pas la personnalité humaine.
+
+Selon un rapport de vérification précédemment publié par les médias, la NASA a nié la validité des affirmations circulant sur "l'ajout d'un nouveau signe" ou "le changement des horoscopes", précisant que ces divisions n'ont jamais été scientifiques.
+
+### Pourquoi les gens croient-ils aux horoscopes malgré l'absence de preuves ?
+
+Les psychologues estiment que la croyance aux horoscopes n'est pas due à leur exactitude, mais à des mécanismes psychologiques connus, car les humains ont tendance à croire des descriptions générales qu'ils pensent personnellement dirigées vers eux.
+
+C'est ce qu'on appelle l'effet Barnum, où les prédictions horoscopiques sont formulées en phrases vagues qui pourraient s'appliquer à n'importe qui.
+
+Les gens ont aussi tendance à se souvenir des prédictions qui "se sont réalisées" et à ignorer des dizaines de cas où aucune prophétie ne s'est matérialisée. En période d'anxiété et d'incertitude, les individus recherchent des explications simples qui leur donnent un sentiment de contrôle, même si non scientifiques.
+
+La recherche psychologique indique également que la lecture de prédictions positives peut temporairement améliorer l'humeur, non pas à cause de leur exactitude, mais en raison de la suggestion psychologique.
+
+## Racines historiques de l'astrologie : De l'observation céleste à la superstition organisée
+
+L'émergence de l'astrologie remonte aux temps anciens, avant l'émergence de la science au sens moderne, lorsque les humains tentaient d'interpréter les phénomènes naturels et cosmiques basés sur l'observation et l'interprétation symbolique. Selon des études historiques publiées dans l'encyclopédie scientifique Britannica, l'astrologie est née dans la civilisation mésopotamienne (babylonienne) il y a plus de 3 000 ans, lorsque les prêtres (astronomes à l'époque) observaient le mouvement des planètes et des étoiles pour les utiliser dans la prédiction d'événements majeurs comme les guerres, les famines et le destin des rois, pas les destins individuels comme c'est courant aujourd'hui.
+
+Selon la même encyclopédie, l'astrologie à ses débuts n'était pas séparée de l'astronomie ; les deux faisaient partie d'un système de connaissance unique, car il n'y avait pas d'outils scientifiques ou de concepts physiques permettant la séparation entre l'observation et l'interprétation.
+
+Avec le transfert des connaissances babyloniennes à la civilisation grecque, surtout pendant le 4ème siècle avant J.-C., l'astrologie s'est développée pour prendre un caractère philosophique. Selon l'historien des sciences James Evans, les Grecs s'appuyaient sur des calculs astronomiques précis mais ajoutaient une dimension interprétative, considérant l'univers comme un système harmonieux dont les parties s'influencent mutuellement, y compris les humains.
+
+Puis pendant l'âge d'or de la civilisation islamique, l'astronomie a connu un développement significatif basé sur l'observation et le calcul, tandis que l'astrologie commençait à perdre sa position scientifique.
+
+Selon des études d'histoire des sciences publiées sur le site de presse scientifique de l'Université de Cambridge, plusieurs érudits musulmans ont clairement distingué entre astronomie et astrologie. Ibn Sina a critiqué l'astrologie, considérant que lier les actions humaines au mouvement des corps célestes était "une affirmation ne reposant sur aucune nécessité rationnelle ni expérience sensorielle".
+
+Ibn Rushd a également rejeté l'idée que les planètes ont une capacité causale directe sur les actions humaines, soulignant que cela contredit la raison et la méthodologie démonstrative.
+
+Les historiens des sciences soulignent que ces critiques représentent des débuts précoces de séparation conceptuelle entre l'astronomie en tant que discipline scientifique et l'astrologie en tant que pratique interprétative non prouvée.
+
+Les historiens des sciences s'accordent à dire que la séparation décisive entre astronomie et astrologie s'est produite aux XVIe et XVIIe siècles, avec l'émergence de la méthode scientifique moderne. Selon l'encyclopédie, le travail de scientifiques comme Nicolas Copernic, Galilée, Johannes Kepler et Isaac Newton a transformé l'étude du ciel d'une interprétation symbolique en une science basée sur l'observation précise, les mathématiques et les lois physiques.
+
+Bien que certains de ces scientifiques aient pratiqué l'astrologie à leurs débuts, leur travail scientifique lui-même a contribué à saper les fondements philosophiques de l'astrologie, ne laissant aucune place à l'hypothèse d'une influence surnaturelle des planètes sur le comportement humain.
+
+### XVIIe siècle : L'astrologie en dehors des institutions scientifiques
+
+Cette séparation a culminé avec l'établissement des institutions scientifiques modernes. Selon la documentation historique, l'Académie française des sciences a déclaré depuis sa fondation en 1666 l'exclusion de l'astrologie des domaines de recherche et d'enseignement, considérée comme une étape institutionnelle décisive pour séparer la science des croyances non testables.
+
+Au XVIIIe siècle, l'astronomie est devenue une science indépendante enseignée dans les universités et utilisée dans la navigation et les calendriers, tandis que l'astrologie déclinait aux marges de la culture populaire.
+
+Cependant, malgré cette séparation scientifique claire, l'astrologie est réapparue au XXe siècle, non pas comme une science, mais comme un produit culturel et médiatique. Des études sociologiques publiées dans le Journal of Popular Culture ont parlé de l'association de la diffusion des horoscopes avec les journaux, puis la radio et la télévision, et enfin les plateformes de médias sociaux, où les prédictions sont présentées dans un format de divertissement non soumis à un examen scientifique.
+
+Les chercheurs confirment que ce retour ne reflète pas un développement cognitif, mais plutôt la transformation de l'astrologie en une industrie de contenu bénéficiant de l'anxiété collective et du besoin psychologique d'explication.`,
+        sources: [
+            {
+                title: 'À la fin de l\'année : pourquoi les gens croient-ils à l\'astrologie malgré sa classification comme pseudoscience ?',
+                journal: 'https://www.misbar.com/editorial/2025/12/15/%D9%85%D8%B9-%D9%86%D9%87%D8%A7%D9%8A%D8%A9-%D8%A7%D9%84%D8%B9%D8%A7%D9%85-%D9%84%D9%85%D8%A7%D8%B0%D8%A7-%D9%8A%D9%8F%D8%B5%D8%AF%D9%91%D9%82-%D8%A7%D9%84%D9%86%D8%A7%D8%B3-%D8%A7%D9%84%D8%AA%D9%86%D8%AC%D9%8A%D9%85-%D8%B1%D8%BA%D9%85-%D8%AA%D8%B5%D9%86%D9%8A%D9%81%D9%87-%D9%83%D8%B9%D9%84%D9%85-%D8%B2%D8%A7%D8%A6%D9%81%D8%9F?fbclid=iwy2xjawowimflehrua2flbqixmqbzcnrjbmfwcf9pzbaymjiwmzkxnzg4mjawodkyaaeerzdz4t8nfrynswfivqfbjuie1kde0t8bdtdx60ephle8jrgiesljzpbhqgu_aem_g7w2vzkxbvtcn871x1rb7a',
+                author: 'Majda Amdouni',
+                year: '2025'
+            },
+			{
+				title: 'Page d\'accueil du laboratoire d\'épistémologie computationnelle',
+				journal: 'https://cpl.uccs.edu/',
+				author: '',
+				year: ''
+			},
+			{
+				title: 'Encyclopédie Stanford de philosophie',
+				journal: 'https://plato.stanford.edu/',
+				author: '',
+				year: ''
+			},
+			{
+				title: 'Site Web socialiste mondial',
+				journal: 'https://www.wsws.org/',
+				author: '',
+				year: ''
+			},
+			{
+				title: 'Revue Nature',
+				journal: 'https://www.nature.com/',
+				author: '',
+				year: ''
+			},
+			{
+				title: 'ScienceDirect',
+				journal: 'https://www.sciencedirect.com/',
+				author: '',
+				year: ''
+			},
+			{
+				title: 'Encyclopédie Britannica',
+				journal: 'https://www.britannica.com/',
+				author: '',
+				year: ''
+			},
+			{
+				title: 'Cambridge University Press',
+				journal: 'https://www.cambridge.org/',
+				author: '',
+				year: ''
+			}
+        ]
+    },
+    ar: {
+        title: 'مع نهاية العام.. لماذا يُصدّق الناس التنجيم رغم تصنيفه كعلم زائف؟',
+        author: 'ماجدة عمدوني',
+        introduction: 'مع اقتراب نهاية كل عام، تتحول منصات التواصل الاجتماعي ووسائل الإعلام إلى مساحة مفتوحة لترويج "التوقعات الفلكية"، حيث تتصدّر مقاطع "حظك في 2026"، و"توقعات الأبراج" قوائم المشاهدة، ويقدَّم المنجمون على أنهم أصحاب معرفة خاصة بمستقبل البشر.',
+        excerpt: 'فحص لجذور ظاهرة التنجيم والأدلة العلمية المرتبطة بها، مستعينًا بدراسات بعلم الفلك وعلم النفس للإجابة عن سؤال "هل للنجوم أي تأثير على البشر".',
+        body: `مع اقتراب نهاية كل عام، تتحول منصات التواصل الاجتماعي ووسائل الإعلام إلى مساحة مفتوحة لترويج "التوقعات الفلكية"، حيث تتصدّر مقاطع "حظك في 2026"، و"توقعات الأبراج" قوائم المشاهدة، ويقدَّم المنجمون على أنهم أصحاب معرفة خاصة بمستقبل البشر.
+
+لكن في الجهة المقابلة، يقف المجتمع العلمي بمؤسساته وبحوثه موقفًا واضحًا: ما يُعرف بالتنجيم ليس علمًا، ولا يستند إلى أي دليل تجريبي موثوق.
+
+في هذا المقال، يفحص مسبار جذور ظاهرة التنجيم والأدلة العلمية المرتبطة بها، مستعينًا بدراسات بعلم الفلك وعلم النفس للإجابة عن سؤال "هل للنجوم أي تأثير على البشر".
+
+## التنجيم والأبراج
+
+### ما هو التصنيف العلمي للتنجيم؟
+
+يُصنَّف التنجيم عالميًا ضمن ما يُعرف بـ العلوم الزائفة (Pseudoscience)، وهو تصنيف لا يأتي من موقف أيديولوجي، بل من معايير فلسفية وعلمية دقيقة.
+
+فبحسب ورقة بحثية منشورة عن جامعة واترلو الكندي، فإن التنجيم يفشل في تحقيق شرط أساسي من شروط العلم، وهو قابلية التفنيد أو الاختبار، وهو المعيار الذي وضعه فيلسوف العلم النمساوي كارل بوبر لتمييز العلم عن غيره.
+
+ووفق الورقة نفسها، اعتبر بوبر أن التنجيم "أوضح مثال على النظريات غير العلمية"، لأن توقعاته مصاغة بطريقة فضفاضة تجعلها صحيحة ظاهريًا في جميع الحالات، وبالتالي لا يمكن اختبارها أو إثبات خطئها.
+
+في هذا الصدد، أوضح هشام بن يحيى، نائب رئيس الجمعية التونسية لعلوم الفلك، في حديثه لمسبار، أن نهاية كل سنة ميلادية تشهد إقبالًا لافتًا من عدد من وسائل الإعلام على المنجمين والعرافين بدعوى استشراف ما تحمله النجوم والكواكب من "توقّعات" للسنة الجديدة، ليُقدَّم هؤلاء أحيانًا في صورة علماء فلك، وهو ما يكرّس خلطًا شائعًا لدى الجمهور بين التنجيم وعلم الفلك.
+
+وبيّن بن يحيى أن علم الفلك هو علم أكاديمي قائم بذاته، يختص بدراسة الأجرام والظواهر التي تنشأ خارج الغلاف الجوي للأرض، ويُدرَّس في أعرق الجامعات العالمية، ويعود أصل تسميته إلى "الفلكة" أي ما استدار من الشيء، والفلك هو مسار الكوكب.
+
+في المقابل، يعتمد التنجيم على توظيف المواقع الظاهرة للنجوم والكواكب والمجرّات للتنبؤ بأحداث مستقبلية وتأثيرها المزعوم على حياة الإنسان، وهو ما يدفع البعض إلى الاعتقاد بأن التنجيم علم قائم على أسس ثابتة، في حين أنه في الواقع لا يستند إلى أي قاعدة علمية، بل يقوم على استخلاص المنجم آراء لا أساس لها، غالبًا بدافع مادي بحت.
+
+وأضاف أن العلوم الحديثة أثبتت بشكل قاطع عدم وجود أي علاقة ارتباطية بين مصير الإنسان أو مستقبله وحركة النجوم، ما يجعل التوقّعات التي يروّج لها المنجمون بلا أي سند علمي، ولا تقوم إلا على استغلال العوامل النفسية والمعتقدات الشخصية للأفراد، مع تجاهل تام للأدلة العلمية التي تناقضها.
+
+في الإطار نفسه، أعلنت الأكاديمية الفرنسية للعلوم منذ تأسيسها عام 1666، في تقرير تاريخي نشره موقع World Socialist Web Site، وبقرار من وزير الملك لويس الرابع عشر جان باتيست كولبير، رفضها الرسمي للتنجيم ومنع تدريسه، معتبرة إياه ممارسة غير علمية لا تستند إلى البرهان.
+
+### لا دليلًا علميًا على تأثير الأبراج على الشخصية أو المصير
+
+رغم شيوع الاعتقاد بأن الأبراج تحدد شخصية الإنسان أو مسار حياته، فإن الدراسات العلمية لم تعثر على أي علاقة قابلة للقياس بين الأمرين، وتشير دراسة حديثة نُشرت سنة 2024 في مجلة Kyklos العلمية، إلى أنه لا يوجد أي ارتباط إحصائي مهم بين علامة البرج وكل من السعادة والصحة النفسية والرضا المالي والصحة العامة.
+
+وبحسب الدراسة، التي اعتمدت على بيانات أكثر من 12 ألف مشارك ضمن استطلاع اجتماعي تمثيلي واسع، فإن قوة الأبراج في التنبؤ بمزاج الأفراد أو أحداث حياتهم "تكاد تكون مساوية لمتغير عشوائي".
+
+وتؤكد الدراسة أن أي شعور بتطابق التوقعات الفلكية مع الواقع لا يعود إلى دقة الأبراج، بل إلى عوامل نفسية معروفة، مثل التحيز التأكيدي.
+
+ويرى هشام بن يحيى، أن علم الفلك يُعد علمًا قائمًا بذاته، يُعنى بدراسة الأجرام السماوية والظواهر التي تحدث خارج الغلاف الجوي للأرض، ولا يمت بصلة إلى التنجيم القائم على توقّعات مزعومة تفتقر لأي أساس علمي.
+
+وأشار إلى أن الخلط بين التنجيم وعلم الفلك يتكرر لدى شريحة من الناس، مستفيدًا من ذلك المنجمون الذين يستغلون الأحداث الفلكية البارزة للظهور إعلاميًا، لا سيما مع حلول رأس السنة الميلادية، ما يفضي إلى هيمنتهم على مساحات واسعة في وسائل الإعلام الوطنية والدولية، ويُسهم في تعميق الفجوة بين الجمهور والمعرفة العلمية الصحيحة، فضلًا عن تكريس هذا الالتباس.
+
+وأضاف أن النجوم والأبراج النجمية بعيدة جدًا عن الأرض، إذ تفصلها عنها مسافات شاسعة تُقدَّر بملايين السنين الضوئية، موضحًا أن أقرب نجم إلى الأرض في مجرّة درب التبانة يصل ضوؤه إلينا بعد أربع سنوات، وهو ما يعني أن بُعده يُقاس بأربع سنوات ضوئية.
+
+وبالنظر إلى هذه المسافات الهائلة، شدد على أنه لا يمكن الحديث عن أي تأثير فعلي للنجوم على حياة البشر، باستثناء دورها الجمالي في تزيين السماء على مدار الفصول. وذكّر بأن الأجداد استفادوا من النجوم في عديد من مناحي الحياة اليومية، مثل السفر والتنقّل والملاحة والعمارة، إضافة إلى تحديد أوقات الصلوات في الإسلام، ولا تزال بعض هذه الاستخدامات قائمة إلى اليوم لدى عدد من المجتمعات.
+
+### تجارب علمية أخفقت في إثبات التنجيم
+
+تعد محاولات اختبار التنجيم علميًا ليست جديدة، فمن أشهر التجارب في هذا المجال، دراسة أجريت سنة 1985 ونُشرت في مجلة Nature العلمية، حيث خضع عدد من المنجمين لاختبار مزدوج التعمية لتقييم قدرتهم على مطابقة خرائط فلكية مع أوصاف شخصية حقيقة.
+
+وبحسب نتائج التجربة، لم ينجح المنجمون في تقديم تنبؤات أدق من التخمين العشوائي، وهو ما دفع الباحث إلى الاستنتاج بأن "الفرضية الفلكية لم تُدعَم تجريبيًا".
+
+كما توصلت دراسات أخرى، من بينها أبحاث عالم النفس الهولندي بيتر هارتمان، بناء على تحليل عينتين كبيرتين (أكثر من 15,000 شخص)، أنه لا يوجد ارتباط مهم بين تاريخ الميلاد وبين الفروق الفردية في الشخصية أو الذكاء، ولا دعم علمي لتنبؤات التنجيم حول الأبراج وتأثيرها على الصفات البشرية.
+
+وأوضح بن يحيى في السياق نفسه، أن التنجيم ظل سائدًا إلى حدود القرن السادس عشر، ورغم أن أول انفصال بينه وبين علم الفلك يعود إلى نحو خمسين سنة قبل الميلاد، فإن هذا الاقتران بقي راسخًا في أذهان البشر إلى أن جاء العالم الفيزيائي الفلكي إسحاق نيوتن، الذي أثبت أن سقوط الأجسام على الأرض وحركة الأجرام السماوية تخضع للقانون نفسه، أي قانون الجاذبية الكونية، وهو ما أسقط فكرة "ثبوتية الأشياء" التي يؤمن بها المنجمون.
+
+كما أثبت نيوتن أن حركة الأجرام السماوية تحكمها قوانين ومبادئ علمية دقيقة، ما يسمح بحساب مواقعها مسبقًا بدقة متناهية.
+
+وتابع أن التطور الكبير الذي بلغه علم الفلك عبر العصور يقابله اعتماد التنجيم على تقنيات بالية أقرب إلى الشعوذة منها إلى المنهج العلمي، إذ ما يزال المنجمون يستندون إلى كرة سماوية ثابتة تعود ملاحظاتها إلى ما يقارب ألفي سنة، ويعتمدون تقسيم الأبراج إلى اثني عشر برجًا فقط، في حين أثبتت الأرصاد الحديثة أن الشمس، خلال مسارها الظاهري السنوي، تمر عبر ثلاثة عشر برجًا، وما إصرار المنجمين على تجاهل ذلك إلا تسهيلًا لحساباتهم الخاطئة.
+
+وختم بن يحيى بالتأكيد على أن الصراع المتجدّد بين الفلكيين والمنجمين هو في جوهره صراع منهج، يهدف إلى تكريس الوعي العلمي والارتقاء بالمعرفة القائمة على الحقائق.
+
+### ناسا تحسم الجدل: التنجيم ليس علمًا
+
+من أكثر الجهات التي يُساء استخدام اسمها في ترويج الأبراج هي وكالة الفضاء الأميركية (NASA)، وبحسب توضيح رسمي للوكالة، فإن علم الفلك هو دراسة علمية للأجرام السماوية باستخدام الفيزياء والرصد، بينما التنجيم "نظام اعتقادي لا يستند إلى أدلة علمية".
+
+وأكدت ناسا أن الأبراج ليست قائمة على قوى فيزيائية معروفة، وأن مواقع النجوم لا تؤثر على شخصية الإنسان.
+
+ووفق تقرير تحقق كان قد نشره موقع مسبار، نفت ناسا صحة الادعاءات المتداولة حول "إضافة برج جديد" أو "تغيير الأبراج"، موضحة أن هذه التقسيمات لم تكن يومًا علمية.
+
+### لماذا يصدق الناس الأبراج على الرغم من غياب الأدلة؟
+
+يرى علماء النفس أن الإيمان بالأبراج لا يعود إلى صحتها، بل إلى آليات نفسية معروفة إذ يميل البشر إلى تصديق أوصاف عامة يعتقدون أنها موجهة لهم شخصيًا.
+
+ وهو ما يُعرف بتأثير بارنوم، إذ تُصاغ توقعات الأبراج بعبارات فضفاضة يمكن أن تنطبق على أي شخص.
+
+كما يميل الأشخاص إلى تذكر التوقعات التي "تحققت" وتجاهل عشرات الحالات التي لم تتحقق فيها أي نبوءة.وفي فترات القلق وعدم اليقين، يبحث الأفراد عن تفسيرات بسيطة تمنحهم شعورًا بالسيطرة، حتى لو كانت غير علمية.
+
+وتشير الأبحاث النفسية أيضًا إلى أن قراءة توقعات إيجابية قد تحسن المزاج مؤقتًا، ليس بسبب صحتها، بل بسبب الإيحاء النفسي.
+
+## الجذور التاريخية للتنجيم: من الملاحظة السماوية إلى الخرافة المنظَّمة
+
+يعود ظهور التنجيم إلى العصور القديمة، قبل نشوء العلم بالمعنى الحديث، حين كان الإنسان يحاول تفسير الظواهر الطبيعية والكونية اعتمادًا على الملاحظة والتأويل الرمزي، فوفق دراسات تاريخية منشورة في الموسوعة العلمية بريتانيكا (Britannica)، نشأ التنجيم في حضارة بلاد الرافدين (البابلية) قبل أكثر من 3000 عام، حين كان الكهنة (لفلكيون آنذاك) يراقبون حركة الكواكب والنجوم لاستخدامها في التنبؤ بالأحداث الكبرى مثل الحروب والمجاعات ومصير الملوك، وليس مصائر الأفراد كما هو شائع اليوم.
+
+وبحسب الموسوعة نفسها، لم يكن التنجيم في بداياته منفصلًا عن علم الفلك، بل كان الاثنان جزءًا من منظومة معرفية واحدة، إذ لم تكن هناك أدوات علمية أو مفاهيم فيزيائية تسمح بالفصل بين الرصد والتفسير.
+
+مع انتقال المعارف البابلية إلى الحضارة اليونانية، خاصة خلال القرن الرابع قبل الميلاد، تطور التنجيم ليأخذ طابعًا فلسفيًا، ووفق مؤرخ العلوم جيمس إيفانز، اعتمد الإغريق على الحسابات الفلكية الدقيقة، لكنهم أضافوا إليها بعدًا تأويليًا، معتبرين أن الكون منظومة متناغمة تؤثر أجزاؤها في بعضها البعض، بما في ذلك البشر.
+
+ثم خلال العصر الذهبي للحضارة الإسلامية، شهد علم الفلك تطورًا كبيرًا قائمًا على الرصد والحساب، بينما بدأ التنجيم يفقد مكانته العلمية.
+
+وبحسب دراسات تاريخ العلوم المنشورة في موقع الصحافة العلمية التابع لجامعة كامبريدج، ميّز عدد من العلماء المسلمين بوضوح بين الفلك والتنجيم، إذ انتقد ابن سينا التنجيم، معتبرًا أن ربط أفعال البشر بحركة الأجرام السماوية "ادعاء لا يقوم على ضرورة عقلية ولا تجربة حسية".
+
+كما رفض ابن رشد فكرة أن للكواكب قدرة سببية مباشرة على أفعال الإنسان، مؤكدًا أن ذلك يتعارض مع العقل والمنهج البرهاني.
+
+ويُشير مؤرخو العلم إلى أن هذه الانتقادات تمثل بدايات مبكرة للفصل المفاهيمي بين علم الفلك كتخصص علمي، والتنجيم كممارسة تأويلية غير مثبتة.
+
+ويُجمع مؤرخو العلوم على أن الفصل الحاسم بين علم الفلك والتنجيم حدث خلال القرنين السادس عشر والسابع عشر، مع نشوء المنهج العلمي الحديث، فبحسب الموسوعة، أدى عمل علماء مثل نيكولا كوبرنيكوس وغاليليو غاليلي ويوهانس كبلر وإسحاق نيوتن، إلى تحويل دراسة السماء من تأويل رمزي إلى علم قائم على الملاحظة الدقيقة والرياضيات والقوانين الفيزيائية.
+
+ورغم أن بعض هؤلاء العلماء مارسوا التنجيم في بداياتهم، فإن أعمالهم العلمية نفسها ساهمت في تقويض الأسس الفلسفية للتنجيم، إذ لم تترك أي مجال لافتراض تأثير غيبي للكواكب على السلوك البشري.
+
+### القرن السابع عشر: التنجيم خارج المؤسسات العلمية
+
+بلغ هذا الفصل ذروته مع تأسيس المؤسسات العلمية الحديثة، وبحسب التوثيق التاريخي، أعلنت الأكاديمية الفرنسية للعلوم منذ تأسيسها عام 1666 استبعاد التنجيم من مجالات البحث والتعليم، وهو ما اعتبر خطوة مؤسسية حاسمة لفصل العلم عن المعتقدات غير القابلة للاختبار.
+
+وبحلول القرن الثامن عشر، أصبح علم الفلك علمًا مستقلًا يُدرس في الجامعات ويُستخدم في الملاحة والتقويم، بينما تراجع التنجيم إلى هامش الثقافة الشعبية.
+
+ولكن، على الرغم من هذا الفصل العلمي الواضح، عاد التنجيم للظهور في القرن العشرين، لا بوصفه علمًا، بل كمنتج ثقافي وإعلامي، وتحدثت دراسات سوسيولوجية منشورة في Journal of Popular Culture، عن ارتباط انتشار الأبراج بالصحافة، ثم بالإذاعة والتلفزيون، وأخيرًا بمنصات التواصل الاجتماعي، حيث تُقدَّم التوقعات في قالب ترفيهي لا يخضع لأي تدقيق علمي.
+
+ويؤكد الباحثون أن هذه العودة لا تعكس تطورًا معرفيًا، بل تحول التنجيم إلى صناعة محتوى تستفيد من القلق الجماعي والحاجة النفسية للتفسير.`,
+        sources: [
+            {
+                title: 'مع نهاية العام.. لماذا يُصدّق الناس التنجيم رغم تصنيفه كعلم زائف؟',
+                journal: 'https://www.misbar.com/editorial/2025/12/15/%D9%85%D8%B9-%D9%86%D9%87%D8%A7%D9%8A%D8%A9-%D8%A7%D9%84%D8%B9%D8%A7%D9%85-%D9%84%D9%85%D8%A7%D8%B0%D8%A7-%D9%8A%D9%8F%D8%B5%D8%AF%D9%91%D9%82-%D8%A7%D9%84%D9%86%D8%A7%D8%B3-%D8%A7%D9%84%D8%AA%D9%86%D8%AC%D9%8A%D9%85-%D8%B1%D8%BA%D9%85-%D8%AA%D8%B5%D9%86%D9%8A%D9%81%D9%87-%D9%83%D8%B9%D9%84%D9%85-%D8%B2%D8%A7%D8%A6%D9%81%D8%9F?fbclid=iwy2xjawowimflehrua2flbqixmqbzcnrjbmfwcf9pzbaymjiwmzkxnzg4mjawodkyaaeerzdz4t8nfrynswfivqfbjuie1kde0t8bdtdx60ephle8jrgiesljzpbhqgu_aem_g7w2vzkxbvtcn871x1rb7a',
+                author: 'ماجدة عمدوني',
+                year: '2025'
+            },
+			{
+				title: 'الصفحة الرئيسية لمختبر الابستمولوجيا الحسابية',
+				journal: 'https://cpl.uccs.edu/',
+				author: '',
+				year: ''
+			},
+			{
+				title: 'موسوعة ستانفورد للفلسفة',
+				journal: 'https://plato.stanford.edu/',
+				author: '',
+				year: ''
+			},
+			{
+				title: 'موقع الويب الاشتراكي العالمي',
+				journal: 'https://www.wsws.org/',
+				author: '',
+				year: ''
+			},
+			{
+				title: 'مجلة نيتشر',
+				journal: 'https://www.nature.com/',
+				author: '',
+				year: ''
+			},
+			{
+				title: 'ساينس دايركت',
+				journal: 'https://www.sciencedirect.com/',
+				author: '',
+				year: ''
+			},
+			{
+				title: 'موسوعة بريتانيكا',
+				journal: 'https://www.britannica.com/',
+				author: '',
+				year: ''
+			},
+			{
+				title: 'مطبعة جامعة كامبريدج',
+				journal: 'https://www.cambridge.org/',
+				author: '',
+				year: ''
+			}
+        ]
+    }
 }
 ];
