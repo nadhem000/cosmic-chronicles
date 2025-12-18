@@ -3,7 +3,7 @@
  * Handles caching, offline functionality, and push notifications
  */
 
-const CACHE_NAME = 'universe-chronicles-v1.1.9';
+const CACHE_NAME = 'universe-chronicles-v1.2.0';
 const CACHE_ASSETS = [
     // Core pages
     '/',
@@ -36,6 +36,10 @@ const CACHE_ASSETS = [
     '/assets/icons/icon-384x384.png',
     '/assets/icons/icon-512x512.png',
     '/assets2/images/explore/big-bang-quest.jpg',
+    // Article images
+    '/assets2/images/explore/big-bang-quest.jpg',
+    '/assets2/images/explore/hubble-deep-field.jpg',
+    '/assets2/images/explore/james-webb-space-telescope.jpg',
     
     // Font Awesome (CDN)
     'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
@@ -46,8 +50,8 @@ const CACHE_ASSETS = [
     '/offline.html'
 ];
 
-const DYNAMIC_CACHE = 'universe-chronicles-dynamic-v19';
-const API_CACHE = 'universe-chronicles-api-v19';
+const DYNAMIC_CACHE = 'universe-chronicles-dynamic-v20';
+const API_CACHE = 'universe-chronicles-api-v20';
 
 // Skip waiting and claim clients immediately
 self.addEventListener('install', event => {
@@ -98,6 +102,34 @@ self.addEventListener('activate', event => {
 // Fetch event with cache strategies
 self.addEventListener('fetch', event => {
     const url = new URL(event.request.url);
+    
+    // Handle article-specific URLs
+    if (url.pathname.includes('/AN_explore.html') && url.search.includes('article=')) {
+        event.respondWith(
+            fetch(event.request)
+                .then(response => {
+                    // Clone the response for caching
+                    const responseClone = response.clone();
+                    caches.open(DYNAMIC_CACHE)
+                        .then(cache => {
+                            cache.put(event.request, responseClone);
+                        });
+                    return response;
+                })
+                .catch(() => {
+                    // Return cached version if network fails
+                    return caches.match(event.request)
+                        .then(cachedResponse => {
+                            if (cachedResponse) {
+                                return cachedResponse;
+                            }
+                            // Fallback to the main explore page
+                            return caches.match('/AN_explore.html');
+                        });
+                })
+        );
+        return;
+    }
     
     // Skip cross-origin requests
     if (url.origin !== self.location.origin) {

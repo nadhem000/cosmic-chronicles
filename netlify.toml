@@ -23,6 +23,22 @@
   to = "/AN_news.html?article=:article"
   status = 200
 
+# Article-specific redirects for Explore section
+[[redirects]]
+  from = "/explore/:article"
+  to = "/AN_explore.html?article=:article"
+  status = 200
+
+[[redirects]]
+  from = "/article/:article"
+  to = "/AN_explore.html?article=:article"
+  status = 200
+
+[[redirects]]
+  from = "/explore/:article/:lang"
+  to = "/AN_explore.html?article=:article&lang=:lang"
+  status = 200
+
 # Cache headers for performance
 [[headers]]
   for = "/*"
