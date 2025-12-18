@@ -943,7 +943,7 @@
         </div>
     </div>
 
-    <script src="data.js"></script>
+     <script src="data.js"></script>
     <script src="data_processing.js"></script>
     <script src="translation.js"></script>
     <script src="data_explore.js"></script>
@@ -978,12 +978,7 @@
                 'An.explore.share': 'Share',
                 'An.explore.shareArticle': 'Share Article',
                 'An.explore.copyLink': 'Copy Link',
-                'An.explore.linkCopied': 'Link copied to clipboard!',
-                'An.explore.shareSuccess': 'Article link copied to clipboard!',
-                'An.explore.email': 'Share via Email',
-                'An.explore.whatsapp': 'Share on WhatsApp',
-                'An.explore.facebook': 'Share on Facebook',
-                'An.explore.twitter': 'Share on Twitter'
+                'An.explore.linkCopied': 'Link copied to clipboard!'
             },
             fr: {
                 'An.explore.title': 'Explorer l\'Astronomie',
@@ -1013,12 +1008,7 @@
                 'An.explore.share': 'Partager',
                 'An.explore.shareArticle': 'Partager l\'Article',
                 'An.explore.copyLink': 'Copier le Lien',
-                'An.explore.linkCopied': 'Lien copié dans le presse-papiers!',
-                'An.explore.shareSuccess': 'Lien de l\'article copié dans le presse-papiers!',
-                'An.explore.email': 'Partager par Email',
-                'An.explore.whatsapp': 'Partager sur WhatsApp',
-                'An.explore.facebook': 'Partager sur Facebook',
-                'An.explore.twitter': 'Partager sur Twitter'
+                'An.explore.linkCopied': 'Lien copié dans le presse-papiers!'
             },
             ar: {
                 'An.explore.title': 'استكشف علم الفلك',
@@ -1048,12 +1038,7 @@
                 'An.explore.share': 'مشاركة',
                 'An.explore.shareArticle': 'مشاركة المقال',
                 'An.explore.copyLink': 'نسخ الرابط',
-                'An.explore.linkCopied': 'تم نسخ الرابط إلى الحافظة!',
-                'An.explore.shareSuccess': 'تم نسخ رابط المقال إلى الحافظة!',
-                'An.explore.email': 'مشاركة عبر البريد الإلكتروني',
-                'An.explore.whatsapp': 'مشاركة على واتساب',
-                'An.explore.facebook': 'مشاركة على فيسبوك',
-                'An.explore.twitter': 'مشاركة على تويتر'
+                'An.explore.linkCopied': 'تم نسخ الرابط إلى الحافظة!'
             }
         };
 
@@ -1063,6 +1048,10 @@
                 Object.assign(AN_translations[lang], AN_explore_translations[lang]);
             }
         });
+
+        // Global variables
+        let currentArticleId = null;
+        let currentLanguage = 'en';
 
         // Function to get translated text
         function AN_getTranslatedText(key, language) {
@@ -1156,7 +1145,8 @@
             
             // Add event listeners to "Read Article" buttons
             document.querySelectorAll('.AN-read-article-btn').forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
                     const articleId = this.getAttribute('data-id');
                     const language = document.getElementById('AN-language-select')?.value || 'en';
                     const article = AN_explore_data.find(a => a.id === articleId);
@@ -1170,6 +1160,7 @@
             document.querySelectorAll('.AN-article-share-btn').forEach(button => {
                 button.addEventListener('click', function(e) {
                     e.stopPropagation();
+                    e.preventDefault();
                     const articleId = this.getAttribute('data-id');
                     const language = document.getElementById('AN-language-select')?.value || 'en';
                     AN_showShareDropdown(articleId, language, e);
@@ -1179,13 +1170,15 @@
         
         // Function to show article modal with full content
         function AN_showArticleModal(article, language) {
+            currentArticleId = article.id;
+            currentLanguage = language;
+            
             const modal = document.getElementById('AN-article-modal');
             const modalTitle = document.getElementById('AN-article-modal-title');
             const modalBody = document.getElementById('AN-article-modal-body');
             const prevBtn = document.getElementById('AN-article-prev-btn');
             const nextBtn = document.getElementById('AN-article-next-btn');
             const shareBtn = document.getElementById('AN-article-share-btn');
-            const closeBtn = document.getElementById('AN-article-modal-close-btn');
             const content = article[language] || article.en;
             
             // Set modal title
@@ -1206,7 +1199,7 @@
                 default: categoryText = article.category;
             }
             
-            // Parse body content (assume paragraphs separated by \n\n)
+            // Parse body content
             const paragraphs = content.body.split('\n\n').filter(p => p.trim().length > 0);
             const bodyContent = paragraphs.map(paragraph => {
                 if (paragraph.startsWith('## ')) {
@@ -1282,6 +1275,7 @@
                 };
             } else {
                 prevBtn.disabled = true;
+                prevBtn.onclick = null;
             }
             
             if (currentIndex < totalArticles - 1) {
@@ -1291,27 +1285,21 @@
                 };
             } else {
                 nextBtn.disabled = true;
+                nextBtn.onclick = null;
             }
             
-            // Set up share button
-            shareBtn.onclick = (e) => {
-                AN_showShareDropdown(article.id, language, e);
-            };
-            
-            // Set up close button
-            closeBtn.onclick = AN_closeArticleModal;
+            // Update share button text
+            const shareBtnSpan = shareBtn.querySelector('span[data-i18n]');
+            if (shareBtnSpan) {
+                shareBtnSpan.textContent = AN_getTranslatedText('An.explore.share', language);
+            }
             
             // Show modal
             modal.classList.add('AN-active');
-            
-            // Prevent body scrolling
             document.body.style.overflow = 'hidden';
             
-            // Update URL with article ID for sharing
-            if (history.pushState) {
-                const newUrl = `${window.location.origin}${window.location.pathname}?article=${article.id}&lang=${language}`;
-                window.history.pushState({ path: newUrl }, '', newUrl);
-            }
+            // Update URL
+            updateURLWithArticle(article.id, language);
         }
         
         // Function to close article modal
@@ -1320,17 +1308,11 @@
             modal.classList.remove('AN-active');
             document.body.style.overflow = 'auto';
             
-            // Clear article from URL
+            // Clear URL parameters
             if (history.pushState) {
-                const newUrl = `${window.location.origin}${window.location.pathname}`;
+                const newUrl = window.location.origin + window.location.pathname;
                 window.history.pushState({ path: newUrl }, '', newUrl);
             }
-        }
-        
-        // Function to generate article URL for sharing
-        function AN_generateArticleURL(articleId, language) {
-            const baseUrl = window.location.origin + window.location.pathname;
-            return `${baseUrl}?article=${articleId}&lang=${language}`;
         }
         
         // Function to show share dropdown
@@ -1348,77 +1330,51 @@
             const content = article[language] || article.en;
             const articleUrl = AN_generateArticleURL(articleId, language);
             const articleTitle = content.title;
-            const articleText = content.excerpt || content.body.substring(0, 100);
+            const articleDescription = content.excerpt || content.body.substring(0, 150);
             
             // Create dropdown
             const dropdown = document.createElement('div');
             dropdown.className = 'AN-share-dropdown';
             
             // Position dropdown near the click
-            const x = event.clientX || event.pageX;
-            const y = event.clientY || event.pageY;
-            dropdown.style.left = `${Math.min(x, window.innerWidth - 220)}px`;
-            dropdown.style.top = `${y + 10}px`;
+            const rect = event.target.getBoundingClientRect();
+            dropdown.style.position = 'fixed';
+            dropdown.style.left = `${rect.left}px`;
+            dropdown.style.top = `${rect.bottom + 5}px`;
+            dropdown.style.zIndex = '1001';
             
-            // Build share options
-            const shareOptions = [
-                {
-                    icon: 'fas fa-link',
-                    text: AN_getTranslatedText('An.explore.copyLink', language),
-                    action: () => AN_copyToClipboard(articleUrl, articleTitle, language)
-                },
-                {
-                    icon: 'fas fa-envelope',
-                    text: AN_getTranslatedText('An.explore.email', language),
-                    action: () => AN_shareViaEmail(articleUrl, articleTitle, articleText)
-                }
-            ];
-            
-            // Add social media options
-            if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-                shareOptions.push({
-                    icon: 'fab fa-whatsapp',
-                    text: AN_getTranslatedText('An.explore.whatsapp', language),
-                    action: () => AN_shareViaWhatsApp(articleUrl, articleTitle)
-                });
-            }
-            
-            shareOptions.push(
-                {
-                    icon: 'fab fa-facebook',
-                    text: AN_getTranslatedText('An.explore.facebook', language),
-                    action: () => AN_shareViaFacebook(articleUrl, articleTitle)
-                },
-                {
-                    icon: 'fab fa-twitter',
-                    text: AN_getTranslatedText('An.explore.twitter', language),
-                    action: () => AN_shareViaTwitter(articleUrl, articleTitle)
-                }
-            );
-            
-            // Add native share if available
-            if (navigator.share) {
-                shareOptions.unshift({
-                    icon: 'fas fa-share-alt',
-                    text: AN_getTranslatedText('An.explore.share', language),
-                    action: () => AN_shareNative(articleUrl, articleTitle, articleText)
-                });
-            }
-            
-            // Build dropdown HTML
-            dropdown.innerHTML = shareOptions.map(option => `
-                <div class="AN-share-dropdown-item" onclick="${option.action.toString().replace(/"/g, '&quot;')}">
-                    <i class="${option.icon}"></i>
-                    <span>${option.text}</span>
+            // Add share options
+            dropdown.innerHTML = `
+                <div class="AN-share-dropdown-item" onclick="AN_copyArticleLink('${articleId}', '${language}')">
+                    <i class="fas fa-link"></i>
+                    <span>${AN_getTranslatedText('An.explore.copyLink', language)}</span>
                 </div>
-            `).join('');
+                <div class="AN-share-dropdown-item" onclick="AN_shareViaEmail('${articleId}', '${language}')">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email</span>
+                </div>
+                <div class="AN-share-dropdown-item" onclick="AN_shareViaFacebook('${articleId}', '${language}')">
+                    <i class="fab fa-facebook"></i>
+                    <span>Facebook</span>
+                </div>
+                <div class="AN-share-dropdown-item" onclick="AN_shareViaTwitter('${articleId}', '${language}')">
+                    <i class="fab fa-twitter"></i>
+                    <span>Twitter</span>
+                </div>
+                ${navigator.share ? `
+                <div class="AN-share-dropdown-item" onclick="AN_useNativeShare('${articleId}', '${language}')">
+                    <i class="fas fa-share-alt"></i>
+                    <span>${AN_getTranslatedText('An.explore.share', language)}</span>
+                </div>
+                ` : ''}
+            `;
             
             document.body.appendChild(dropdown);
             
             // Close dropdown when clicking outside
             setTimeout(() => {
                 const closeDropdown = (e) => {
-                    if (!dropdown.contains(e.target) && !event.target.contains(e.target)) {
+                    if (!dropdown.contains(e.target) && e.target !== event.target) {
                         dropdown.remove();
                         document.removeEventListener('click', closeDropdown);
                     }
@@ -1427,58 +1383,100 @@
             }, 10);
         }
         
-        // Function to copy to clipboard
-        function AN_copyToClipboard(url, title, language) {
-            navigator.clipboard.writeText(`${title}\n\n${url}`).then(() => {
-                AN_showToast(AN_getTranslatedText('An.explore.shareSuccess', language));
+        // Function to generate article URL
+        function AN_generateArticleURL(articleId, language) {
+            const baseUrl = window.location.origin + window.location.pathname;
+            return `${baseUrl}?article=${articleId}&lang=${language}`;
+        }
+        
+        // Function to copy article link to clipboard
+        function AN_copyArticleLink(articleId, language) {
+            const url = AN_generateArticleURL(articleId, language);
+            const article = AN_explore_data.find(a => a.id === articleId);
+            const content = article[language] || article.en;
+            
+            const textToCopy = `${content.title}\n\n${url}`;
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                AN_showToast(AN_getTranslatedText('An.explore.linkCopied', language));
             }).catch(err => {
                 console.error('Failed to copy: ', err);
-                // Fallback for older browsers
+                // Fallback
                 const textArea = document.createElement('textarea');
-                textArea.value = `${title}\n\n${url}`;
+                textArea.value = textToCopy;
                 document.body.appendChild(textArea);
                 textArea.select();
                 document.execCommand('copy');
                 document.body.removeChild(textArea);
-                AN_showToast(AN_getTranslatedText('An.explore.shareSuccess', language));
+                AN_showToast(AN_getTranslatedText('An.explore.linkCopied', language));
             });
+            
+            // Remove dropdown
+            const dropdown = document.querySelector('.AN-share-dropdown');
+            if (dropdown) dropdown.remove();
         }
         
         // Function to share via email
-        function AN_shareViaEmail(url, title, text) {
-            const subject = encodeURIComponent(title);
-            const body = encodeURIComponent(`${text}\n\nRead more: ${url}`);
+        function AN_shareViaEmail(articleId, language) {
+            const article = AN_explore_data.find(a => a.id === articleId);
+            if (!article) return;
+            
+            const content = article[language] || article.en;
+            const url = AN_generateArticleURL(articleId, language);
+            const subject = encodeURIComponent(content.title);
+            const body = encodeURIComponent(`Check out this article: "${content.title}"\n\n${url}`);
+            
             window.location.href = `mailto:?subject=${subject}&body=${body}`;
-        }
-        
-        // Function to share via WhatsApp
-        function AN_shareViaWhatsApp(url, title) {
-            const text = encodeURIComponent(`${title}\n\n${url}`);
-            window.open(`https://wa.me/?text=${text}`, '_blank');
+            
+            // Remove dropdown
+            const dropdown = document.querySelector('.AN-share-dropdown');
+            if (dropdown) dropdown.remove();
         }
         
         // Function to share via Facebook
-        function AN_shareViaFacebook(url, title) {
-            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(title)}`, '_blank');
+        function AN_shareViaFacebook(articleId, language) {
+            const url = encodeURIComponent(AN_generateArticleURL(articleId, language));
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+            
+            // Remove dropdown
+            const dropdown = document.querySelector('.AN-share-dropdown');
+            if (dropdown) dropdown.remove();
         }
         
         // Function to share via Twitter
-        function AN_shareViaTwitter(url, title) {
-            const text = encodeURIComponent(title);
-            window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${text}`, '_blank');
+        function AN_shareViaTwitter(articleId, language) {
+            const article = AN_explore_data.find(a => a.id === articleId);
+            if (!article) return;
+            
+            const content = article[language] || article.en;
+            const url = encodeURIComponent(AN_generateArticleURL(articleId, language));
+            const text = encodeURIComponent(content.title);
+            window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
+            
+            // Remove dropdown
+            const dropdown = document.querySelector('.AN-share-dropdown');
+            if (dropdown) dropdown.remove();
         }
         
         // Function to use native share API
-        function AN_shareNative(url, title, text) {
-            if (navigator.share) {
-                navigator.share({
-                    title: title,
-                    text: text,
-                    url: url
-                }).catch(err => {
-                    console.log('Error sharing:', err);
-                });
-            }
+        function AN_useNativeShare(articleId, language) {
+            const article = AN_explore_data.find(a => a.id === articleId);
+            if (!article || !navigator.share) return;
+            
+            const content = article[language] || article.en;
+            const url = AN_generateArticleURL(articleId, language);
+            
+            navigator.share({
+                title: content.title,
+                text: content.excerpt || content.body.substring(0, 100),
+                url: url
+            }).catch(err => {
+                console.log('Error sharing:', err);
+            });
+            
+            // Remove dropdown
+            const dropdown = document.querySelector('.AN-share-dropdown');
+            if (dropdown) dropdown.remove();
         }
         
         // Function to show toast notification
@@ -1509,6 +1507,14 @@
             }, 3000);
         }
         
+        // Function to update URL with article
+        function updateURLWithArticle(articleId, language) {
+            if (history.pushState) {
+                const newUrl = `${window.location.origin}${window.location.pathname}?article=${articleId}&lang=${language}`;
+                window.history.pushState({ path: newUrl }, '', newUrl);
+            }
+        }
+        
         // Function to handle URL parameters on page load
         function AN_handleURLParameters() {
             const urlParams = new URLSearchParams(window.location.search);
@@ -1523,21 +1529,22 @@
                         const languageSelect = document.getElementById('AN-language-select');
                         if (languageSelect) {
                             languageSelect.value = lang;
-                            AN_applyExploreTranslations(lang);
+                            currentLanguage = lang;
                         }
                     }
                     
                     // Show the article modal
                     setTimeout(() => {
-                        const language = document.getElementById('AN-language-select')?.value || 'en';
-                        AN_showArticleModal(article, language);
-                    }, 500);
+                        AN_showArticleModal(article, currentLanguage);
+                    }, 100);
                 }
             }
         }
         
         // Function to apply explore-specific translations
         function AN_applyExploreTranslations(language) {
+            currentLanguage = language;
+            
             // Apply static text translations
             AN_applyTranslations(language);
             
@@ -1549,6 +1556,37 @@
                     button.textContent = AN_getTranslatedText(key, language);
                 }
             });
+            
+            // Update modal button texts
+            const prevBtn = document.getElementById('AN-article-prev-btn');
+            const nextBtn = document.getElementById('AN-article-next-btn');
+            const closeBtn = document.getElementById('AN-article-modal-close-btn');
+            const shareBtn = document.getElementById('AN-article-share-btn');
+            
+            if (prevBtn) {
+                const prevSpan = prevBtn.querySelector('span[data-i18n]');
+                if (prevSpan) {
+                    prevSpan.textContent = AN_getTranslatedText('An.explore.previousArticle', language);
+                }
+            }
+            
+            if (nextBtn) {
+                const nextSpan = nextBtn.querySelector('span[data-i18n]');
+                if (nextSpan) {
+                    nextSpan.textContent = AN_getTranslatedText('An.explore.nextArticle', language);
+                }
+            }
+            
+            if (closeBtn) {
+                closeBtn.textContent = AN_getTranslatedText('An.explore.close', language);
+            }
+            
+            if (shareBtn) {
+                const shareSpan = shareBtn.querySelector('span[data-i18n]');
+                if (shareSpan) {
+                    shareSpan.textContent = AN_getTranslatedText('An.explore.share', language);
+                }
+            }
             
             // Render articles with current filter
             const activeFilter = document.querySelector('.AN-explore-filter-btn.AN-active')?.getAttribute('data-filter') || 'all';
@@ -1607,12 +1645,14 @@
             // Language selection
             const languageSelect = document.getElementById('AN-language-select');
             const savedLanguage = localStorage.getItem('AN-language-preference') || 'en';
+            currentLanguage = savedLanguage;
             
             if (languageSelect) {
                 languageSelect.value = savedLanguage;
                 languageSelect.addEventListener('change', function() {
                     AN_applyExploreTranslations(this.value);
                     localStorage.setItem('AN-language-preference', this.value);
+                    currentLanguage = this.value;
                 });
             }
             
@@ -1638,10 +1678,15 @@
             // Modal functionality
             const articleModal = document.getElementById('AN-article-modal');
             const modalCloseBtn = document.getElementById('AN-article-modal-close');
+            const modalCloseBtn2 = document.getElementById('AN-article-modal-close-btn');
             
             // Close modal when clicking close button
             if (modalCloseBtn) {
                 modalCloseBtn.addEventListener('click', AN_closeArticleModal);
+            }
+            
+            if (modalCloseBtn2) {
+                modalCloseBtn2.addEventListener('click', AN_closeArticleModal);
             }
             
             // Close modal when clicking outside the content
@@ -1658,16 +1703,21 @@
                 }
             });
             
+            // Set up share button in modal
+            const shareBtn = document.getElementById('AN-article-share-btn');
+            if (shareBtn) {
+                shareBtn.addEventListener('click', function(e) {
+                    if (currentArticleId) {
+                        AN_showShareDropdown(currentArticleId, currentLanguage, e);
+                    }
+                });
+            }
+            
             // Initialize with saved language
             AN_applyExploreTranslations(savedLanguage);
             
             // Handle URL parameters on page load
             AN_handleURLParameters();
-            
-            // Handle browser back/forward buttons
-            window.addEventListener('popstate', function() {
-                AN_handleURLParameters();
-            });
         });
     </script>
 </body>
