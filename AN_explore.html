@@ -1117,251 +1117,408 @@
     </div>
 
      <script src="data.js"></script>
-    <script src="data_processing.js"></script>
-    <script src="translation.js"></script>
-    <script src="data_explore.js"></script>
-    <script>
-        // Add explore translations to the global translations object
-        const AN_explore_translations = {
-            en: {
-                'An.explore.title': 'Explore Astronomy',
-                'An.explore.subtitle': 'In-depth articles on cosmology, astrophysics, and space science. Expand your understanding of the universe through detailed explorations of cosmic phenomena.',
-                'An.explore.browseArticles': 'Browse Articles',
-                'An.explore.allArticles': 'All Articles',
-                'An.explore.cosmology': 'Cosmology',
-                'An.explore.astrophysics': 'Astrophysics',
-                'An.explore.solarSystem': 'Solar System',
-                'An.explore.exoplanets': 'Exoplanets',
-                'An.explore.telescopes': 'Telescopes',
-                'An.explore.blackHoles': 'Black Holes',
-                'An.explore.darkMatter': 'Dark Matter',
-                'An.explore.readArticle': 'Read Article',
-                'An.explore.minRead': 'min read',
-                'An.explore.noArticlesFound': 'No articles found',
-                'An.explore.tryDifferentFilter': 'Try a different filter',
-                'An.explore.articleDetails': 'Article Details',
-                'An.explore.author': 'Author',
-                'An.explore.publicationDate': 'Publication Date',
-                'An.explore.category': 'Category',
-                'An.explore.readingTime': 'Reading Time',
-                'An.explore.sources': 'Sources and References',
-                'An.explore.previousArticle': 'Previous Article',
-                'An.explore.nextArticle': 'Next Article',
-                'An.explore.close': 'Close',
-                'An.explore.share': 'Share',
-                'An.explore.shareArticle': 'Share Article',
-                'An.explore.copyLink': 'Copy Link',
-                'An.explore.linkCopied': 'Link copied to clipboard!'
-            },
-            fr: {
-                'An.explore.title': 'Explorer l\'Astronomie',
-                'An.explore.subtitle': 'Articles approfondis sur la cosmologie, l\'astrophysique et les sciences spatiales. Développez votre compréhension de l\'univers grâce à des explorations détaillées des phénomènes cosmiques.',
-                'An.explore.browseArticles': 'Parcourir les Articles',
-                'An.explore.allArticles': 'Tous les Articles',
-                'An.explore.cosmology': 'Cosmologie',
-                'An.explore.astrophysics': 'Astrophysique',
-                'An.explore.solarSystem': 'Système Solaire',
-                'An.explore.exoplanets': 'Exoplanètes',
-                'An.explore.telescopes': 'Télescopes',
-                'An.explore.blackHoles': 'Trous Noirs',
-                'An.explore.darkMatter': 'Matière Noire',
-                'An.explore.readArticle': 'Lire l\'Article',
-                'An.explore.minRead': 'min de lecture',
-                'An.explore.noArticlesFound': 'Aucun article trouvé',
-                'An.explore.tryDifferentFilter': 'Essayez un autre filtre',
-                'An.explore.articleDetails': 'Détails de l\'Article',
-                'An.explore.author': 'Auteur',
-                'An.explore.publicationDate': 'Date de Publication',
-                'An.explore.category': 'Catégorie',
-                'An.explore.readingTime': 'Temps de Lecture',
-                'An.explore.sources': 'Sources et Références',
-                'An.explore.previousArticle': 'Article Précédent',
-                'An.explore.nextArticle': 'Article Suivant',
-                'An.explore.close': 'Fermer',
-                'An.explore.share': 'Partager',
-                'An.explore.shareArticle': 'Partager l\'Article',
-                'An.explore.copyLink': 'Copier le Lien',
-                'An.explore.linkCopied': 'Lien copié dans le presse-papiers!'
-            },
-            ar: {
-                'An.explore.title': 'استكشف علم الفلك',
-                'An.explore.subtitle': 'مقالات متعمقة في علم الكونيات والفيزياء الفلكية وعلوم الفضاء. وسّع فهمك للكون من خلال استكشافات مفصلة للظواهر الكونية.',
-                'An.explore.browseArticles': 'تصفح المقالات',
-                'An.explore.allArticles': 'جميع المقالات',
-                'An.explore.cosmology': 'علم الكونيات',
-                'An.explore.astrophysics': 'الفيزياء الفلكية',
-                'An.explore.solarSystem': 'النظام الشمسي',
-                'An.explore.exoplanets': 'الكواكب الخارجية',
-                'An.explore.telescopes': 'التلسكوبات',
-                'An.explore.blackHoles': 'الثقوب السوداء',
-                'An.explore.darkMatter': 'المادة المظلمة',
-                'An.explore.readArticle': 'قراءة المقال',
-                'An.explore.minRead': 'دقيقة قراءة',
-                'An.explore.noArticlesFound': 'لم يتم العثور على مقالات',
-                'An.explore.tryDifferentFilter': 'جرب فلتراً مختلفاً',
-                'An.explore.articleDetails': 'تفاصيل المقال',
-                'An.explore.author': 'المؤلف',
-                'An.explore.publicationDate': 'تاريخ النشر',
-                'An.explore.category': 'الفئة',
-                'An.explore.readingTime': 'وقت القراءة',
-                'An.explore.sources': 'المصادر والمراجع',
-                'An.explore.previousArticle': 'المقال السابق',
-                'An.explore.nextArticle': 'المقال التالي',
-                'An.explore.close': 'إغلاق',
-                'An.explore.share': 'مشاركة',
-                'An.explore.shareArticle': 'مشاركة المقال',
-                'An.explore.copyLink': 'نسخ الرابط',
-                'An.explore.linkCopied': 'تم نسخ الرابط إلى الحافظة!'
-            }
-        };
-
-        // Merge explore translations with existing translations
-        Object.keys(AN_explore_translations).forEach(lang => {
-            if (AN_translations[lang]) {
-                Object.assign(AN_translations[lang], AN_explore_translations[lang]);
-            }
-        });
-
-        // Global variables
-        let currentArticleId = null;
-        let currentLanguage = 'en';
-
-        // Function to get translated text
-        function AN_getTranslatedText(key, language) {
-            if (AN_translations[language] && AN_translations[language][key]) {
-                return AN_translations[language][key];
-            }
-            return AN_translations['en'][key] || key;
+<script src="data_processing.js"></script>
+<script src="translation.js"></script>
+<script src="data_explore.js"></script>
+<script>
+    // Add explore translations to the global translations object
+    const AN_explore_translations = {
+        en: {
+            'An.explore.title': 'Explore Astronomy',
+            'An.explore.subtitle': 'In-depth articles on cosmology, astrophysics, and space science. Expand your understanding of the universe through detailed explorations of cosmic phenomena.',
+            'An.explore.browseArticles': 'Browse Articles',
+            'An.explore.allArticles': 'All Articles',
+            'An.explore.cosmology': 'Cosmology',
+            'An.explore.astrophysics': 'Astrophysics',
+            'An.explore.solarSystem': 'Solar System',
+            'An.explore.exoplanets': 'Exoplanets',
+            'An.explore.telescopes': 'Telescopes',
+            'An.explore.blackHoles': 'Black Holes',
+            'An.explore.darkMatter': 'Dark Matter',
+            'An.explore.readArticle': 'Read Article',
+            'An.explore.minRead': 'min read',
+            'An.explore.noArticlesFound': 'No articles found',
+            'An.explore.tryDifferentFilter': 'Try a different filter',
+            'An.explore.articleDetails': 'Article Details',
+            'An.explore.author': 'Author',
+            'An.explore.publicationDate': 'Publication Date',
+            'An.explore.category': 'Category',
+            'An.explore.readingTime': 'Reading Time',
+            'An.explore.sources': 'Sources and References',
+            'An.explore.previousArticle': 'Previous Article',
+            'An.explore.nextArticle': 'Next Article',
+            'An.explore.close': 'Close',
+            'An.explore.share': 'Share',
+            'An.explore.shareArticle': 'Share Article',
+            'An.explore.copyLink': 'Copy Link',
+            'An.explore.linkCopied': 'Link copied to clipboard!',
+            'An.explore.shareViaEmail': 'Share via Email',
+            'An.explore.shareOnFacebook': 'Share on Facebook',
+            'An.explore.shareOnTwitter': 'Share on Twitter',
+            'An.explore.shareOnLinkedIn': 'Share on LinkedIn'
+        },
+        fr: {
+            'An.explore.title': 'Explorer l\'Astronomie',
+            'An.explore.subtitle': 'Articles approfondis sur la cosmologie, l\'astrophysique et les sciences spatiales. Développez votre compréhension de l\'univers grâce à des explorations détaillées des phénomènes cosmiques.',
+            'An.explore.browseArticles': 'Parcourir les Articles',
+            'An.explore.allArticles': 'Tous les Articles',
+            'An.explore.cosmology': 'Cosmologie',
+            'An.explore.astrophysics': 'Astrophysique',
+            'An.explore.solarSystem': 'Système Solaire',
+            'An.explore.exoplanets': 'Exoplanètes',
+            'An.explore.telescopes': 'Télescopes',
+            'An.explore.blackHoles': 'Trous Noirs',
+            'An.explore.darkMatter': 'Matière Noire',
+            'An.explore.readArticle': 'Lire l\'Article',
+            'An.explore.minRead': 'min de lecture',
+            'An.explore.noArticlesFound': 'Aucun article trouvé',
+            'An.explore.tryDifferentFilter': 'Essayez un autre filtre',
+            'An.explore.articleDetails': 'Détails de l\'Article',
+            'An.explore.author': 'Auteur',
+            'An.explore.publicationDate': 'Date de Publication',
+            'An.explore.category': 'Catégorie',
+            'An.explore.readingTime': 'Temps de Lecture',
+            'An.explore.sources': 'Sources et Références',
+            'An.explore.previousArticle': 'Article Précédent',
+            'An.explore.nextArticle': 'Article Suivant',
+            'An.explore.close': 'Fermer',
+            'An.explore.share': 'Partager',
+            'An.explore.shareArticle': 'Partager l\'Article',
+            'An.explore.copyLink': 'Copier le Lien',
+            'An.explore.linkCopied': 'Lien copié dans le presse-papiers!',
+            'An.explore.shareViaEmail': 'Partager par Email',
+            'An.explore.shareOnFacebook': 'Partager sur Facebook',
+            'An.explore.shareOnTwitter': 'Partager sur Twitter',
+            'An.explore.shareOnLinkedIn': 'Partager sur LinkedIn'
+        },
+        ar: {
+            'An.explore.title': 'استكشف علم الفلك',
+            'An.explore.subtitle': 'مقالات متعمقة في علم الكونيات والفيزياء الفلكية وعلوم الفضاء. وسّع فهمك للكون من خلال استكشافات مفصلة للظواهر الكونية.',
+            'An.explore.browseArticles': 'تصفح المقالات',
+            'An.explore.allArticles': 'جميع المقالات',
+            'An.explore.cosmology': 'علم الكونيات',
+            'An.explore.astrophysics': 'الفيزياء الفلكية',
+            'An.explore.solarSystem': 'النظام الشمسي',
+            'An.explore.exoplanets': 'الكواكب الخارجية',
+            'An.explore.telescopes': 'التلسكوبات',
+            'An.explore.blackHoles': 'الثقوب السوداء',
+            'An.explore.darkMatter': 'المادة المظلمة',
+            'An.explore.readArticle': 'قراءة المقال',
+            'An.explore.minRead': 'دقيقة قراءة',
+            'An.explore.noArticlesFound': 'لم يتم العثور على مقالات',
+            'An.explore.tryDifferentFilter': 'جرب فلتراً مختلفاً',
+            'An.explore.articleDetails': 'تفاصيل المقال',
+            'An.explore.author': 'المؤلف',
+            'An.explore.publicationDate': 'تاريخ النشر',
+            'An.explore.category': 'الفئة',
+            'An.explore.readingTime': 'وقت القراءة',
+            'An.explore.sources': 'المصادر والمراجع',
+            'An.explore.previousArticle': 'المقال السابق',
+            'An.explore.nextArticle': 'المقال التالي',
+            'An.explore.close': 'إغلاق',
+            'An.explore.share': 'مشاركة',
+            'An.explore.shareArticle': 'مشاركة المقال',
+            'An.explore.copyLink': 'نسخ الرابط',
+            'An.explore.linkCopied': 'تم نسخ الرابط إلى الحافظة!',
+            'An.explore.shareViaEmail': 'المشاركة عبر البريد الإلكتروني',
+            'An.explore.shareOnFacebook': 'المشاركة على Facebook',
+            'An.explore.shareOnTwitter': 'المشاركة على Twitter',
+            'An.explore.shareOnLinkedIn': 'المشاركة على LinkedIn'
         }
+    };
 
-        // Function to render article cards
-        function AN_renderArticles(language, filter = 'all') {
-            const container = document.getElementById('AN-articles-container');
-            if (!container) return;
-            
-            // Clear existing content
-            container.innerHTML = '';
-            
-            // Filter articles
-            let articles = AN_explore_data;
-            if (filter !== 'all') {
-                articles = articles.filter(article => article.category === filter);
-            }
-            
-            // Render articles
-            articles.forEach(article => {
-                const content = article[language] || article.en;
-                const card = document.createElement('div');
-                card.className = 'AN-article-card';
-                card.setAttribute('data-id', article.id);
-                card.setAttribute('data-category', article.category);
-                
-                // Calculate read time (approx 200 words per minute)
-                const wordCount = content.body.split(' ').length;
-                const readTime = Math.ceil(wordCount / 200);
-                
-                // Get category display text
-                let categoryText = '';
-                switch(article.category) {
-                    case 'cosmology': categoryText = AN_getTranslatedText('An.explore.cosmology', language); break;
-                    case 'astrophysics': categoryText = AN_getTranslatedText('An.explore.astrophysics', language); break;
-                    case 'solar-system': categoryText = AN_getTranslatedText('An.explore.solarSystem', language); break;
-                    case 'exoplanets': categoryText = AN_getTranslatedText('An.explore.exoplanets', language); break;
-                    case 'telescopes': categoryText = AN_getTranslatedText('An.explore.telescopes', language); break;
-                    default: categoryText = article.category;
-                }
-                
-                card.innerHTML = `
-                    <div class="AN-article-card-header">
-                        <img src="${article.image || 'assets/images/explore/default.jpg'}" alt="${content.title}" class="AN-article-card-image">
-                        <div class="AN-article-card-category">${categoryText}</div>
-                    </div>
-                    <div class="AN-article-card-body">
-                        <h3 class="AN-article-card-title">${content.title}</h3>
-                        <p class="AN-article-card-excerpt">${content.excerpt || content.body.substring(0, 150)}...</p>
-                        <div class="AN-article-card-meta">
-                            <span><i class="fas fa-user"></i> ${content.author || 'Cosmic Chronicles'}</span>
-                            <span><i class="far fa-calendar"></i> ${AN_formatDate(article.date, language)}</span>
-                        </div>
-                        <div class="AN-article-card-footer">
-                            <span class="AN-article-read-time">${readTime} ${AN_getTranslatedText('An.explore.minRead', language)}</span>
-                            <div style="display: flex; gap: 10px;">
-                                <button class="AN-article-card-link AN-read-article-btn" data-id="${article.id}">
-                                    ${AN_getTranslatedText('An.explore.readArticle', language)}
-                                    <i class="fas fa-arrow-right"></i>
-                                </button>
-                                <button class="AN-article-share-btn" data-id="${article.id}" title="${AN_getTranslatedText('An.explore.share', language)}">
-                                    <i class="fas fa-share-alt"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                
-                container.appendChild(card);
-            });
-            
-            // If no articles found
-            if (articles.length === 0) {
-                container.innerHTML = `
-                    <div class="AN-no-articles" style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
-                        <i class="fas fa-book-open" style="font-size: 64px; opacity: 0.5; margin-bottom: 20px;"></i>
-                        <h3 style="color: var(--AN-text-color); margin-bottom: 10px;">
-                            ${AN_getTranslatedText('An.explore.noArticlesFound', language)}
-                        </h3>
-                        <p style="color: var(--AN-text-color); opacity: 0.7;">
-                            ${AN_getTranslatedText('An.explore.tryDifferentFilter', language)}
-                        </p>
-                    </div>
-                `;
-            }
-            
-            // Add event listeners to "Read Article" buttons
-            document.querySelectorAll('.AN-read-article-btn').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const articleId = this.getAttribute('data-id');
-                    const language = document.getElementById('AN-language-select')?.value || 'en';
-                    const article = AN_explore_data.find(a => a.id === articleId);
-                    if (article) {
-                        AN_showArticleModal(article, language);
-                    }
-                });
-            });
-            
-            // Add event listeners to share buttons on cards
-            document.querySelectorAll('.AN-article-share-btn').forEach(button => {
-    button.addEventListener('click', function(e) {
-        e.stopPropagation();
-        e.preventDefault();
-        const articleId = this.getAttribute('data-id');
-        const language = document.getElementById('AN-language-select')?.value || 'en';
-        AN_shareArticle(articleId, language);
+    // Merge explore translations with existing translations
+    Object.keys(AN_explore_translations).forEach(lang => {
+        if (AN_translations[lang]) {
+            Object.assign(AN_translations[lang], AN_explore_translations[lang]);
+        }
     });
-});
 
+    // Global variables
+    let currentArticleId = null;
+    let currentLanguage = 'en';
+    let currentArticle = null;
+
+    // Function to get translated text
+    function AN_getTranslatedText(key, language) {
+        if (AN_translations[language] && AN_translations[language][key]) {
+            return AN_translations[language][key];
+        }
+        return AN_translations['en'][key] || key;
+    }
+
+    // Function to create URL slug from title
+    function AN_createSlug(text) {
+        return text
+            .toLowerCase()
+            .replace(/[^a-z0-9\u0600-\u06FF\s-]/g, '') // Allow Arabic and English
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-')
+            .trim()
+            .substring(0, 60);
+    }
+
+    // Function to generate article URL with slug
+    function AN_generateArticleURL(articleId, language) {
+        const article = AN_explore_data.find(a => a.id === articleId);
+        if (!article) return window.location.href;
+        
+        const content = article[language] || article.en;
+        const slug = AN_createSlug(content.title);
+        const baseUrl = window.location.origin + window.location.pathname;
+        
+        return `${baseUrl}?article=${articleId}&title=${slug}&lang=${language}`;
+    }
+
+    // Function to copy article link to clipboard
+    function AN_copyArticleLink(articleId, language) {
+        const url = AN_generateArticleURL(articleId, language);
+        const article = AN_explore_data.find(a => a.id === articleId);
+        const content = article[language] || article.en;
+        
+        const textToCopy = `${content.title}\n\n${url}`;
+        
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            AN_showToast(AN_getTranslatedText('An.explore.linkCopied', language));
+        }).catch(err => {
+            console.error('Failed to copy: ', err);
+            // Fallback for older browsers
+            const textArea = document.createElement('textarea');
+            textArea.value = textToCopy;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            AN_showToast(AN_getTranslatedText('An.explore.linkCopied', language));
+        });
+        
+        // Remove dropdown
+        const dropdown = document.querySelector('.AN-share-dropdown');
+        if (dropdown) dropdown.remove();
+    }
+
+    // Function to share via email
+    function AN_shareViaEmail(articleId, language) {
+        const article = AN_explore_data.find(a => a.id === articleId);
+        if (!article) return;
+        
+        const content = article[language] || article.en;
+        const url = AN_generateArticleURL(articleId, language);
+        const subject = encodeURIComponent(content.title);
+        const body = encodeURIComponent(`Check out this article from Cosmic Chronicles:\n\n"${content.title}"\n\n${content.excerpt || content.body.substring(0, 200)}\n\nRead more: ${url}`);
+        
+        window.location.href = `mailto:?subject=${subject}&body=${body}`;
+        
+        // Remove dropdown
+        const dropdown = document.querySelector('.AN-share-dropdown');
+        if (dropdown) dropdown.remove();
+    }
+
+    // Function to share via Facebook
+    function AN_shareViaFacebook(articleId, language) {
+        const url = encodeURIComponent(AN_generateArticleURL(articleId, language));
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=600,height=400');
+        
+        // Remove dropdown
+        const dropdown = document.querySelector('.AN-share-dropdown');
+        if (dropdown) dropdown.remove();
+    }
+
+    // Function to share via Twitter
+    function AN_shareViaTwitter(articleId, language) {
+        const article = AN_explore_data.find(a => a.id === articleId);
+        if (!article) return;
+        
+        const content = article[language] || article.en;
+        const url = encodeURIComponent(AN_generateArticleURL(articleId, language));
+        const text = encodeURIComponent(`${content.title} - Cosmic Chronicles`);
+        window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank', 'width=600,height=400');
+        
+        // Remove dropdown
+        const dropdown = document.querySelector('.AN-share-dropdown');
+        if (dropdown) dropdown.remove();
+    }
+
+    // Function to share via LinkedIn
+    function AN_shareViaLinkedIn(articleId, language) {
+        const url = encodeURIComponent(AN_generateArticleURL(articleId, language));
+        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank', 'width=600,height=400');
+        
+        // Remove dropdown
+        const dropdown = document.querySelector('.AN-share-dropdown');
+        if (dropdown) dropdown.remove();
+    }
+
+    // Function to use native share API
+    function AN_useNativeShare(articleId, language) {
+        const article = AN_explore_data.find(a => a.id === articleId);
+        if (!article || !navigator.share) return;
+        
+        const content = article[language] || article.en;
+        const url = AN_generateArticleURL(articleId, language);
+        
+        navigator.share({
+            title: content.title,
+            text: content.excerpt || content.body.substring(0, 200),
+            url: url
+        }).then(() => {
+            console.log('Article shared successfully');
+        }).catch(err => {
+            console.log('Error sharing:', err);
+            // Fallback to dropdown
+            const event = { target: document.querySelector(`.AN-article-share-btn[data-id="${articleId}"]`) };
+            if (event.target) AN_showShareDropdown(articleId, language, event);
+        });
+        
+        // Remove dropdown
+        const dropdown = document.querySelector('.AN-share-dropdown');
+        if (dropdown) dropdown.remove();
+    }
+
+    // Function to show share dropdown
+    function AN_showShareDropdown(articleId, language, event) {
+        // Remove any existing dropdowns
+        const existingDropdown = document.querySelector('.AN-share-dropdown');
+        if (existingDropdown) {
+            existingDropdown.remove();
         }
         
-        // Function to show article modal with full content
-        function AN_showArticleModal(article, language) {
-    currentArticleId = article.id;
-    currentLanguage = language;
-    
-    // Update Open Graph tags
-    AN_updateOpenGraphTags(article, language);
-            
-            const modal = document.getElementById('AN-article-modal');
-            const modalTitle = document.getElementById('AN-article-modal-title');
-            const modalBody = document.getElementById('AN-article-modal-body');
-            const prevBtn = document.getElementById('AN-article-prev-btn');
-            const nextBtn = document.getElementById('AN-article-next-btn');
-            const shareBtn = document.getElementById('AN-article-share-btn');
+        // Get article data
+        const article = AN_explore_data.find(a => a.id === articleId);
+        if (!article) return;
+        
+        const content = article[language] || article.en;
+        
+        // Create dropdown
+        const dropdown = document.createElement('div');
+        dropdown.className = 'AN-share-dropdown';
+        
+        // Position dropdown with boundary checking
+        const rect = event.target.getBoundingClientRect();
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+        
+        // Calculate ideal position
+        let left = rect.left;
+        let top = rect.bottom + 5;
+        
+        // Check boundaries
+        const dropdownWidth = 200;
+        const dropdownHeight = 250; // Approximate height
+        
+        // Adjust horizontal position
+        if (left + dropdownWidth > viewportWidth - 10) {
+            left = viewportWidth - dropdownWidth - 10;
+        }
+        if (left < 10) {
+            left = 10;
+        }
+        
+        // Adjust vertical position
+        if (top + dropdownHeight > viewportHeight - 10) {
+            top = rect.top - dropdownHeight - 5;
+        }
+        
+        dropdown.style.position = 'fixed';
+        dropdown.style.left = `${left}px`;
+        dropdown.style.top = `${top}px`;
+        dropdown.style.zIndex = '1001';
+        
+        // Add share options
+        dropdown.innerHTML = `
+            <div class="AN-share-dropdown-item" onclick="AN_copyArticleLink('${articleId}', '${language}')">
+                <i class="fas fa-link"></i>
+                <span>${AN_getTranslatedText('An.explore.copyLink', language)}</span>
+            </div>
+            <div class="AN-share-dropdown-item" onclick="AN_shareViaEmail('${articleId}', '${language}')">
+                <i class="fas fa-envelope"></i>
+                <span>${AN_getTranslatedText('An.explore.shareViaEmail', language)}</span>
+            </div>
+            <div class="AN-share-dropdown-item" onclick="AN_shareViaFacebook('${articleId}', '${language}')">
+                <i class="fab fa-facebook"></i>
+                <span>${AN_getTranslatedText('An.explore.shareOnFacebook', language)}</span>
+            </div>
+            <div class="AN-share-dropdown-item" onclick="AN_shareViaTwitter('${articleId}', '${language}')">
+                <i class="fab fa-twitter"></i>
+                <span>${AN_getTranslatedText('An.explore.shareOnTwitter', language)}</span>
+            </div>
+            <div class="AN-share-dropdown-item" onclick="AN_shareViaLinkedIn('${articleId}', '${language}')">
+                <i class="fab fa-linkedin"></i>
+                <span>${AN_getTranslatedText('An.explore.shareOnLinkedIn', language)}</span>
+            </div>
+            ${navigator.share ? `
+            <div class="AN-share-dropdown-item" onclick="AN_useNativeShare('${articleId}', '${language}')">
+                <i class="fas fa-share-alt"></i>
+                <span>${AN_getTranslatedText('An.explore.share', language)}</span>
+            </div>
+            ` : ''}
+        `;
+        
+        document.body.appendChild(dropdown);
+        
+        // Close dropdown when clicking outside
+        setTimeout(() => {
+            const closeDropdown = (e) => {
+                if (!dropdown.contains(e.target) && e.target !== event.target) {
+                    dropdown.remove();
+                    document.removeEventListener('click', closeDropdown);
+                }
+            };
+            document.addEventListener('click', closeDropdown);
+        }, 10);
+    }
+
+    // Function to show toast notification
+    function AN_showToast(message) {
+        // Remove existing toast
+        const existingToast = document.querySelector('.AN-toast');
+        if (existingToast) existingToast.remove();
+        
+        // Create toast
+        const toast = document.createElement('div');
+        toast.className = 'AN-toast';
+        toast.innerHTML = `
+            <div class="AN-toast-content">
+                <i class="fas fa-check-circle"></i>
+                <span>${message}</span>
+            </div>
+        `;
+        
+        document.body.appendChild(toast);
+        
+        // Show toast
+        setTimeout(() => toast.classList.add('AN-toast-show'), 10);
+        
+        // Hide after 3 seconds
+        setTimeout(() => {
+            toast.classList.remove('AN-toast-show');
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    }
+
+    // Function to render article cards
+    function AN_renderArticles(language, filter = 'all') {
+        const container = document.getElementById('AN-articles-container');
+        if (!container) return;
+        
+        // Clear existing content
+        container.innerHTML = '';
+        
+        // Filter articles
+        let articles = AN_explore_data;
+        if (filter !== 'all') {
+            articles = articles.filter(article => article.category === filter);
+        }
+        
+        // Render articles
+        articles.forEach(article => {
             const content = article[language] || article.en;
+            const card = document.createElement('div');
+            card.className = 'AN-article-card';
+            card.setAttribute('data-id', article.id);
+            card.setAttribute('data-category', article.category);
             
-            // Set modal title
-            modalTitle.textContent = content.title;
-            
-            // Calculate read time
+            // Calculate read time (approx 200 words per minute)
             const wordCount = content.body.split(' ').length;
             const readTime = Math.ceil(wordCount / 200);
             
@@ -1376,574 +1533,303 @@
                 default: categoryText = article.category;
             }
             
-            // Parse body content
-            const paragraphs = content.body.split('\n\n').filter(p => p.trim().length > 0);
-            const bodyContent = paragraphs.map(paragraph => {
-                if (paragraph.startsWith('## ')) {
-                    // Subtitle
-                    return `<h3 class="AN-article-subtitle">${paragraph.substring(3)}</h3>`;
-                } else if (paragraph.startsWith('> ')) {
-                    // Quote
-                    return `<blockquote class="AN-article-quote">${paragraph.substring(2)}</blockquote>`;
-                } else {
-                    // Regular paragraph
-                    return `<p class="AN-article-paragraph">${paragraph}</p>`;
-                }
-            }).join('');
+            // Use full URL for images
+            const imageUrl = article.image ? 
+                (article.image.startsWith('http') ? article.image : article.image) : 
+                'assets/icons/icon-512x512.png';
             
-            // Build sources list
-            const sourcesList = content.sources ? content.sources.map(source => `
-                <li class="AN-source-item">
-                    <div class="AN-source-title">${source.title}</div>
-                    <div class="AN-source-details">${source.author ? source.author + ' - ' : ''}${source.journal || source.url || ''}${source.year ? ' (' + source.year + ')' : ''}</div>
-                </li>
-            `).join('') : '';
+            card.innerHTML = `
+                <div class="AN-article-card-header">
+                    <img src="${imageUrl}" alt="${content.title}" class="AN-article-card-image" onerror="this.src='assets/icons/icon-512x512.png'">
+                    <div class="AN-article-card-category">${categoryText}</div>
+                </div>
+                <div class="AN-article-card-body">
+                    <h3 class="AN-article-card-title">${content.title}</h3>
+                    <p class="AN-article-card-excerpt">${content.excerpt || content.body.substring(0, 150)}...</p>
+                    <div class="AN-article-card-meta">
+                        <span><i class="fas fa-user"></i> ${content.author || 'Cosmic Chronicles'}</span>
+                        <span><i class="far fa-calendar"></i> ${AN_formatDate(article.date, language)}</span>
+                    </div>
+                    <div class="AN-article-card-footer">
+                        <span class="AN-article-read-time">${readTime} ${AN_getTranslatedText('An.explore.minRead', language)}</span>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="AN-article-card-link AN-read-article-btn" data-id="${article.id}">
+                                ${AN_getTranslatedText('An.explore.readArticle', language)}
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                            <button class="AN-article-share-btn" data-id="${article.id}" title="${AN_getTranslatedText('An.explore.share', language)}">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
             
-            // Build modal content
-            modalBody.innerHTML = `
-                <div class="AN-article-modal-image">
-                    <img src="${article.image || 'assets/images/explore/default.jpg'}" alt="${content.title}">
-                </div>
-                
-                <div class="AN-article-meta-info">
-                    <div class="AN-article-meta-item">
-                        <span class="AN-article-meta-label">${AN_getTranslatedText('An.explore.author', language)}</span>
-                        <span class="AN-article-meta-value">${content.author || 'Cosmic Chronicles Team'}</span>
-                    </div>
-                    <div class="AN-article-meta-item">
-                        <span class="AN-article-meta-label">${AN_getTranslatedText('An.explore.publicationDate', language)}</span>
-                        <span class="AN-article-meta-value">${AN_formatDate(article.date, language)}</span>
-                    </div>
-                    <div class="AN-article-meta-item">
-                        <span class="AN-article-meta-label">${AN_getTranslatedText('An.explore.category', language)}</span>
-                        <span class="AN-article-meta-value">${categoryText}</span>
-                    </div>
-                    <div class="AN-article-meta-item">
-                        <span class="AN-article-meta-label">${AN_getTranslatedText('An.explore.readingTime', language)}</span>
-                        <span class="AN-article-meta-value">${readTime} ${AN_getTranslatedText('An.explore.minRead', language)}</span>
-                    </div>
-                </div>
-                
-                <div class="AN-article-content">
-                    ${content.introduction ? `<p class="AN-article-paragraph" style="font-size: 20px; font-weight: 500;">${content.introduction}</p>` : ''}
-                    ${bodyContent}
-                </div>
-                
-                ${sourcesList ? `
-                <div class="AN-article-sources">
-                    <h3 class="AN-sources-title">
-                        <i class="fas fa-book"></i> ${AN_getTranslatedText('An.explore.sources', language)}
+            container.appendChild(card);
+        });
+        
+        // If no articles found
+        if (articles.length === 0) {
+            container.innerHTML = `
+                <div class="AN-no-articles" style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+                    <i class="fas fa-book-open" style="font-size: 64px; opacity: 0.5; margin-bottom: 20px;"></i>
+                    <h3 style="color: var(--AN-text-color); margin-bottom: 10px;">
+                        ${AN_getTranslatedText('An.explore.noArticlesFound', language)}
                     </h3>
-                    <ul class="AN-sources-list">
-                        ${sourcesList}
-                    </ul>
-                </div>
-                ` : ''}
-            `;
-            
-            // Set up navigation buttons
-            const currentIndex = AN_explore_data.findIndex(a => a.id === article.id);
-            const totalArticles = AN_explore_data.length;
-            
-            if (currentIndex > 0) {
-                prevBtn.disabled = false;
-                prevBtn.onclick = () => {
-                    AN_showArticleModal(AN_explore_data[currentIndex - 1], language);
-                };
-            } else {
-                prevBtn.disabled = true;
-                prevBtn.onclick = null;
-            }
-            
-            if (currentIndex < totalArticles - 1) {
-                nextBtn.disabled = false;
-                nextBtn.onclick = () => {
-                    AN_showArticleModal(AN_explore_data[currentIndex + 1], language);
-                };
-            } else {
-                nextBtn.disabled = true;
-                nextBtn.onclick = null;
-            }
-            
-            // Update share button text
-            const shareBtnSpan = shareBtn.querySelector('span[data-i18n]');
-            if (shareBtnSpan) {
-                shareBtnSpan.textContent = AN_getTranslatedText('An.explore.share', language);
-            }
-            
-            // Show modal
-            modal.classList.add('AN-active');
-            document.body.style.overflow = 'hidden';
-            
-            // Update URL
-            updateURLWithArticle(article.id, language);
-        }
-        
-        // Function to close article modal
-        function AN_closeArticleModal() {
-    const modal = document.getElementById('AN-article-modal');
-    modal.classList.remove('AN-active');
-    document.body.style.overflow = 'auto';
-    
-    // Reset Open Graph tags
-    AN_resetOpenGraphTags();
-    
-    // Clear URL parameters
-    if (history.pushState) {
-        const newUrl = window.location.origin + window.location.pathname;
-        window.history.pushState({ path: newUrl }, '', newUrl);
-    }
-}
-        
-        // Function to show share dropdown
-        function AN_showShareDropdown(articleId, language, event) {
-    // Remove any existing dropdowns
-    const existingDropdown = document.querySelector('.AN-share-dropdown');
-    if (existingDropdown) {
-        existingDropdown.remove();
-    }
-    
-    // Get article data
-    const article = AN_explore_data.find(a => a.id === articleId);
-    if (!article) return;
-    
-    const content = article[language] || article.en;
-    const articleUrl = AN_generateArticleURL(articleId, language);
-    const articleTitle = content.title;
-    const articleDescription = content.excerpt || content.body.substring(0, 150);
-    
-    // Create dropdown
-    const dropdown = document.createElement('div');
-    dropdown.className = 'AN-share-dropdown';
-    
-    // Position dropdown near the click with boundary checking
-    const rect = event.target.getBoundingClientRect();
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
-    
-    // Calculate ideal position
-    let left = rect.left;
-    let top = rect.bottom + 5;
-    
-    // Check if dropdown would go off the right edge of the screen
-    const dropdownWidth = 200; // Approximate width of dropdown
-    if (left + dropdownWidth > viewportWidth - 10) {
-        left = viewportWidth - dropdownWidth - 10;
-    }
-    
-    // Check if dropdown would go off the left edge
-    if (left < 10) {
-        left = 10;
-    }
-    
-    // Check if dropdown would go off the bottom of the screen
-    // We'll estimate dropdown height (approx 40px per item * 5 items = 200px)
-    const dropdownHeight = 200;
-    if (top + dropdownHeight > viewportHeight - 10) {
-        // Position above the button instead
-        top = rect.top - dropdownHeight - 5;
-    }
-    
-    dropdown.style.position = 'fixed';
-    dropdown.style.left = `${left}px`;
-    dropdown.style.top = `${top}px`;
-    dropdown.style.zIndex = '1001';
-    
-    // Add share options
-    dropdown.innerHTML = `
-        <div class="AN-share-dropdown-item" onclick="AN_copyArticleLink('${articleId}', '${language}')">
-            <i class="fas fa-link"></i>
-            <span>${AN_getTranslatedText('An.explore.copyLink', language)}</span>
-        </div>
-        <div class="AN-share-dropdown-item" onclick="AN_shareViaEmail('${articleId}', '${language}')">
-            <i class="fas fa-envelope"></i>
-            <span>Email</span>
-        </div>
-        <div class="AN-share-dropdown-item" onclick="AN_shareViaFacebook('${articleId}', '${language}')">
-            <i class="fab fa-facebook"></i>
-            <span>Facebook</span>
-        </div>
-        <div class="AN-share-dropdown-item" onclick="AN_shareViaTwitter('${articleId}', '${language}')">
-            <i class="fab fa-twitter"></i>
-            <span>Twitter</span>
-        </div>
-        ${navigator.share ? `
-        <div class="AN-share-dropdown-item" onclick="AN_useNativeShare('${articleId}', '${language}')">
-            <i class="fas fa-share-alt"></i>
-            <span>${AN_getTranslatedText('An.explore.share', language)}</span>
-        </div>
-        ` : ''}
-    `;
-    
-    document.body.appendChild(dropdown);
-    
-    // Close dropdown when clicking outside
-    setTimeout(() => {
-        const closeDropdown = (e) => {
-            if (!dropdown.contains(e.target) && e.target !== event.target) {
-                dropdown.remove();
-                document.removeEventListener('click', closeDropdown);
-            }
-        };
-        document.addEventListener('click', closeDropdown);
-    }, 10);
-}
-        
-        // Function to generate article URL
-        function AN_generateArticleURL(articleId, language) {
-            const baseUrl = window.location.origin + window.location.pathname;
-            return `${baseUrl}?article=${articleId}&lang=${language}`;
-        }
-        
-        // Function to copy article link to clipboard
-        function AN_copyArticleLink(articleId, language) {
-            const url = AN_generateArticleURL(articleId, language);
-            const article = AN_explore_data.find(a => a.id === articleId);
-            const content = article[language] || article.en;
-            
-            const textToCopy = `${content.title}\n\n${url}`;
-            
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                AN_showToast(AN_getTranslatedText('An.explore.linkCopied', language));
-            }).catch(err => {
-                console.error('Failed to copy: ', err);
-                // Fallback
-                const textArea = document.createElement('textarea');
-                textArea.value = textToCopy;
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-                AN_showToast(AN_getTranslatedText('An.explore.linkCopied', language));
-            });
-            
-            // Remove dropdown
-            const dropdown = document.querySelector('.AN-share-dropdown');
-            if (dropdown) dropdown.remove();
-        }
-        
-        // Function to share via email
-        function AN_shareViaEmail(articleId, language) {
-            const article = AN_explore_data.find(a => a.id === articleId);
-            if (!article) return;
-            
-            const content = article[language] || article.en;
-            const url = AN_generateArticleURL(articleId, language);
-            const subject = encodeURIComponent(content.title);
-            const body = encodeURIComponent(`Check out this article: "${content.title}"\n\n${url}`);
-            
-            window.location.href = `mailto:?subject=${subject}&body=${body}`;
-            
-            // Remove dropdown
-            const dropdown = document.querySelector('.AN-share-dropdown');
-            if (dropdown) dropdown.remove();
-        }
-        
-        // Function to share via Facebook
-        function AN_shareViaFacebook(articleId, language) {
-            const url = encodeURIComponent(AN_generateArticleURL(articleId, language));
-            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
-            
-            // Remove dropdown
-            const dropdown = document.querySelector('.AN-share-dropdown');
-            if (dropdown) dropdown.remove();
-        }
-        
-        // Function to share via Twitter
-        function AN_shareViaTwitter(articleId, language) {
-            const article = AN_explore_data.find(a => a.id === articleId);
-            if (!article) return;
-            
-            const content = article[language] || article.en;
-            const url = encodeURIComponent(AN_generateArticleURL(articleId, language));
-            const text = encodeURIComponent(content.title);
-            window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
-            
-            // Remove dropdown
-            const dropdown = document.querySelector('.AN-share-dropdown');
-            if (dropdown) dropdown.remove();
-        }
-        
-        // Function to use native share API
-        function AN_useNativeShare(articleId, language) {
-            const article = AN_explore_data.find(a => a.id === articleId);
-            if (!article || !navigator.share) return;
-            
-            const content = article[language] || article.en;
-            const url = AN_generateArticleURL(articleId, language);
-            
-            navigator.share({
-                title: content.title,
-                text: content.excerpt || content.body.substring(0, 100),
-                url: url
-            }).catch(err => {
-                console.log('Error sharing:', err);
-            });
-            
-            // Remove dropdown
-            const dropdown = document.querySelector('.AN-share-dropdown');
-            if (dropdown) dropdown.remove();
-        }
-        
-        // Function to show toast notification
-        function AN_showToast(message) {
-            // Remove existing toast
-            const existingToast = document.querySelector('.AN-toast');
-            if (existingToast) existingToast.remove();
-            
-            // Create toast
-            const toast = document.createElement('div');
-            toast.className = 'AN-toast';
-            toast.innerHTML = `
-                <div class="AN-toast-content">
-                    <i class="fas fa-check-circle"></i>
-                    <span>${message}</span>
+                    <p style="color: var(--AN-text-color); opacity: 0.7;">
+                        ${AN_getTranslatedText('An.explore.tryDifferentFilter', language)}
+                    </p>
                 </div>
             `;
-            
-            document.body.appendChild(toast);
-            
-            // Show toast
-            setTimeout(() => toast.classList.add('AN-toast-show'), 10);
-            
-            // Hide after 3 seconds
-            setTimeout(() => {
-                toast.classList.remove('AN-toast-show');
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
         }
         
-        // Function to update URL with article
-        function updateURLWithArticle(articleId, language) {
-            if (history.pushState) {
-                const newUrl = `${window.location.origin}${window.location.pathname}?article=${articleId}&lang=${language}`;
-                window.history.pushState({ path: newUrl }, '', newUrl);
-            }
-        }
-        
-        // Function to handle URL parameters on page load
-        function AN_handleURLParameters() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const articleId = urlParams.get('article');
-            const lang = urlParams.get('lang');
-            
-            if (articleId) {
+        // Add event listeners to "Read Article" buttons
+        document.querySelectorAll('.AN-read-article-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const articleId = this.getAttribute('data-id');
+                const language = document.getElementById('AN-language-select')?.value || 'en';
                 const article = AN_explore_data.find(a => a.id === articleId);
                 if (article) {
-                    // Set language if specified
-                    if (lang) {
-                        const languageSelect = document.getElementById('AN-language-select');
-                        if (languageSelect) {
-                            languageSelect.value = lang;
-                            currentLanguage = lang;
-                        }
-                    }
-                    
-                    // Show the article modal
-                    setTimeout(() => {
-                        AN_showArticleModal(article, currentLanguage);
-                    }, 100);
-                }
-            }
-        }
-        
-
-// Function to update Open Graph meta tags for article sharing
-function AN_updateOpenGraphTags(article, language) {
-    const content = article[language] || article.en;
-    const baseUrl = window.location.origin;
-    const articleUrl = `${baseUrl}/AN_explore.html?article=${article.id}&lang=${language}`;
-    
-    // Default image fallback
-    const defaultImage = `${baseUrl}/assets/icons/icon-512x512.png`;
-    const articleImage = article.image ? `${baseUrl}/${article.image}` : defaultImage;
-    
-    // Update Open Graph tags
-    document.getElementById('og-title').setAttribute('content', `${content.title} | Cosmic Chronicles`);
-    document.getElementById('og-description').setAttribute('content', content.excerpt || content.body.substring(0, 150));
-    document.getElementById('og-image').setAttribute('content', articleImage);
-    document.getElementById('og-url').setAttribute('content', articleUrl);
-    document.getElementById('og-type').setAttribute('content', 'article');
-    document.getElementById('article-published')?.setAttribute('content', article.date);
-    document.getElementById('article-published')?.setAttribute('content', article.date);
-    document.getElementById('article-modified')?.setAttribute('content', new Date().toISOString());
-    
-    // Update Twitter tags
-    document.getElementById('twitter-title').setAttribute('content', `${content.title} | Cosmic Chronicles`);
-    document.getElementById('twitter-description').setAttribute('content', content.excerpt || content.body.substring(0, 150));
-    document.getElementById('twitter-image').setAttribute('content', articleImage);
-    document.getElementById('twitter-card').setAttribute('content', 'summary_large_image');
-    
-    // Update page title
-    document.title = `${content.title} | Cosmic Chronicles`;
-    
-    // Update canonical URL
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-        canonical = document.createElement('link');
-        canonical.rel = 'canonical';
-        document.head.appendChild(canonical);
-    }
-    canonical.href = articleUrl;
-    
-    // Update structured data (JSON-LD)
-    updateStructuredData(article, content, articleUrl, articleImage);
-}
-
-// Function to update JSON-LD structured data
-function updateStructuredData(article, content, articleUrl, articleImage) {
-    // Remove existing structured data
-    const existingStructuredData = document.querySelector('script[type="application/ld+json"]');
-    if (existingStructuredData) {
-        existingStructuredData.remove();
-    }
-    
-    const structuredData = {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": content.title,
-        "description": content.excerpt || content.body.substring(0, 150),
-        "image": articleImage,
-        "datePublished": article.date,
-        "dateModified": new Date().toISOString(),
-        "author": {
-            "@type": "Organization",
-            "name": content.author || "Cosmic Chronicles Team",
-            "url": window.location.origin
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Cosmic Chronicles",
-            "logo": {
-                "@type": "ImageObject",
-                "url": `${window.location.origin}/assets/icons/icon-512x512.png`
-            }
-        },
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": articleUrl
-        },
-        "url": articleUrl,
-        "articleBody": content.body
-    };
-    
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.textContent = JSON.stringify(structuredData);
-    document.head.appendChild(script);
-}
-
-// Function to generate article-specific URL
-function AN_generateArticleURL(articleId, language) {
-    const baseUrl = window.location.origin + window.location.pathname;
-    return `${baseUrl}?article=${articleId}&lang=${language}`;
-}
-
-// Function to share article with proper meta tags
-function AN_shareArticle(articleId, language) {
-    const article = AN_explore_data.find(a => a.id === articleId);
-    if (!article) return;
-    
-    const content = article[language] || article.en;
-    const articleUrl = AN_generateArticleURL(articleId, language);
-    const articleTitle = content.title;
-    const articleDescription = content.excerpt || content.body.substring(0, 150);
-    const articleImage = article.image ? window.location.origin + '/' + article.image : window.location.origin + '/assets/icons/icon-512x512.png';
-    
-    // Update Open Graph tags before sharing
-    AN_updateOpenGraphTags(article, language);
-    
-    // Use Web Share API if available
-    if (navigator.share) {
-        navigator.share({
-            title: articleTitle,
-            text: articleDescription,
-            url: articleUrl,
-        }).then(() => {
-            console.log('Article shared successfully');
-        }).catch(console.error);
-    } else {
-        // Fallback: Show share options
-        AN_showShareDropdown(articleId, language, event);
-    }
-}
-
-// Function to reset Open Graph tags to default
-function AN_resetOpenGraphTags() {
-    const baseUrl = window.location.origin;
-    
-    document.getElementById('og-title').setAttribute('content', 'Cosmic Chronicles - Explore Astronomy');
-    document.getElementById('og-description').setAttribute('content', 'In-depth articles on cosmology, astrophysics, and space science. Expand your understanding of the universe.');
-    document.getElementById('og-image').setAttribute('content', baseUrl + '/assets/icons/icon-512x512.png');
-    document.getElementById('og-url').setAttribute('content', baseUrl + '/AN_explore.html');
-    document.getElementById('og-type').setAttribute('content', 'website');
-    
-    document.getElementById('twitter-title').setAttribute('content', 'Cosmic Chronicles - Explore Astronomy');
-    document.getElementById('twitter-description').setAttribute('content', 'In-depth articles on cosmology, astrophysics, and space science.');
-    document.getElementById('twitter-image').setAttribute('content', baseUrl + '/assets/icons/icon-512x512.png');
-    
-    document.title = 'Cosmic Chronicles - Explore Astronomy';
-    
-    // Remove article-specific canonical link
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical && canonical.href.includes('article=')) {
-        canonical.remove();
-    }
-    
-    // Remove article-specific structured data
-    const structuredData = document.querySelector('script[type="application/ld+json"]');
-    if (structuredData) {
-        structuredData.remove();
-    }
-}
-
-// Function to handle URL parameters
-function AN_handleURLParameters() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const articleId = urlParams.get('article');
-    const lang = urlParams.get('lang') || currentLanguage;
-    
-    if (articleId) {
-        const article = AN_explore_data.find(a => a.id === articleId);
-        if (article) {
-            // Set language if specified
-            if (lang) {
-                const languageSelect = document.getElementById('AN-language-select');
-                if (languageSelect) {
-                    languageSelect.value = lang;
-                    currentLanguage = lang;
-                    AN_applyExploreTranslations(lang);
-                }
-            }
-            
-            // Update Open Graph tags for article
-            setTimeout(() => {
-                AN_updateOpenGraphTags(article, currentLanguage);
-                AN_showArticleModal(article, currentLanguage);
-            }, 100);
-        }
-    } else {
-        // Reset to default if no article parameter
-        AN_resetOpenGraphTags();
-    }
-}
-        // Function to apply explore-specific translations
-        function AN_applyExploreTranslations(language) {
-            currentLanguage = language;
-            
-            // Apply static text translations
-            AN_applyTranslations(language);
-            
-            // Update filter button texts
-            const filterButtons = document.querySelectorAll('.AN-explore-filter-btn');
-            filterButtons.forEach(button => {
-                const key = button.getAttribute('data-i18n');
-                if (key) {
-                    button.textContent = AN_getTranslatedText(key, language);
+                    AN_showArticleModal(article, language);
                 }
             });
+        });
+        
+        // Add event listeners to share buttons on cards
+        document.querySelectorAll('.AN-article-share-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                const articleId = this.getAttribute('data-id');
+                const language = document.getElementById('AN-language-select')?.value || 'en';
+                AN_showShareDropdown(articleId, language, e);
+            });
+        });
+    }
+
+    // Function to show article modal with full content
+    function AN_showArticleModal(article, language) {
+        currentArticleId = article.id;
+        currentLanguage = language;
+        currentArticle = article;
+        
+        const modal = document.getElementById('AN-article-modal');
+        const modalTitle = document.getElementById('AN-article-modal-title');
+        const modalBody = document.getElementById('AN-article-modal-body');
+        const prevBtn = document.getElementById('AN-article-prev-btn');
+        const nextBtn = document.getElementById('AN-article-next-btn');
+        const shareBtn = document.getElementById('AN-article-share-btn');
+        const closeBtn = document.getElementById('AN-article-modal-close-btn');
+        const content = article[language] || article.en;
+        
+        // Set modal title
+        modalTitle.textContent = content.title;
+        
+        // Update page title for better sharing
+        document.title = `${content.title} | Cosmic Chronicles`;
+        
+        // Calculate read time
+        const wordCount = content.body.split(' ').length;
+        const readTime = Math.ceil(wordCount / 200);
+        
+        // Get category display text
+        let categoryText = '';
+        switch(article.category) {
+            case 'cosmology': categoryText = AN_getTranslatedText('An.explore.cosmology', language); break;
+            case 'astrophysics': categoryText = AN_getTranslatedText('An.explore.astrophysics', language); break;
+            case 'solar-system': categoryText = AN_getTranslatedText('An.explore.solarSystem', language); break;
+            case 'exoplanets': categoryText = AN_getTranslatedText('An.explore.exoplanets', language); break;
+            case 'telescopes': categoryText = AN_getTranslatedText('An.explore.telescopes', language); break;
+            default: categoryText = article.category;
+        }
+        
+        // Parse body content
+        const paragraphs = content.body.split('\n\n').filter(p => p.trim().length > 0);
+        const bodyContent = paragraphs.map(paragraph => {
+            if (paragraph.startsWith('## ')) {
+                // Subtitle
+                return `<h3 class="AN-article-subtitle">${paragraph.substring(3)}</h3>`;
+            } else if (paragraph.startsWith('> ')) {
+                // Quote
+                return `<blockquote class="AN-article-quote">${paragraph.substring(2)}</blockquote>`;
+            } else {
+                // Regular paragraph
+                return `<p class="AN-article-paragraph">${paragraph}</p>`;
+            }
+        }).join('');
+        
+        // Build sources list
+        const sourcesList = content.sources ? content.sources.map(source => `
+            <li class="AN-source-item">
+                <div class="AN-source-title">${source.title}</div>
+                <div class="AN-source-details">${source.author ? source.author + ' - ' : ''}${source.journal || source.url || ''}${source.year ? ' (' + source.year + ')' : ''}</div>
+            </li>
+        `).join('') : '';
+        
+        // Use full URL for images
+        const imageUrl = article.image ? 
+            (article.image.startsWith('http') ? article.image : article.image) : 
+            'assets/icons/icon-512x512.png';
+        
+        // Build modal content
+        modalBody.innerHTML = `
+            <div class="AN-article-modal-image">
+                <img src="${imageUrl}" alt="${content.title}" onerror="this.src='assets/icons/icon-512x512.png'">
+            </div>
             
-            // Update modal button texts
+            <div class="AN-article-meta-info">
+                <div class="AN-article-meta-item">
+                    <span class="AN-article-meta-label">${AN_getTranslatedText('An.explore.author', language)}</span>
+                    <span class="AN-article-meta-value">${content.author || 'Cosmic Chronicles Team'}</span>
+                </div>
+                <div class="AN-article-meta-item">
+                    <span class="AN-article-meta-label">${AN_getTranslatedText('An.explore.publicationDate', language)}</span>
+                    <span class="AN-article-meta-value">${AN_formatDate(article.date, language)}</span>
+                </div>
+                <div class="AN-article-meta-item">
+                    <span class="AN-article-meta-label">${AN_getTranslatedText('An.explore.category', language)}</span>
+                    <span class="AN-article-meta-value">${categoryText}</span>
+                </div>
+                <div class="AN-article-meta-item">
+                    <span class="AN-article-meta-label">${AN_getTranslatedText('An.explore.readingTime', language)}</span>
+                    <span class="AN-article-meta-value">${readTime} ${AN_getTranslatedText('An.explore.minRead', language)}</span>
+                </div>
+            </div>
+            
+            <div class="AN-article-content">
+                ${content.introduction ? `<p class="AN-article-paragraph" style="font-size: 20px; font-weight: 500;">${content.introduction}</p>` : ''}
+                ${bodyContent}
+            </div>
+            
+            ${sourcesList ? `
+            <div class="AN-article-sources">
+                <h3 class="AN-sources-title">
+                    <i class="fas fa-book"></i> ${AN_getTranslatedText('An.explore.sources', language)}
+                </h3>
+                <ul class="AN-sources-list">
+                    ${sourcesList}
+                </ul>
+            </div>
+            ` : ''}
+        `;
+        
+        // Set up navigation buttons
+        const currentIndex = AN_explore_data.findIndex(a => a.id === article.id);
+        const totalArticles = AN_explore_data.length;
+        
+        if (currentIndex > 0) {
+            prevBtn.disabled = false;
+            prevBtn.onclick = () => {
+                AN_showArticleModal(AN_explore_data[currentIndex - 1], language);
+            };
+        } else {
+            prevBtn.disabled = true;
+            prevBtn.onclick = null;
+        }
+        
+        if (currentIndex < totalArticles - 1) {
+            nextBtn.disabled = false;
+            nextBtn.onclick = () => {
+                AN_showArticleModal(AN_explore_data[currentIndex + 1], language);
+            };
+        } else {
+            nextBtn.disabled = true;
+            nextBtn.onclick = null;
+        }
+        
+        // Update share button event
+        shareBtn.onclick = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            AN_showShareDropdown(article.id, language, e);
+        };
+        
+        // Update close button text
+        if (closeBtn) {
+            closeBtn.textContent = AN_getTranslatedText('An.explore.close', language);
+        }
+        
+        // Update navigation button texts
+        const prevSpan = prevBtn.querySelector('span[data-i18n]');
+        const nextSpan = nextBtn.querySelector('span[data-i18n]');
+        const shareSpan = shareBtn.querySelector('span[data-i18n]');
+        
+        if (prevSpan) prevSpan.textContent = AN_getTranslatedText('An.explore.previousArticle', language);
+        if (nextSpan) nextSpan.textContent = AN_getTranslatedText('An.explore.nextArticle', language);
+        if (shareSpan) shareSpan.textContent = AN_getTranslatedText('An.explore.share', language);
+        
+        // Show modal
+        modal.classList.add('AN-active');
+        document.body.style.overflow = 'hidden';
+        
+        // Update URL
+        const newUrl = AN_generateArticleURL(article.id, language);
+        if (history.pushState) {
+            window.history.pushState({ path: newUrl }, '', newUrl);
+        }
+    }
+
+    // Function to close article modal
+    function AN_closeArticleModal() {
+        const modal = document.getElementById('AN-article-modal');
+        modal.classList.remove('AN-active');
+        document.body.style.overflow = 'auto';
+        
+        // Reset page title
+        document.title = 'Cosmic Chronicles - Explore Astronomy';
+        
+        // Clear URL parameters
+        if (history.pushState) {
+            const newUrl = window.location.origin + window.location.pathname;
+            window.history.pushState({ path: newUrl }, '', newUrl);
+        }
+    }
+
+    // Function to handle URL parameters on page load
+    function AN_handleURLParameters() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const articleId = urlParams.get('article');
+        const lang = urlParams.get('lang');
+        
+        if (articleId) {
+            const article = AN_explore_data.find(a => a.id === articleId);
+            if (article) {
+                // Set language if specified
+                if (lang) {
+                    const languageSelect = document.getElementById('AN-language-select');
+                    if (languageSelect) {
+                        languageSelect.value = lang;
+                        currentLanguage = lang;
+                    }
+                }
+                
+                // Show the article modal
+                setTimeout(() => {
+                    AN_showArticleModal(article, currentLanguage);
+                }, 100);
+            }
+        }
+    }
+
+    // Function to apply explore-specific translations
+    function AN_applyExploreTranslations(language) {
+        currentLanguage = language;
+        
+        // Apply static text translations
+        AN_applyTranslations(language);
+        
+        // Update filter button texts
+        const filterButtons = document.querySelectorAll('.AN-explore-filter-btn');
+        filterButtons.forEach(button => {
+            const key = button.getAttribute('data-i18n');
+            if (key) {
+                button.textContent = AN_getTranslatedText(key, language);
+            }
+        });
+        
+        // Update modal button texts if modal is open
+        if (currentArticleId) {
             const prevBtn = document.getElementById('AN-article-prev-btn');
             const nextBtn = document.getElementById('AN-article-next-btn');
             const closeBtn = document.getElementById('AN-article-modal-close-btn');
@@ -1973,138 +1859,129 @@ function AN_handleURLParameters() {
                     shareSpan.textContent = AN_getTranslatedText('An.explore.share', language);
                 }
             }
-            
-            // Render articles with current filter
-            const activeFilter = document.querySelector('.AN-explore-filter-btn.AN-active')?.getAttribute('data-filter') || 'all';
-            AN_renderArticles(language, activeFilter);
-            
-            // Re-render notifications
-            AN_renderNotifications(language);
         }
+        
+        // Render articles with current filter
+        const activeFilter = document.querySelector('.AN-explore-filter-btn.AN-active')?.getAttribute('data-filter') || 'all';
+        AN_renderArticles(language, activeFilter);
+        
+        // Re-render notifications
+        AN_renderNotifications(language);
+    }
 
-        // Initialize when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            // Theme toggle functionality
-            const themeSwitch = document.getElementById('AN-theme-switch');
-            const body = document.body;
-            
-            // Check for saved theme preference
-            const savedTheme = localStorage.getItem('AN-theme') || 
-                              (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-            
-            if (savedTheme === 'dark') {
-                body.classList.add('AN-dark-mode');
-                themeSwitch.checked = true;
-            }
-            
-            themeSwitch.addEventListener('change', function() {
-                if (this.checked) {
-                    body.classList.add('AN-dark-mode');
-                    localStorage.setItem('AN-theme', 'dark');
-                } else {
-                    body.classList.remove('AN-dark-mode');
-                    localStorage.setItem('AN-theme', 'light');
-                }
-            });
-            
-            // Notification panel toggle
-            const notificationToggle = document.getElementById('AN-notification-toggle');
-            const notificationPanel = document.getElementById('AN-notification-panel');
-            const closeNotifications = document.getElementById('AN-close-notifications');
-            
-            notificationToggle.addEventListener('click', function() {
-                notificationPanel.classList.toggle('AN-active');
-            });
-            
-            closeNotifications.addEventListener('click', function() {
-                notificationPanel.classList.remove('AN-active');
-            });
-            
-            // Close notification panel when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!notificationToggle.contains(event.target) && 
-                    !notificationPanel.contains(event.target)) {
-                    notificationPanel.classList.remove('AN-active');
-                }
-            });
-            
-            // Language selection
-            const languageSelect = document.getElementById('AN-language-select');
-            const savedLanguage = localStorage.getItem('AN-language-preference') || 'en';
-            currentLanguage = savedLanguage;
-            
-            if (languageSelect) {
-                languageSelect.value = savedLanguage;
-                languageSelect.addEventListener('change', function() {
-                    AN_applyExploreTranslations(this.value);
-                    localStorage.setItem('AN-language-preference', this.value);
-                    currentLanguage = this.value;
-                });
-            }
-            
-            // Filter button functionality
-            const filterButtons = document.querySelectorAll('.AN-explore-filter-btn');
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Remove active class from all filter buttons
-                    filterButtons.forEach(btn => btn.classList.remove('AN-active'));
-                    
-                    // Add active class to clicked button
-                    this.classList.add('AN-active');
-                    
-                    // Get filter value
-                    const filter = this.getAttribute('data-filter');
-                    const language = languageSelect ? languageSelect.value : 'en';
-                    
-                    // Apply filter
-                    AN_renderArticles(language, filter);
-                });
-            });
-            
-            // Modal functionality
-            const articleModal = document.getElementById('AN-article-modal');
-            const modalCloseBtn = document.getElementById('AN-article-modal-close');
-            const modalCloseBtn2 = document.getElementById('AN-article-modal-close-btn');
-            
-            // Close modal when clicking close button
-            if (modalCloseBtn) {
-                modalCloseBtn.addEventListener('click', AN_closeArticleModal);
-            }
-            
-            if (modalCloseBtn2) {
-                modalCloseBtn2.addEventListener('click', AN_closeArticleModal);
-            }
-            
-            // Close modal when clicking outside the content
-            articleModal.addEventListener('click', function(event) {
-                if (event.target === articleModal) {
-                    AN_closeArticleModal();
-                }
-            });
-            
-            // Close modal with Escape key
-            document.addEventListener('keydown', function(event) {
-                if (event.key === 'Escape' && articleModal.classList.contains('AN-active')) {
-                    AN_closeArticleModal();
-                }
-            });
-            
-            // Set up share button in modal
-            const shareBtn = document.getElementById('AN-article-share-btn');
-if (shareBtn) {
-    shareBtn.addEventListener('click', function(e) {
-        if (currentArticleId) {
-            AN_shareArticle(currentArticleId, currentLanguage);
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Theme toggle functionality
+        const themeSwitch = document.getElementById('AN-theme-switch');
+        const body = document.body;
+        
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('AN-theme') || 
+                          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        
+        if (savedTheme === 'dark') {
+            body.classList.add('AN-dark-mode');
+            themeSwitch.checked = true;
         }
-    });
-}
-            
-            // Initialize with saved language
-            AN_applyExploreTranslations(savedLanguage);
-            
-            // Handle URL parameters on page load
-            AN_handleURLParameters();
+        
+        themeSwitch.addEventListener('change', function() {
+            if (this.checked) {
+                body.classList.add('AN-dark-mode');
+                localStorage.setItem('AN-theme', 'dark');
+            } else {
+                body.classList.remove('AN-dark-mode');
+                localStorage.setItem('AN-theme', 'light');
+            }
         });
-    </script>
+        
+        // Notification panel toggle
+        const notificationToggle = document.getElementById('AN-notification-toggle');
+        const notificationPanel = document.getElementById('AN-notification-panel');
+        const closeNotifications = document.getElementById('AN-close-notifications');
+        
+        notificationToggle.addEventListener('click', function() {
+            notificationPanel.classList.toggle('AN-active');
+        });
+        
+        closeNotifications.addEventListener('click', function() {
+            notificationPanel.classList.remove('AN-active');
+        });
+        
+        // Close notification panel when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!notificationToggle.contains(event.target) && 
+                !notificationPanel.contains(event.target)) {
+                notificationPanel.classList.remove('AN-active');
+            }
+        });
+        
+        // Language selection
+        const languageSelect = document.getElementById('AN-language-select');
+        const savedLanguage = localStorage.getItem('AN-language-preference') || 'en';
+        currentLanguage = savedLanguage;
+        
+        if (languageSelect) {
+            languageSelect.value = savedLanguage;
+            languageSelect.addEventListener('change', function() {
+                AN_applyExploreTranslations(this.value);
+                localStorage.setItem('AN-language-preference', this.value);
+                currentLanguage = this.value;
+            });
+        }
+        
+        // Filter button functionality
+        const filterButtons = document.querySelectorAll('.AN-explore-filter-btn');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all filter buttons
+                filterButtons.forEach(btn => btn.classList.remove('AN-active'));
+                
+                // Add active class to clicked button
+                this.classList.add('AN-active');
+                
+                // Get filter value
+                const filter = this.getAttribute('data-filter');
+                const language = languageSelect ? languageSelect.value : 'en';
+                
+                // Apply filter
+                AN_renderArticles(language, filter);
+            });
+        });
+        
+        // Modal functionality
+        const articleModal = document.getElementById('AN-article-modal');
+        const modalCloseBtn = document.getElementById('AN-article-modal-close');
+        const modalCloseBtn2 = document.getElementById('AN-article-modal-close-btn');
+        
+        // Close modal when clicking close button
+        if (modalCloseBtn) {
+            modalCloseBtn.addEventListener('click', AN_closeArticleModal);
+        }
+        
+        if (modalCloseBtn2) {
+            modalCloseBtn2.addEventListener('click', AN_closeArticleModal);
+        }
+        
+        // Close modal when clicking outside the content
+        articleModal.addEventListener('click', function(event) {
+            if (event.target === articleModal) {
+                AN_closeArticleModal();
+            }
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && articleModal.classList.contains('AN-active')) {
+                AN_closeArticleModal();
+            }
+        });
+        
+        // Initialize with saved language
+        AN_applyExploreTranslations(savedLanguage);
+        
+        // Handle URL parameters on page load
+        AN_handleURLParameters();
+    });
+</script>
 </body>
 </html>
