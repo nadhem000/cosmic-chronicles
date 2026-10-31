@@ -12,7 +12,18 @@
 [context.deploy-preview.environment]
   NODE_ENV = "preview"
 
-# ── Clean, prerendered article paths (created by generate-article-pages.js) ──
+# ── Per-language prerendered article paths (specific first) ──
+[[redirects]]
+  from = "/explore/:id/:lang"
+  to = "/explore/:id/:lang/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/news/:id/:lang"
+  to = "/news/:id/:lang/index.html"
+  status = 200
+
+# ── Default-language (English) prerendered article paths ──
 [[redirects]]
   from = "/explore/:id"
   to = "/explore/:id/index.html"
@@ -24,7 +35,6 @@
   status = 200
 
 # ── Backwards-compat: old ?article= URLs still work for humans ──
-# (Facebook already cached the old generic previews for these; nothing we can do.)
 [[redirects]]
   from = "/news/:article"
   to = "/AN_news.html?article=:article"
@@ -40,7 +50,7 @@
   to = "/AN_explore.html?article=:article&lang=:lang"
   status = 200
 
-# Cache headers
+# ── Cache / security headers ──
 [[headers]]
   for = "/*"
   [headers.values]

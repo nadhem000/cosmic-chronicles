@@ -1,11 +1,15 @@
 // generate-article-pages.js
 // Runs during Netlify build. Writes one prerendered HTML per article
-// with article-specific OG/Twitter meta tags, so bots like
-// facebookexternalhit see the actual article instead of the app.
+// and per language, with article-specific OG/Twitter tags so social
+// crawlers (facebookexternalhit) see the actual article.
 //
 // Output:
-//   /explore/<article-id>/index.html   (from AN_explore.html)
-//   /news/<article-id>/index.html      (from AN_news.html)
+//   /explore/<id>/index.html        (English)
+//   /explore/<id>/fr/index.html     (French)
+//   /explore/<id>/ar/index.html     (Arabic)
+//   /news/<id>/index.html
+//   /news/<id>/fr/index.html
+//   /news/<id>/ar/index.html
 //   /sitemap.xml
 
 const fs   = require('fs');
@@ -13,8 +17,9 @@ const path = require('path');
 const vm   = require('vm');
 
 // ─── CONFIG ───
-const SITE_URL = 'https://universe-chronicles.netlify.app'; // ← change if your domain differs
-const LANGS    = ['en'];                                    // add 'fr','ar' for per-language OG tags
+const SITE_URL = 'https://universe-chronicles.netlify.app'; // ← your domain
+const LANGS    = ['en', 'fr', 'ar'];
+const LOCALE_MAP = { en: 'en_US', fr: 'fr_FR', ar: 'ar_TN' };
 
 // ─── LOAD DATA (const-safe via vm) ───
 function loadGlobal(file, globalName) {
@@ -50,30 +55,39 @@ function truncate(s, n) {
   return s.length <= n ? s : s.slice(0, n - 1).trimEnd() + '…';
 }
 
-// Replace <meta ...attr="key" ...> or inject one before </head> if absent.
 function replaceMeta(html, attr, key, value) {
   const safeKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  const pattern = new RegExp(
-    `<meta[^>]*${attr}=["']${safeKey}["'][^>]*>`,
-    'i'
-  );
+  const pattern = new RegExp(`<meta[^>]*${attr}=["']${safeKey}["'][^>]*>`, 'i');
   const tag = `<meta ${attr}="${key}" content="${escHtml(value)}">`;
   if (pattern.test(html)) return html.replace(pattern, tag);
   return html.replace(/<\/head>/i, `  ${tag}\n</head>`);
 }
 
 // ─── BUILD ONE PAGE ───
-function buildPage({ template, article, content, pageUrl }) {
+function buildPage({ template, article, content, pageUrl, lang }) {
   const title       = content.title || 'Cosmic Chronicles';
   const description = truncate(
     content.subtitle || content.excerpt || content.introduction || content.body || '',
     200
   );
-  const imageUrl    = absoluteUrl(article.image);
+  const imageUrl = absoluteUrl(article.image);
 
   let html = template;
 
-  // <base> so relative asset paths resolve from /explore/:id/ or /news/:id/
+  // <html lang=".."> + dir
+  html = html.replace(/<html\s+lang=["'][^"']*["']/i, `<html lang="${lang}"`);
+  if (lang === 'ar') {
+    html = html.replace(/<html\s+[^>]*>/i, (m) => {
+      if (/dir=/.test(m)) return m.replace(/dir=["'][^"']*["']/, 'dir="rtl"');
+      return m.replace(/>$/, ' dir="rtl">');
+    });
+  } else {
+    html = html.replace(/<html\s+[^>]*>/i, (m) => {
+      if (/dir=/.test(m)) return m.replace(/dir=["'][^"']*["']/, 'dir="ltr"');
+      return m.replace(/>$/, ' dir="ltr">');
+    });
+  }
+
   if (!/<base\s/i.test(html)) {
     html = html.replace(
       /<meta\s+charset=["'][^"']+["']\s*>/i,
@@ -81,7 +95,6 @@ function buildPage({ template, article, content, pageUrl }) {
     );
   }
 
-  // <title>
   html = html.replace(
     /<title>[^<]*<\/title>/i,
     `<title>${escHtml(title)} | Cosmic Chronicles</title>`
@@ -94,6 +107,7 @@ function buildPage({ template, article, content, pageUrl }) {
   html = replaceMeta(html, 'property', 'og:url',         pageUrl);
   html = replaceMeta(html, 'property', 'og:type',        'article');
   html = replaceMeta(html, 'property', 'og:site_name',   'Cosmic Chronicles');
+  html = replaceMeta(html, 'property', 'og:locale',      LOCALE_MAP[lang] || 'en_US');
 
   // Twitter
   html = replaceMeta(html, 'name', 'twitter:card',        'summary_large_image');
@@ -101,10 +115,10 @@ function buildPage({ template, article, content, pageUrl }) {
   html = replaceMeta(html, 'name', 'twitter:description', description);
   html = replaceMeta(html, 'name', 'twitter:image',       imageUrl);
 
-  // Hint the SPA which article to open
   html = html.replace(
     /<\/head>/i,
-    `  <meta name="article-id" content="${escHtml(article.id)}">\n  </head>`
+    `  <meta name="article-id" content="${escHtml(article.id)}">\n` +
+    `  <meta name="article-lang" content="${escHtml(lang)}">\n  </head>`
   );
 
   return html;
@@ -112,9 +126,9 @@ function buildPage({ template, article, content, pageUrl }) {
 
 // ─── WRITE ONE FILE ───
 function writeOne({ template, article, content, urlPrefix, lang }) {
-  const suffix = (lang === 'en') ? '' : `?lang=${lang}`;
-  const pageUrl = `${SITE_URL}/${urlPrefix}/${article.id}${suffix}`;
-  const html    = buildPage({ template, article, content, pageUrl });
+  const langSuffix = (lang === 'en') ? '' : `/${lang}`;
+  const pageUrl    = `${SITE_URL}/${urlPrefix}/${article.id}${langSuffix}`;
+  const html       = buildPage({ template, article, content, pageUrl, lang });
 
   const dir = (lang === 'en')
     ? path.join(process.cwd(), urlPrefix, article.id)
@@ -153,18 +167,33 @@ function main() {
 
   console.log(`✅ Generated ${count} article pages.`);
 
-  // ─── Regenerate sitemap ───
+  // ─── Regenerate sitemap (all languages) ───
   const urls = [
     { loc: `${SITE_URL}/index.html`,      priority: '1.0', freq: 'daily' },
     { loc: `${SITE_URL}/AN_explore.html`, priority: '0.8', freq: 'weekly' },
     { loc: `${SITE_URL}/AN_news.html`,    priority: '0.8', freq: 'daily' },
-    ...exploreArticles.map(a => ({
-      loc: `${SITE_URL}/explore/${a.id}`, priority: '0.7', freq: 'monthly',
-    })),
-    ...newsArticles.map(a => ({
-      loc: `${SITE_URL}/news/${a.id}`, priority: '0.7', freq: 'monthly',
-    })),
   ];
+
+  for (const a of exploreArticles) {
+    for (const lang of LANGS) {
+      if (!(a[lang] || a.en)) continue;
+      const suffix = (lang === 'en') ? '' : `/${lang}`;
+      urls.push({
+        loc: `${SITE_URL}/explore/${a.id}${suffix}`,
+        priority: '0.7', freq: 'monthly',
+      });
+    }
+  }
+  for (const a of newsArticles) {
+    for (const lang of LANGS) {
+      if (!(a[lang] || a.en)) continue;
+      const suffix = (lang === 'en') ? '' : `/${lang}`;
+      urls.push({
+        loc: `${SITE_URL}/news/${a.id}${suffix}`,
+        priority: '0.7', freq: 'monthly',
+      });
+    }
+  }
 
   const today = new Date().toISOString().slice(0, 10);
   const xml =
