@@ -1258,16 +1258,13 @@
             .substring(0, 60);
     }
 
-    // Function to generate article URL with slug
+    // ─────────────────────────────────────────────────────────
+    // MODIFIED: clean shareable URL: /explore/<id>?lang=<lang>
+    // ─────────────────────────────────────────────────────────
     function AN_generateArticleURL(articleId, language) {
         const article = AN_explore_data.find(a => a.id === articleId);
         if (!article) return window.location.href;
-        
-        const content = article[language] || article.en;
-        const slug = AN_createSlug(content.title);
-        const baseUrl = window.location.origin + window.location.pathname;
-        
-        return `${baseUrl}?article=${articleId}&title=${slug}&lang=${language}`;
+        return `${window.location.origin}/explore/${articleId}?lang=${language}`;
     }
 
     // Function to copy article link to clipboard
@@ -1763,10 +1760,10 @@
         modal.classList.add('AN-active');
         document.body.style.overflow = 'hidden';
         
-        // Update URL
+        // Update URL to the clean shareable path
         const newUrl = AN_generateArticleURL(article.id, language);
         if (history.pushState) {
-            window.history.pushState({ path: newUrl }, '', newUrl);
+            window.history.pushState({ path: newUrl, articleId: article.id }, '', newUrl);
         }
     }
 
@@ -1779,32 +1776,38 @@
         // Reset page title
         document.title = 'Cosmic Chronicles - Explore Astronomy';
         
-        // Clear URL parameters
+        // Return to explore list URL
         if (history.pushState) {
-            const newUrl = window.location.origin + window.location.pathname;
+            const newUrl = `${window.location.origin}/AN_explore.html`;
             window.history.pushState({ path: newUrl }, '', newUrl);
         }
     }
 
-    // Function to handle URL parameters on page load
+    // ─────────────────────────────────────────────────────────
+    // MODIFIED: accept ?article=<id> OR /explore/<id>
+    // ─────────────────────────────────────────────────────────
     function AN_handleURLParameters() {
         const urlParams = new URLSearchParams(window.location.search);
-        const articleId = urlParams.get('article');
+        let articleId = urlParams.get('article');
+
+        // Support clean path /explore/<id>
+        if (!articleId) {
+            const m = window.location.pathname.match(/\/explore\/([^\/?#]+)/);
+            if (m) articleId = m[1];
+        }
+
         const lang = urlParams.get('lang');
-        
+
         if (articleId) {
             const article = AN_explore_data.find(a => a.id === articleId);
             if (article) {
-                // Set language if specified
-                if (lang) {
+                if (lang && ['en', 'fr', 'ar'].includes(lang)) {
                     const languageSelect = document.getElementById('AN-language-select');
                     if (languageSelect) {
                         languageSelect.value = lang;
                         currentLanguage = lang;
                     }
                 }
-                
-                // Show the article modal
                 setTimeout(() => {
                     AN_showArticleModal(article, currentLanguage);
                 }, 100);
@@ -1975,11 +1978,35 @@
                 AN_closeArticleModal();
             }
         });
+
+        // ─────────────────────────────────────────────────────────
+        // MODIFIED: back/forward navigation for clean URLs
+        // ─────────────────────────────────────────────────────────
+        window.addEventListener('popstate', function() {
+            const path = window.location.pathname;
+            const match = path.match(/\/explore\/([^\/?#]+)/);
+
+            if (match) {
+                const article = AN_explore_data.find(a => a.id === match[1]);
+                if (article) {
+                    AN_showArticleModal(article, currentLanguage);
+                    return;
+                }
+            }
+
+            // No article in path — close the modal if open
+            const modal = document.getElementById('AN-article-modal');
+            if (modal.classList.contains('AN-active')) {
+                modal.classList.remove('AN-active');
+                document.body.style.overflow = 'auto';
+                document.title = 'Cosmic Chronicles - Explore Astronomy';
+            }
+        });
         
         // Initialize with saved language
         AN_applyExploreTranslations(savedLanguage);
         
-        // Handle URL parameters on page load
+        // Handle URL parameters on page load (supports both old ?article= and new /explore/<id>)
         AN_handleURLParameters();
     });
 </script>

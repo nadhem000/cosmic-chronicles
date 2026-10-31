@@ -1,6 +1,6 @@
 [build]
   publish = "."
-  command = "echo 'No build command needed for static site'"
+  command = "node generate-article-pages.js"
 
 [build.environment]
   NODE_VERSION = "18"
@@ -12,25 +12,26 @@
 [context.deploy-preview.environment]
   NODE_ENV = "preview"
 
-# News article redirects - FIXED VERSION
+# ── Clean, prerendered article paths (created by generate-article-pages.js) ──
+[[redirects]]
+  from = "/explore/:id"
+  to = "/explore/:id/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/news/:id"
+  to = "/news/:id/index.html"
+  status = 200
+
+# ── Backwards-compat: old ?article= URLs still work for humans ──
+# (Facebook already cached the old generic previews for these; nothing we can do.)
 [[redirects]]
   from = "/news/:article"
   to = "/AN_news.html?article=:article"
   status = 200
 
 [[redirects]]
-  from = "/article/:article"
-  to = "/AN_news.html?article=:article"
-  status = 200
-
-# Article-specific redirects for Explore section
-[[redirects]]
   from = "/explore/:article"
-  to = "/AN_explore.html?article=:article"
-  status = 200
-
-[[redirects]]
-  from = "/article/:article"
   to = "/AN_explore.html?article=:article"
   status = 200
 
@@ -39,7 +40,7 @@
   to = "/AN_explore.html?article=:article&lang=:lang"
   status = 200
 
-# Cache headers for performance
+# Cache headers
 [[headers]]
   for = "/*"
   [headers.values]
