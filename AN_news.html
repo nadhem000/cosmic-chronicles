@@ -294,8 +294,16 @@
             newsList.appendChild(newsItem);
         });
         if (newsData.length > 0) {
-            AN_loadArticle(newsData[0].id, language);
-        }
+    const layout = document.querySelector('.AN-news-layout');
+    if (window.innerWidth > 768) {
+        // Desktop: auto-load first article (unchanged behaviour)
+        AN_loadArticle(newsData[0].id, language);
+    } else if (layout && !layout.dataset.userOpenedArticle) {
+        // Mobile: show list only until user taps an item
+        layout.classList.add('AN-list-view');
+        layout.classList.remove('AN-article-view');
+    }
+}
     }
 
     function AN_loadArticle(articleId, language) {
@@ -311,7 +319,10 @@
         const wordCount = content.body.split(' ').length;
         const readTime = Math.ceil(wordCount / 200);
         mainArticle.innerHTML = `
-            <article class="AN-article" data-article-id="${articleId}">
+    <button class="AN-back-to-list-btn" id="AN-back-to-list">
+        <i class="fas fa-arrow-left"></i> ${AN_translations[language]?.['An.news.backToList'] || 'Back to News List'}
+    </button>
+    <article class="AN-article" data-article-id="${articleId}">
                 <div class="AN-article-header">
                     <div class="AN-article-category">
                         <span class="AN-article-badge ${articleData.category === 'local' ? 'AN-local-badge' : 'AN-global-badge'}">
@@ -362,6 +373,24 @@
                 </div>
             </article>
         `;
+
+// ── Mobile view toggle ──
+const layout = document.querySelector('.AN-news-layout');
+if (layout) layout.dataset.userOpenedArticle = '1';
+
+if (window.innerWidth <= 768 && layout) {
+    layout.classList.add('AN-article-view');
+    layout.classList.remove('AN-list-view');
+}
+
+const backBtn = document.getElementById('AN-back-to-list');
+if (backBtn) {
+    backBtn.addEventListener('click', () => {
+        layout.classList.add('AN-list-view');
+        layout.classList.remove('AN-article-view');
+        delete layout.dataset.userOpenedArticle;
+    });
+}
         updateMetaTags(articleData, content, language);
         document.querySelectorAll('.AN-related-article').forEach(item => {
             item.addEventListener('click', function(e) {
@@ -668,15 +697,30 @@
                 .AN-article-related-grid { grid-template-columns: repeat(2, 1fr); }
             }
             @media (max-width: 768px) {
-                .AN-page-title { font-size: 28px; }
-                .AN-news-filter { justify-content: center; }
-                .AN-article-title { font-size: 24px; }
-                .AN-article-subtitle { font-size: 16px; }
-                .AN-article-image { height: 250px; }
-                .AN-article-body { font-size: 16px; }
-                .AN-article-related-grid { grid-template-columns: 1fr; }
-                .AN-article-related-title { font-size: 20px; }
-            }
+    .AN-news-layout { grid-template-columns: 1fr; gap: 20px; }
+    .AN-news-sidebar { max-height: none; }
+
+    .AN-news-layout.AN-article-view .AN-news-sidebar { display: none; }
+    .AN-news-layout.AN-list-view    .AN-main-article { display: none; }
+
+    .AN-back-to-list-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        background: var(--AN-primary-color);
+        color: #fff;
+        border: none;
+        border-radius: var(--AN-radius);
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 14px;
+        margin-bottom: 16px;
+    }
+}
+@media (min-width: 769px) {
+    .AN-back-to-list-btn { display: none !important; }
+}
             @media (max-width: 480px) {
                 .AN-news-filter { gap: 5px; }
                 .AN-filter-btn { padding: 6px 12px; font-size: 12px; }

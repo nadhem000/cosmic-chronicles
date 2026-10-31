@@ -577,3 +577,81 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.head.appendChild(style);
 });
+// ── Mobile scroll-hide: nav + fixed bottom overlays (PWA btn, prompts) ──
+(function () {
+    const HIDE_AFTER   = 60;   // px before hiding kicks in
+    const DELTA        = 8;    // scroll delta to flip direction
+    let lastY = window.scrollY;
+    let ticking = false;
+
+    const FIXED_BOTTOM_SELECTORS = [
+        '#AN-pwa-install-btn',
+        '#AN-notification-permission-prompt',
+        '#AN-pwa-update-notification'
+    ];
+
+    function ensureTransitions() {
+        document.querySelectorAll(FIXED_BOTTOM_SELECTORS.join(',')).forEach(el => {
+            if (el && !el.dataset.scrollInit) {
+                el.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+                el.dataset.scrollInit = '1';
+            }
+        });
+    }
+
+    function applyScrollState() {
+        const y        = window.scrollY;
+        const delta    = y - lastY;
+        const isMobile = window.innerWidth <= 768;
+        const nav      = document.querySelector('.AN-nav');
+
+        if (nav) {
+            if (!isMobile || y < HIDE_AFTER) {
+                nav.classList.remove('AN-nav-hidden');
+            } else if (delta > DELTA) {
+                nav.classList.add('AN-nav-hidden');
+            } else if (delta < -DELTA) {
+                nav.classList.remove('AN-nav-hidden');
+            }
+        }
+
+        document.querySelectorAll(FIXED_BOTTOM_SELECTORS.join(',')).forEach(el => {
+            if (!el) return;
+            if (!isMobile || y < HIDE_AFTER) {
+                el.style.transform = '';
+                el.style.opacity = '1';
+                el.style.pointerEvents = '';
+            } else if (delta > DELTA) {
+                el.style.transform = 'translateY(160%)';
+                el.style.opacity = '0';
+                el.style.pointerEvents = 'none';
+            } else if (delta < -DELTA) {
+                el.style.transform = '';
+                el.style.opacity = '1';
+                el.style.pointerEvents = '';
+            }
+        });
+
+        lastY = y;
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', function () {
+        if (!ticking) {
+            requestAnimationFrame(applyScrollState);
+            ticking = true;
+        }
+    }, { passive: true });
+
+    window.addEventListener('resize', function () {
+        if (window.innerWidth > 768) {
+            const nav = document.querySelector('.AN-nav');
+            if (nav) nav.classList.remove('AN-nav-hidden');
+        }
+    });
+
+    // Catch dynamically-injected overlays (PWA prompt, update banner)
+    const observer = new MutationObserver(ensureTransitions);
+    observer.observe(document.body, { childList: true, subtree: true });
+    ensureTransitions();
+})();
