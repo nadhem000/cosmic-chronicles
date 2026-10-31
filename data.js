@@ -134,6 +134,50 @@ const AN_data = [
         body: 'Les coordinateurs astronomiques d\'Irak, de Syrie et de Tunisie, sous la supervision du Bureau de l\'astronomie pour le développement de l\'Union astronomique internationale, ont annoncé le lancement du projet : "L\'astronomie pour tous : soutien et autonomisation des personnes en situation de handicap dans le monde arabe". Ce projet a été le premier du genre dans le monde arabe et visait à renforcer l\'inclusion astronomique et à permettre aux personnes en situation de handicap d\'accéder et de participer efficacement aux sciences spatiales et astronomiques. Le projet a travaillé au développement de programmes éducatifs et d\'orientation adaptés à différents groupes, en plus de la construction d\'un site web dédié au projet comme plateforme de communication, fournissant du matériel de formation et annonçant les activités et événements conjoints. Les coordinateurs d\'Irak, de Syrie et de Tunisie ont également collaboré à la conduite d\'ateliers, au lancement d\'initiatives de soutien et à la fourniture d\'un environnement éducatif adapté qui a contribué à l\'intégration des personnes en situation de handicap dans la communauté astronomique arabe et internationale.'
     }
 },
+    {
+    id: 'news-007',
+    type: 'news',
+    category: 'local',
+    image: 'assets2/images/news/cite-sciences-astronomy-evening.jpg',
+    date: '2026-10-24',
+    en: {
+        title: 'Cité des Sciences in Tunis Hosts Astronomy Evening for World Space Week',
+        subtitle: 'Free public event combines a lecture on space technologies with stargazing of the Moon and Saturn',
+        body: 'On Saturday, October 24, 2026, the Cité des Sciences in Tunis organized an astronomy evening titled "Space in Our Daily Life: From Space Technologies to the Wonders of the Sky," held at the Ibn Khaldoun Amphitheater starting at 6:30 PM. Part of the World Space Week celebrations, the event opened with a lecture exploring how space technologies have become embedded in everyday life, from satellite navigation and communications to Earth observation and weather forecasting. The evening continued with an outdoor stargazing session, where astronomy enthusiasts used telescopes set up on site to observe the Moon, Saturn with its rings and principal moons, and the apparent close approach between the Moon and Saturn. The event was free and open to the public, attracting families, students, and amateur astronomers eager to discover the wonders of the night sky.'
+    },
+    ar: {
+        title: 'مدينة العلوم بتونس تنظّم سهرة فلكية احتفاءً بالأسبوع العالمي للفضاء',
+        subtitle: 'تظاهرة مجانية تجمع بين محاضرة حول تقنيات الفضاء ورصد القمر وكوكب زحل',
+        body: 'نظّمت مدينة العلوم بتونس يوم السبت 24 أكتوبر 2026 سهرة فلكية بعنوان "الفضاء في حياتنا اليومية: من تقنيات الفضاء إلى عجائب السماء"، وذلك بقاعة ابن خلدون ابتداءً من الساعة السادسة والنصف مساءً. وتندرج هذه السهرة ضمن احتفالات الأسبوع العالمي للفضاء، حيث افتُتحت بمحاضرة تناولت كيفية اندماج تقنيات الفضاء في حياتنا اليومية، من أنظمة الملاحة عبر الأقمار الصناعية والاتصالات إلى رصد الأرض والتنبؤات الجوية. وتواصلت السهرة بورشة رصد فلكي في الهواء الطلق، حيث استخدم هواة الفلك التلسكوبات المثبّتة في الموقع لرصد القمر وكوكب زحل بحلقاته وأقماره الرئيسية، إضافة إلى الاقتران الظاهري بين القمر وزحل. وكانت السهرة مجانية ومفتوحة للعموم، واستقطبت عائلات وطلبة وهواة فلك متعطشين لاكتشاف عجائب سماء الليل.'
+    },
+    fr: {
+        title: 'La Cité des Sciences de Tunis organise une soirée astronomique pour la Semaine Mondiale de l\'Espace',
+        subtitle: 'Un événement public gratuit alliant une conférence sur les technologies spatiales à l\'observation de la Lune et de Saturne',
+        body: 'Le samedi 24 octobre 2026, la Cité des Sciences de Tunis a organisé une soirée astronomique intitulée « L\'espace dans notre vie quotidienne : des technologies spatiales aux merveilles du ciel », tenue à l\'amphithéâtre Ibn Khaldoun à partir de 18h30. Inscrite dans le cadre des célébrations de la Semaine Mondiale de l\'Espace, la soirée s\'est ouverte par une conférence explorant la manière dont les technologies spatiales se sont intégrées à la vie quotidienne, de la navigation par satellite et des communications à l\'observation de la Terre et aux prévisions météorologiques. La soirée s\'est poursuivie par une séance d\'observation en plein air, où les passionnés d\'astronomie ont utilisé les télescopes installés sur place pour observer la Lune, Saturne avec ses anneaux et ses principaux satellites, ainsi que le rapprochement apparent entre la Lune et Saturne. L\'événement était gratuit et ouvert au public, attirant familles, étudiants et astronomes amateurs désireux de découvrir les merveilles du ciel nocturne.'
+    }
+},
+    {
+    id: 'news-008',
+    type: 'news',
+    category: 'global',
+    image: 'assets2/images/news/3i-atlas-jwst.jpg',
+    date: '2026-10-31',
+    en: {
+        title: 'Interstellar Comet 3I/ATLAS May Contain 10-Billion-Year-Old Material',
+        subtitle: 'JWST measurements reveal the comet holds the oldest known matter, formed long before the Sun existed',
+        body: 'A new study published in Nature Astronomy has revealed that the interstellar comet 3I/ATLAS contains material that may have formed more than seven billion years before the Sun existed, potentially making it over ten billion years old. Using the James Webb Space Telescope, researchers analyzed the comet\'s deuterium-to-hydrogen (D/H) ratio in methane. They found that 3I/ATLAS holds significantly more heavy methane than any body in our Solar System, and thirteen times more than comet 67P/Churyumov-Gerasimenko. This unique chemical signature suggests that 3I/ATLAS originated in a distant exoplanetary system with conditions unlike anything found locally, offering astronomers a rare time capsule from the early cosmos and new clues about the chemical diversity of planetary systems beyond our own.'
+    },
+    ar: {
+        title: 'المذنب بين النجوم 3I/أطلس قد يحتوي على مواد عمرها 10 مليارات سنة',
+        subtitle: 'قياسات تلسكوب جيمس ويب تكشف أن المذنب يحمل أقدم مادة معروفة تشكّلت قبل وجود الشمس بفترة طويلة',
+        body: 'كشفت دراسة جديدة نُشرت في مجلة Nature Astronomy أن المذنب بين النجوم 3I/أطلس يحتوي على مواد ربما تشكّلت قبل أكثر من سبعة مليارات سنة من وجود الشمس، مما قد يجعل عمرها يتجاوز عشرة مليارات سنة. وباستخدام تلسكوب جيمس ويب الفضائي، حلّل الباحثون نسبة الديوتيريوم إلى الهيدروجين (D/H) في الميثان الخاص بالمذنب. ووجدوا أن 3I/أطلس يحتوي على كميات من الميثان الثقيل تفوق بكثير أي جرم في نظامنا الشمسي، وتزيد ثلاث عشرة مرة عن المذنب 67P/تشوريوموف-غيراسيمنكو. وتشير هذه البصمة الكيميائية الفريدة إلى أن 3I/أطلس نشأ في نظام كوكبي خارجي بعيد ذي ظروف لا مثيل لها محلياً، مما يقدّم للفلكيين كبسولة زمنية نادرة من الكون المبكر وأدلة جديدة حول التنوع الكيميائي للأنظمة الكوكبية خارج نظامنا.'
+    },
+    fr: {
+        title: 'La comète interstellaire 3I/ATLAS pourrait contenir de la matière vieille de 10 milliards d\'années',
+        subtitle: 'Les mesures du JWST révèlent que la comète renferme la matière la plus ancienne connue, formée bien avant l\'existence du Soleil',
+        body: 'Une nouvelle étude publiée dans Nature Astronomy a révélé que la comète interstellaire 3I/ATLAS contient de la matière qui pourrait s\'être formée plus de sept milliards d\'années avant l\'existence du Soleil, ce qui la rendrait potentiellement âgée de plus de dix milliards d\'années. Grâce au télescope spatial James Webb, les chercheurs ont analysé le rapport deutérium/hydrogène (D/H) dans le méthane de la comète. Ils ont découvert que 3I/ATLAS renferme nettement plus de méthane lourd que n\'importe quel corps de notre Système solaire, et treize fois plus que la comète 67P/Tchourioumov-Guérassimenko. Cette signature chimique unique suggère que 3I/ATLAS provient d\'un système exoplanétaire lointain aux conditions sans équivalent local, offrant aux astronomes une rare capsule temporelle du cosmos primitif et de nouveaux indices sur la diversité chimique des systèmes planétaires au-delà du nôtre.'
+    }
+},
     // Events (updated with Tunisian dates)
     {
     id: 'event-001',
