@@ -11,6 +11,9 @@
 //   /news/<id>/fr/index.html
 //   /news/<id>/ar/index.html
 //   /sitemap.xml
+//
+// Also injects a per-deploy BUILD_ID into sw.js so the Service Worker
+// version string auto-bumps on every deploy.
 
 const fs   = require('fs');
 const path = require('path');
@@ -61,6 +64,36 @@ function replaceMeta(html, attr, key, value) {
   const tag = `<meta ${attr}="${key}" content="${escHtml(value)}">`;
   if (pattern.test(html)) return html.replace(pattern, tag);
   return html.replace(/<\/head>/i, `  ${tag}\n</head>`);
+}
+
+// ─── INJECT BUILD ID INTO sw.js (Netlify builds only) ───
+// The repo copy of sw.js contains the literal placeholder "__BUILD_ID__".
+// On Netlify we replace it in the deployed artifact only, so:
+//   • git status stays clean locally
+//   • every deploy produces new bytes in /sw.js
+//   • the browser sees the worker has changed and updates it reliably
+//   • old versioned caches are deleted on activate
+function injectSwBuildId() {
+  if (process.env.NETLIFY !== 'true') {
+    console.log('ℹ️  Local build — sw.js keeps __BUILD_ID__ placeholder.');
+    return;
+  }
+
+  const swPath = path.join(process.cwd(), 'sw.js');
+  let sw = fs.readFileSync(swPath, 'utf8');
+
+  if (!sw.includes('__BUILD_ID__')) {
+    console.warn('⚠️  sw.js has no __BUILD_ID__ placeholder; skipping injection.');
+    return;
+  }
+
+  // Prefer Netlify's DEPLOY_ID (stable per build); fall back to a timestamp
+  const rawId   = process.env.DEPLOY_ID || Date.now().toString(36);
+  const buildId = String(rawId).replace(/[^a-zA-Z0-9]/g, '').slice(-10) || 'dev';
+
+  sw = sw.split('__BUILD_ID__').join(buildId);
+  fs.writeFileSync(swPath, sw);
+  console.log(`✅ Injected build ID "${buildId}" into sw.js`);
 }
 
 // ─── BUILD ONE PAGE ───
@@ -207,6 +240,9 @@ function main() {
 
   fs.writeFileSync(path.join(process.cwd(), 'sitemap.xml'), xml);
   console.log('✅ sitemap.xml regenerated.');
+
+  // ─── Inject build ID into sw.js ───
+  injectSwBuildId();
 }
 
 main();

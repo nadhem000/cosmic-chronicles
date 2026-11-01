@@ -1,9 +1,14 @@
 /**
  * Service Worker for Cosmic Chronicles
  * Handles caching, offline functionality, and push notifications
+ *
+ * Cache versioning: BUILD_ID is injected at deploy time by
+ * generate-article-pages.js (Netlify builds only). Locally it stays as
+ * the literal '__BUILD_ID__' and works fine.
  */
 
-const CACHE_NAME = 'universe-chronicles-v1.2.5';
+const BUILD_ID    = '__BUILD_ID__';
+const CACHE_NAME  = `universe-chronicles-${BUILD_ID}`;
 const CACHE_ASSETS = [
     // Core pages
     '/',
@@ -13,7 +18,7 @@ const CACHE_ASSETS = [
     '/AN_gallery.html',
     '/AN_explore.html',
     '/AN_about.html',
-    
+
     // Core assets
     '/main.css',
     '/data.js',
@@ -23,10 +28,10 @@ const CACHE_ASSETS = [
     '/data_about.js',
     '/translation.js',
     '/pwa-main.js',
-    
+
     // Manifest
     '/manifest.json',
-    
+
     // Icons
     '/assets/icons/icon-72x72.png',
     '/assets/icons/icon-96x96.png',
@@ -40,50 +45,62 @@ const CACHE_ASSETS = [
     '/assets2/images/explore/big-bang-quest.jpg',
     '/assets2/images/explore/hubble-deep-field.jpg',
     '/assets2/images/explore/james-webb-space-telescope.jpg',
-    
+
     // Font Awesome (CDN)
     'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
     'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2',
     'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-brands-400.woff2',
-    
+
     // Fallback offline page
     '/offline.html'
 ];
 
-const DYNAMIC_CACHE = 'universe-chronicles-dynamic-v25';
-const API_CACHE = 'universe-chronicles-api-v25';
+const DYNAMIC_CACHE = `universe-chronicles-dynamic-${BUILD_ID}`;
+const API_CACHE     = `universe-chronicles-api-${BUILD_ID}`;
 
 // Skip waiting and claim clients immediately
 self.addEventListener('install', event => {
-    console.log('[Service Worker] Installing...');
-    
+    console.log('[Service Worker] Installing…');
+
     event.waitUntil(
-        caches.open(CACHE_NAME)
-            .then(cache => {
-                console.log('[Service Worker] Caching core assets');
-                return cache.addAll(CACHE_ASSETS);
-            })
-            .then(() => {
-                console.log('[Service Worker] Install completed');
-                return self.skipWaiting();
-            })
-            .catch(error => {
-                console.error('[Service Worker] Install failed:', error);
-            })
+        (async () => {
+            const cache = await caches.open(CACHE_NAME);
+            console.log('[Service Worker] Caching core assets (cache: reload)');
+
+            // FIX: use cache:'reload' so precache bypasses the HTTP cache.
+            // This guarantees the SW always installs with fresh bytes even if
+            // the browser still has a year-long immutable entry from before.
+            await Promise.all(CACHE_ASSETS.map(async url => {
+                try {
+                    const resp = await fetch(url, { cache: 'reload' });
+                    if (resp && resp.ok) {
+                        await cache.put(url, resp);
+                    } else {
+                        console.warn('[SW] Precache got status', resp && resp.status, 'for', url);
+                    }
+                } catch (e) {
+                    // A single failing file must not abort the whole install.
+                    console.warn('[SW] Precache failed for', url, e);
+                }
+            }));
+
+            console.log('[Service Worker] Install completed');
+            await self.skipWaiting();
+        })()
     );
 });
 
 // Activate and clean up old caches
 self.addEventListener('activate', event => {
-    console.log('[Service Worker] Activating...');
-    
+    console.log('[Service Worker] Activating…');
+
     event.waitUntil(
         caches.keys().then(cacheNames => {
             return Promise.all(
                 cacheNames.map(cacheName => {
                     // Delete old caches
-                    if (cacheName !== CACHE_NAME && 
-                        cacheName !== DYNAMIC_CACHE && 
+                    if (cacheName !== CACHE_NAME &&
+                        cacheName !== DYNAMIC_CACHE &&
                         cacheName !== API_CACHE &&
                         cacheName.startsWith('universe-chronicles-')) {
                         console.log('[Service Worker] Deleting old cache:', cacheName);
@@ -102,7 +119,7 @@ self.addEventListener('activate', event => {
 // Fetch event with cache strategies
 self.addEventListener('fetch', event => {
     const url = new URL(event.request.url);
-    
+
     // Handle article-specific URLs
     if (url.pathname.includes('/AN_explore.html') && url.search.includes('article=')) {
         event.respondWith(
@@ -130,7 +147,7 @@ self.addEventListener('fetch', event => {
         );
         return;
     }
-    
+
     // Skip cross-origin requests
     if (url.origin !== self.location.origin) {
         // For CDN resources, use cache-first
@@ -141,22 +158,22 @@ self.addEventListener('fetch', event => {
                         if (cachedResponse) {
                             return cachedResponse;
                         }
-                        
+
                         return fetch(event.request)
                             .then(response => {
                                 // Don't cache if not successful
                                 if (!response || response.status !== 200) {
                                     return response;
                                 }
-                                
+
                                 // Clone the response
                                 const responseToCache = response.clone();
-                                
+
                                 caches.open(DYNAMIC_CACHE)
                                     .then(cache => {
                                         cache.put(event.request, responseToCache);
                                     });
-                                
+
                                 return response;
                             });
                     })
@@ -164,7 +181,7 @@ self.addEventListener('fetch', event => {
         }
         return;
     }
-    
+
     // Different strategies for different types of requests
     if (event.request.method === 'GET') {
         // HTML pages - Network First
@@ -174,12 +191,12 @@ self.addEventListener('fetch', event => {
                     .then(response => {
                         // Clone the response
                         const responseClone = response.clone();
-                        
+
                         caches.open(DYNAMIC_CACHE)
                             .then(cache => {
                                 cache.put(event.request, responseClone);
                             });
-                        
+
                         return response;
                     })
                     .catch(() => {
@@ -189,53 +206,31 @@ self.addEventListener('fetch', event => {
                                 if (cachedResponse) {
                                     return cachedResponse;
                                 }
-                                
+
                                 // Return offline page for HTML requests
                                 return caches.match('/offline.html');
                             });
                     })
             );
         }
-        // CSS, JS, JSON - Cache First
+        // CSS, JS, JSON - Network First (FIX: was Cache First)
+        // Data files change with every deploy. Going network-first with
+        // cache:'no-cache' forces the browser to revalidate against Netlify,
+        // which bypasses any lingering immutable entry from before this fix.
+        // Falls back to the SW cache when offline.
         else if (event.request.url.match(/\.(css|js|json)$/)) {
             event.respondWith(
-                caches.match(event.request)
-                    .then(cachedResponse => {
-                        if (cachedResponse) {
-                            // Update cache in background
-                            fetch(event.request)
-                                .then(response => {
-                                    if (response && response.status === 200) {
-                                        const responseClone = response.clone();
-                                        caches.open(DYNAMIC_CACHE)
-                                            .then(cache => {
-                                                cache.put(event.request, responseClone);
-                                            });
-                                    }
-                                })
-                                .catch(() => {
-                                    // Ignore fetch errors for background updates
-                                });
-                            
-                            return cachedResponse;
+                fetch(event.request, { cache: 'no-cache' })
+                    .then(response => {
+                        if (response && response.status === 200) {
+                            const responseClone = response.clone();
+                            caches.open(DYNAMIC_CACHE)
+                                .then(cache => cache.put(event.request, responseClone))
+                                .catch(() => {});
                         }
-                        
-                        return fetch(event.request)
-                            .then(response => {
-                                if (response && response.status === 200) {
-                                    const responseClone = response.clone();
-                                    caches.open(DYNAMIC_CACHE)
-                                        .then(cache => {
-                                            cache.put(event.request, responseClone);
-                                        });
-                                }
-                                return response;
-                            })
-                            .catch(error => {
-                                console.error('Failed to fetch:', error);
-                                throw error;
-                            });
+                        return response;
                     })
+                    .catch(() => caches.match(event.request))
             );
         }
         // Images - Cache First with update
@@ -259,10 +254,10 @@ self.addEventListener('fetch', event => {
                                 .catch(() => {
                                     // Ignore fetch errors
                                 });
-                            
+
                             return cachedResponse;
                         }
-                        
+
                         // Not in cache, fetch from network
                         return fetch(event.request)
                             .then(response => {
@@ -290,12 +285,12 @@ self.addEventListener('fetch', event => {
                     .then(response => {
                         // Clone the response
                         const responseClone = response.clone();
-                        
+
                         caches.open(API_CACHE)
                             .then(cache => {
                                 cache.put(event.request, responseClone);
                             });
-                        
+
                         return response;
                     })
                     .catch(() => {
@@ -329,7 +324,7 @@ self.addEventListener('fetch', event => {
 // Background sync for failed requests
 self.addEventListener('sync', event => {
     console.log('[Service Worker] Background sync:', event.tag);
-    
+
     if (event.tag === 'sync-news') {
         event.waitUntil(
             syncNews()
@@ -346,7 +341,7 @@ self.addEventListener('sync', event => {
 // Push notification event
 self.addEventListener('push', event => {
     console.log('[Service Worker] Push received:', event);
-    
+
     let data = {
         title: 'Cosmic Chronicles',
         body: 'New astronomy update available!',
@@ -354,7 +349,7 @@ self.addEventListener('push', event => {
         badge: '/assets/icons/icon-96x96.png',
         tag: 'cosmic-update'
     };
-    
+
     if (event.data) {
         try {
             data = event.data.json();
@@ -362,7 +357,7 @@ self.addEventListener('push', event => {
             console.error('[Service Worker] Error parsing push data:', error);
         }
     }
-    
+
     const options = {
         body: data.body,
         icon: data.icon || '/assets/icons/icon-96x96.png',
@@ -383,7 +378,7 @@ self.addEventListener('push', event => {
         vibrate: data.vibrate || [200, 100, 200],
         timestamp: data.timestamp || Date.now()
     };
-    
+
     event.waitUntil(
         self.registration.showNotification(data.title, options)
     );
@@ -392,11 +387,11 @@ self.addEventListener('push', event => {
 // Notification click event
 self.addEventListener('notificationclick', event => {
     console.log('[Service Worker] Notification click:', event.notification.tag);
-    
+
     event.notification.close();
-    
+
     const urlToOpen = event.notification.data?.url || '/';
-    
+
     event.waitUntil(
         clients.matchAll({
             type: 'window',
@@ -409,7 +404,7 @@ self.addEventListener('notificationclick', event => {
                     return client.focus();
                 }
             }
-            
+
             // If not, open a new window/tab
             if (clients.openWindow) {
                 return clients.openWindow(urlToOpen);
@@ -426,17 +421,17 @@ self.addEventListener('notificationclose', event => {
 // Message event for communication with pages
 self.addEventListener('message', event => {
     console.log('[Service Worker] Message received:', event.data);
-    
+
     if (event.data && event.data.type === 'SKIP_WAITING') {
         self.skipWaiting();
     }
-    
+
     if (event.data && event.data.type === 'CACHE_NEWS') {
         event.waitUntil(
             cacheNewsData(event.data.news)
         );
     }
-    
+
     if (event.data && event.data.type === 'GET_CACHE_INFO') {
         event.ports[0].postMessage({
             type: 'CACHE_INFO',
@@ -461,7 +456,7 @@ async function syncNews() {
         if (response.ok) {
             const news = await response.json();
             await cacheNewsData(news);
-            
+
             // Show notification for new news
             self.registration.showNotification('Cosmic Chronicles', {
                 body: `New ${news.length} astronomy articles available`,
@@ -477,35 +472,35 @@ async function syncNews() {
 
 async function cacheNewsData(news) {
     const cache = await caches.open(API_CACHE);
-    
+
     // Cache each news item
     for (const item of news) {
         const url = `/api/news/${item.id}`;
         const response = new Response(JSON.stringify(item), {
             headers: { 'Content-Type': 'application/json' }
         });
-        
+
         await cache.put(url, response);
     }
-    
+
     // Cache the news list
     const listResponse = new Response(JSON.stringify(news), {
         headers: { 'Content-Type': 'application/json' }
     });
-    
+
     await cache.put('/api/latest-news', listResponse);
 }
 
 // Background fetch for large files
 self.addEventListener('backgroundfetchsuccess', event => {
     console.log('[Service Worker] Background fetch succeeded:', event.registration.id);
-    
+
     event.updateUI({ title: 'Download complete' });
 });
 
 self.addEventListener('backgroundfetchfail', event => {
     console.log('[Service Worker] Background fetch failed:', event.registration.id);
-    
+
     event.updateUI({ title: 'Download failed' });
 });
 
@@ -518,7 +513,7 @@ self.addEventListener('message', async (event) => {
             '/AN_gallery.html',
             '/AN_explore.html'
         ];
-        
+
         for (const page of pages) {
             try {
                 await cache.add(page);
@@ -526,7 +521,7 @@ self.addEventListener('message', async (event) => {
                 console.warn(`[Service Worker] Failed to precache ${page}:`, error);
             }
         }
-        
+
         event.ports[0].postMessage({ type: 'PRECACHE_COMPLETE' });
     }
 });
