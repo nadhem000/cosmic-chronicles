@@ -9,8 +9,6 @@
 
 const BUILD_ID    = '__BUILD_ID__';
 const CACHE_NAME  = `universe-chronicles-${BUILD_ID}`;
-/* const CACHE_NAME = 'universe-chronicles-v1.2.8';
->>>>>>> 7e76f8cb24abaf8086ec29b8323c812632dbc43e */
 const CACHE_ASSETS = [
     // Core pages
     '/',
