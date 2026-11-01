@@ -7,7 +7,6 @@
  * the literal '__BUILD_ID__' and works fine.
  */
 
-<<<<<<< HEAD
 const BUILD_ID    = '__BUILD_ID__';
 const CACHE_NAME  = `universe-chronicles-${BUILD_ID}`;
 const CACHE_ASSETS = [
@@ -56,13 +55,8 @@ const CACHE_ASSETS = [
     '/offline.html'
 ];
 
-<<<<<<< HEAD
 const DYNAMIC_CACHE = `universe-chronicles-dynamic-${BUILD_ID}`;
 const API_CACHE     = `universe-chronicles-api-${BUILD_ID}`;
-=======
-const DYNAMIC_CACHE = 'universe-chronicles-dynamic-v28';
-const API_CACHE = 'universe-chronicles-api-v28';
->>>>>>> 7e76f8cb24abaf8086ec29b8323c812632dbc43e
 
 // Skip waiting and claim clients immediately
 self.addEventListener('install', event => {
