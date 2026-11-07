@@ -384,7 +384,10 @@
             
             if (!eventsContainer || events.length === 0) return;
             
-            eventsContainer.innerHTML = '';
+// newest first
+events.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+eventsContainer.innerHTML = '';
             
             events.forEach(event => {
                 const eventDate = new Date(event.date);

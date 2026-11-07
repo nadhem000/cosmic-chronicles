@@ -1005,6 +1005,8 @@
         if (!container) return;
         container.innerHTML = '';
         let articles = AN_explore_data;
+// NEW
+articles.sort((a, b) => new Date(b.date) - new Date(a.date));
         if (filter !== 'all') articles = articles.filter(article => article.category === filter);
         articles.forEach(article => {
             const content = article[language] || article.en;

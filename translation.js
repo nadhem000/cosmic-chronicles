@@ -318,6 +318,8 @@ function AN_renderNews(language, category = 'all') {
     const newsData = category === 'all' 
         ? AN_data.filter(item => item.type === 'news')
         : AN_data.filter(item => item.type === 'news' && item.category === category);
+// newest first
+newsData.sort((a, b) => new Date(b.date) - new Date(a.date));
     
     // If no news found, show message
     if (newsData.length === 0) {
@@ -410,6 +412,8 @@ function AN_renderEvents(language) {
     
     // Get events data
     const eventsData = AN_getDataByType('event');
+// newest first
+eventsData.sort((a, b) => new Date(b.date) - new Date(a.date));
     
     // Render events
     eventsData.forEach(item => {
