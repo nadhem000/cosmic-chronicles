@@ -54,7 +54,15 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    transition: var(--AN-transition);
+    /* animate only the properties that matter here */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    will-change: transform;
+}
+
+/* Hidden state – slides the whole header out of view */
+.AN-header.AN-header-hidden {
+    transform: translateY(-100%);
+    box-shadow: none;
 }
 
 .AN-header-content {

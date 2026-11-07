@@ -357,7 +357,7 @@ function AN_renderNews(language, category = 'all') {
         <p class="AN-news-excerpt">${content.body.substring(0, 150)}${content.body.length > 150 ? '...' : ''}</p>
         <div class="AN-news-meta">
             <span class="AN-news-date">${AN_formatDate(item.date, language)}</span>
-            <a href="AN_news.html?article=${item.id}" class="AN-read-more" data-i18n="An.index.readMore">${AN_translations[language]['An.index.readMore']}</a>
+            <a href="/AN_news.html?article=${item.id}" class="AN-read-more" data-i18n="An.index.readMore">${AN_translations[language]['An.index.readMore']}</a>
         </div>
     </div>
 `;
@@ -600,20 +600,34 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function applyScrollState() {
-        const y        = window.scrollY;
-        const delta    = y - lastY;
-        const isMobile = window.innerWidth <= 768;
-        const nav      = document.querySelector('.AN-nav');
+    const y        = window.scrollY;
+    const delta    = y - lastY;
+    const isMobile = window.innerWidth <= 768;
+    const nav      = document.querySelector('.AN-nav');
+    const header   = document.querySelector('.AN-header');
 
-        if (nav) {
-            if (!isMobile || y < HIDE_AFTER) {
-                nav.classList.remove('AN-nav-hidden');
-            } else if (delta > DELTA) {
-                nav.classList.add('AN-nav-hidden');
-            } else if (delta < -DELTA) {
-                nav.classList.remove('AN-nav-hidden');
-            }
+    // 1) Hide the WHOLE header on scroll-down, reveal it on scroll-up.
+    if (header) {
+        if (y < HIDE_AFTER) {
+            header.classList.remove('AN-header-hidden');
+        } else if (delta > DELTA) {
+            header.classList.add('AN-header-hidden');
+        } else if (delta < -DELTA) {
+            header.classList.remove('AN-header-hidden');
         }
+    }
+
+    // 2) Keep the old nav-collapse behaviour for desktop / extra compactness.
+    if (nav) {
+        if (!isMobile || y < HIDE_AFTER) {
+            nav.classList.remove('AN-nav-hidden');
+        } else if (delta > DELTA) {
+            nav.classList.add('AN-nav-hidden');
+        } else if (delta < -DELTA) {
+            nav.classList.remove('AN-nav-hidden');
+        }
+    }
+
 
         document.querySelectorAll(FIXED_BOTTOM_SELECTORS.join(',')).forEach(el => {
             if (!el) return;
@@ -631,10 +645,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 el.style.pointerEvents = '';
             }
         });
-
-        lastY = y;
-        ticking = false;
-    }
+    lastY = y;
+    ticking = false;
+}
 
     window.addEventListener('scroll', function () {
         if (!ticking) {
@@ -644,11 +657,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }, { passive: true });
 
     window.addEventListener('resize', function () {
-        if (window.innerWidth > 768) {
-            const nav = document.querySelector('.AN-nav');
-            if (nav) nav.classList.remove('AN-nav-hidden');
-        }
-    });
+    if (window.innerWidth > 768) {
+        const nav = document.querySelector('.AN-nav');
+        if (nav) nav.classList.remove('AN-nav-hidden');
+
+        const header = document.querySelector('.AN-header');
+        if (header) header.classList.remove('AN-header-hidden');
+    }
+});
 
     // Catch dynamically-injected overlays (PWA prompt, update banner)
     const observer = new MutationObserver(ensureTransitions);

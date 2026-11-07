@@ -33,7 +33,7 @@
 			<div class="AN-container">
 				<div class="AN-header-content">
 					<div class="AN-logo-section">
-						<a href="index.html" class="AN-logo-link">
+						<a href="/index.html" class="AN-logo-link">
 							<div class="AN-logo fallback-logo">
 								<img src="assets/icons/icon-96x96.png" alt="Cosmic Chronicles Logo" onerror="this.style.display='none'; this.parentElement.classList.add('fallback-logo')">
 								<i class="fas fa-star" style="display: none;"></i>
@@ -73,12 +73,12 @@
 				</div>
 				<nav class="AN-nav">
 					<ul class="AN-nav-list">
-						<li class="AN-nav-item"><a href="index.html" class="AN-nav-link" data-i18n="An.index.home">Home</a></li>
-						<li class="AN-nav-item"><a href="AN_news.html" class="AN-nav-link AN-active" data-i18n="An.index.news">News</a></li>
-						<li class="AN-nav-item"><a href="AN_missions.html" class="AN-nav-link" data-i18n="An.index.missions">Missions</a></li>
-						<li class="AN-nav-item"><a href="AN_gallery.html" class="AN-nav-link" data-i18n="An.index.gallery">Gallery</a></li>
-						<li class="AN-nav-item"><a href="AN_explore.html" class="AN-nav-link" data-i18n="An.index.explore">Explore Astronomy</a></li>
-						<li class="AN-nav-item"><a href="AN_about.html" class="AN-nav-link" data-i18n="An.index.about">About</a></li>
+						<li class="AN-nav-item"><a href="/index.html" class="AN-nav-link" data-i18n="An.index.home">Home</a></li>
+						<li class="AN-nav-item"><a href="/AN_news.html" class="AN-nav-link AN-active" data-i18n="An.index.news">News</a></li>
+						<li class="AN-nav-item"><a href="/AN_missions.html" class="AN-nav-link" data-i18n="An.index.missions">Missions</a></li>
+						<li class="AN-nav-item"><a href="/AN_gallery.html" class="AN-nav-link" data-i18n="An.index.gallery">Gallery</a></li>
+						<li class="AN-nav-item"><a href="/AN_explore.html" class="AN-nav-link" data-i18n="An.index.explore">Explore Astronomy</a></li>
+						<li class="AN-nav-item"><a href="/AN_about.html" class="AN-nav-link" data-i18n="An.index.about">About</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -125,12 +125,12 @@
 					<div class="AN-footer-section">
 						<h3 class="AN-footer-title" data-i18n="An.index.quickLinks">Quick Links</h3>
 						<ul class="AN-footer-links">
-							<li><a href="index.html" data-i18n="An.index.home">Home</a></li>
-							<li><a href="AN_news.html" data-i18n="An.index.news">News</a></li>
-							<li><a href="AN_missions.html" data-i18n="An.index.missions">Missions</a></li>
-							<li><a href="AN_gallery.html" data-i18n="An.index.gallery">Gallery</a></li>
-							<li><a href="AN_explore.html" data-i18n="An.index.explore">Explore Astronomy</a></li>
-							<li><a href="AN_about.html" data-i18n="An.index.about">About</a></li>
+							<li><a href="/index.html" data-i18n="An.index.home">Home</a></li>
+							<li><a href="/AN_news.html" data-i18n="An.index.news">News</a></li>
+							<li><a href="/AN_missions.html" data-i18n="An.index.missions">Missions</a></li>
+							<li><a href="/AN_gallery.html" data-i18n="An.index.gallery">Gallery</a></li>
+							<li><a href="/AN_explore.html" data-i18n="An.index.explore">Explore Astronomy</a></li>
+							<li><a href="/AN_about.html" data-i18n="An.index.about">About</a></li>
 						</ul>
 					</div>
 					<div class="AN-footer-section">
@@ -297,7 +297,9 @@
     const layout = document.querySelector('.AN-news-layout');
     if (window.innerWidth > 768) {
         // Desktop: auto-load first article (unchanged behaviour)
+               window.__AN_autoLoading = true;
         AN_loadArticle(newsData[0].id, language);
+        window.__AN_autoLoading = false;
     } else if (layout && !layout.dataset.userOpenedArticle) {
         // Mobile: show list only until user taps an item
         layout.classList.add('AN-list-view');
@@ -409,7 +411,7 @@ if (backBtn) {
             });
         });
         // ─── MODIFIED: pushState to path-based language URL ───
-        if (history.pushState) {
+        if (history.pushState && !window.__AN_autoLoading) {
             const suffix = (language === 'en') ? '' : `/${language}`;
             const newUrl = `${window.location.origin}/news/${articleId}${suffix}`;
             window.history.pushState({ path: newUrl, articleId: articleId }, '', newUrl);

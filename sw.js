@@ -7,7 +7,7 @@
  * the literal '__BUILD_ID__' and works fine.
  */
 
-const BUILD_ID    = '__BUILD_ID__';
+const BUILD_ID    = 'fix-links-2026-11';
 const CACHE_NAME  = `universe-chronicles-${BUILD_ID}`;
 const CACHE_ASSETS = [
     // Core pages
