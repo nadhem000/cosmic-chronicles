@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
    <link rel="manifest" href="/manifest.json">
    <meta name="theme-color" content="#4a6fa5">
-   <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
    <meta name="apple-mobile-web-app-title" content="Cosmic Chronicles">
    <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png">
@@ -89,7 +90,7 @@
     <div class="AN-hero-content">
         <h2 class="AN-hero-title" data-i18n="An.index.heroTitle">Exploring the Universe</h2>
         <p class="AN-hero-text" data-i18n="An.index.heroText">Latest discoveries, missions, and cosmic events from across the universe</p>
-        <a href="/AN_explore.html" class="AN-btn AN-btn-primary" data-i18n="An.index.exploreBtn">Explore News</a>
+        <a href="/AN_news.html" class="AN-btn AN-btn-primary" data-i18n="An.index.exploreBtn">Explore News</a>
     </div>
     <div class="AN-hero-image">
         <div class="AN-planet AN-planet-1"></div>
@@ -379,50 +380,74 @@
         
         // Function to render events with "Read more" buttons
         function AN_renderEvents(language = 'en') {
-            const eventsContainer = document.getElementById('AN-events-container');
-            const events = AN_getDataByType('event');
-            
-            if (!eventsContainer || events.length === 0) return;
-            
-// newest first
-events.sort((a, b) => new Date(b.date) - new Date(a.date));
+    const eventsContainer = document.getElementById('AN-events-container');
+    if (!eventsContainer) return;
 
-eventsContainer.innerHTML = '';
-            
-            events.forEach(event => {
-                const eventDate = new Date(event.date);
-                const day = eventDate.getDate().toString().padStart(2, '0');
-                const month = AN_getMonthName(event.date, language);
-                
-                const eventElement = document.createElement('div');
-                eventElement.className = 'AN-event-item';
-                eventElement.innerHTML = `
-                    <div class="AN-event-date">
-                        <div class="AN-event-day">${day}</div>
-                        <div class="AN-event-month">${month}</div>
-                    </div>
-                    <div class="AN-event-details">
-                        <h3 class="AN-event-title">${event[language].title}</h3>
-                        <p class="AN-event-description">${event[language].subtitle}</p>
-                        <button class="AN-read-more AN-event-read-more" 
-                                data-id="${event.id}"
-                                data-i18n="An.index.readMore">
-                            ${language === 'en' ? 'Read More' : language === 'fr' ? 'Lire la suite' : 'اقرأ المزيد'}
-                        </button>
-                    </div>
-                `;
-                
-                eventsContainer.appendChild(eventElement);
-            });
-            
-            // Add event listeners to "Read more" buttons
-            document.querySelectorAll('.AN-event-read-more').forEach(button => {
-                button.addEventListener('click', function() {
-                    const eventId = this.getAttribute('data-id');
-                    openEventModal(eventId, language);
-                });
-            });
-        }
+    const events = AN_getDataByType('event');
+    if (events.length === 0) return;
+
+    // Use the shared counter; initialize once if translation.js hasn't yet
+    if (typeof window.AN_eventsShown !== 'number') {
+        window.AN_eventsShown = 3;
+    }
+
+    events.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    const visible = events.slice(0, window.AN_eventsShown);
+
+    eventsContainer.innerHTML = '';
+
+    visible.forEach(event => {
+        const eventDate = new Date(event.date);
+        const day = eventDate.getDate().toString().padStart(2, '0');
+        const month = AN_getMonthName(event.date, language);
+
+        const eventElement = document.createElement('div');
+        eventElement.className = 'AN-event-item';
+        eventElement.innerHTML = `
+            <div class="AN-event-date">
+                <div class="AN-event-day">${day}</div>
+                <div class="AN-event-month">${month}</div>
+            </div>
+            <div class="AN-event-details">
+                <h3 class="AN-event-title">${event[language].title}</h3>
+                <p class="AN-event-description">${event[language].subtitle}</p>
+                <button class="AN-read-more AN-event-read-more"
+                        data-id="${event.id}"
+                        data-i18n="An.index.readMore">
+                    ${AN_translations[language]['An.index.readMore']}
+                </button>
+            </div>
+        `;
+        eventsContainer.appendChild(eventElement);
+    });
+
+    // Bind Read More only to events currently visible
+    eventsContainer.querySelectorAll('.AN-event-read-more').forEach(button => {
+        button.addEventListener('click', function () {
+            const eventId = this.getAttribute('data-id');
+            openEventModal(eventId, language);
+        });
+    });
+
+    // Show More button — data-i18n on a <span> so the icon + count survive
+    if (events.length > window.AN_eventsShown) {
+        const remaining = events.length - window.AN_eventsShown;
+        const moreBtn = document.createElement('button');
+        moreBtn.type = 'button';
+        moreBtn.className = 'AN-show-more-events';
+        moreBtn.innerHTML = `
+            <i class="fas fa-chevron-down"></i>
+            <span data-i18n="An.index.showMoreEvents">${AN_translations[language]['An.index.showMoreEvents']}</span>
+            <span class="AN-show-more-count">(${remaining})</span>
+        `;
+        moreBtn.addEventListener('click', () => {
+            window.AN_eventsShown += 10;
+            AN_renderEvents(language);
+        });
+        eventsContainer.appendChild(moreBtn);
+    }
+}
         
         // Initialize event modal functionality
         const eventModal = document.getElementById('AN-event-modal');

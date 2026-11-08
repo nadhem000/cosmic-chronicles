@@ -30,6 +30,7 @@ const AN_translations = {
         'An.index.markAllRead': 'Mark all as read',
         'An.index.noNotifications': 'No new notifications',
         'An.index.timeAgo': '2 hours ago',
+		'An.index.showMoreEvents': 'Show More Events',
         'An.index.eventDetails': 'Event Details',
         'An.index.close': 'Close'
     },
@@ -51,6 +52,7 @@ const AN_translations = {
         'An.index.globalNews': 'Actualités Mondiales',
         'An.index.localNews': 'Actualités Tunisie',
         'An.index.readMore': 'Lire la suite',
+		'An.index.showMoreEvents': 'Afficher plus d\'événements',
         'An.index.eventDetails': 'Détails de l\'événement',
         'An.index.close': 'Fermer',
         'An.index.upcomingEvents': 'Événements à venir',
@@ -84,6 +86,7 @@ const AN_translations = {
         'An.index.globalNews': 'الأخبار العالمية',
         'An.index.localNews': 'أخبار تونس',
         'An.index.readMore': 'اقرأ المزيد',
+		'An.index.showMoreEvents': 'عرض المزيد من الأحداث',
         'An.index.eventDetails': 'تفاصيل الحدث',
         'An.index.close': 'إغلاق',
         'An.index.upcomingEvents': 'الأحداث القادمة',
@@ -403,26 +406,25 @@ if (document.head) {
 }
 
 // Function to render events
-function AN_renderEvents(language) {
+// Shared pagination counter — resets on page reload
+var AN_eventsShown = 3;
+
+function AN_renderEvents(language = 'en') {
     const eventsContainer = document.getElementById('AN-events-container');
     if (!eventsContainer) return;
-    
-    // Clear existing content
+
     eventsContainer.innerHTML = '';
-    
-    // Get events data
-    const eventsData = AN_getDataByType('event');
-// newest first
-eventsData.sort((a, b) => new Date(b.date) - new Date(a.date));
-    
-    // Render events
-    eventsData.forEach(item => {
+
+    const eventsData = AN_getDataByType('event')
+        .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    const visible = eventsData.slice(0, AN_eventsShown);
+
+    visible.forEach(item => {
         const content = item[language] || item.en;
-        
         const eventItem = document.createElement('div');
         eventItem.className = 'AN-event-item';
         eventItem.setAttribute('data-id', item.id);
-        
         eventItem.innerHTML = `
             <div class="AN-event-date">
                 <span class="AN-event-day">${AN_getDay(item.date)}</span>
@@ -433,9 +435,25 @@ eventsData.sort((a, b) => new Date(b.date) - new Date(a.date));
                 <p class="AN-event-description">${content.body}</p>
             </div>
         `;
-        
         eventsContainer.appendChild(eventItem);
     });
+
+    if (eventsData.length > AN_eventsShown) {
+        const remaining = eventsData.length - AN_eventsShown;
+        const moreBtn = document.createElement('button');
+        moreBtn.type = 'button';
+        moreBtn.className = 'AN-show-more-events';
+        moreBtn.innerHTML = `
+            <i class="fas fa-chevron-down"></i>
+            <span data-i18n="An.index.showMoreEvents">${AN_translations[language]['An.index.showMoreEvents']}</span>
+            <span class="AN-show-more-count">(${remaining})</span>
+        `;
+        moreBtn.addEventListener('click', () => {
+            AN_eventsShown += 10;
+            AN_renderEvents(language);
+        });
+        eventsContainer.appendChild(moreBtn);
+    }
 }
 
 // Function to apply translations
