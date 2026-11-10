@@ -240,8 +240,10 @@ function AN_shareEvent(eventId, language) {
 }
 
 function AN_fallbackShareEvent(url, language) {
-    const copiedMsg = AN_shareT('An.index.linkCopied', language);
-    const promptMsg = AN_shareT('An.index.copyLinkPrompt', language);
+     const copiedMsg = AN_translations[language]['An.index.linkCopied']
+                   || AN_translations.en['An.index.linkCopied'];
+    const promptMsg = AN_translations[language]['An.index.copyLinkPrompt']
+                   || AN_translations.en['An.index.copyLinkPrompt'];
     navigator.clipboard.writeText(url)
         .then(() => AN_showEventToast(copiedMsg))
         .catch(() => prompt(promptMsg, url));
@@ -510,8 +512,8 @@ function closeEventModal(fromPopstate = false) {
     ${AN_translations[language]['An.index.readMore']}
 </button>
 <button class="AN-event-share-btn" data-id="${event.id}"
-        title="${AN_shareT('An.index.share', language)}"
-        aria-label="${AN_shareT('An.index.share', language)}">
+        title="${AN_translations[language]['An.index.share']}"
+aria-label="${AN_translations[language]['An.index.share']}">
     <i class="fas fa-share-alt"></i>
 </button>
 				</div>

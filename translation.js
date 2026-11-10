@@ -35,8 +35,7 @@ const AN_translations = {
         'An.index.close': 'Close',
         'An.index.share':           'Share',
         'An.index.linkCopied':      'Link copied to clipboard!',
-        'An.index.copyLinkPrompt':  'Copy this link to share:',
-	'An.index.showMoreEvents': 'Show More Events'
+        'An.index.copyLinkPrompt':  'Copy this link to share:'
     },
     fr: {
         'An.index.title': 'Chroniques Cosmiques',
@@ -73,8 +72,7 @@ const AN_translations = {
         'An.index.timeAgo': 'Il y a 2 heures',
         'An.index.share':           'Partager',
         'An.index.linkCopied':      'Lien copié dans le presse-papiers !',
-        'An.index.copyLinkPrompt':  'Copiez ce lien pour le partager :',
-	'An.index.showMoreEvents': 'Voir plus d\'événements'
+        'An.index.copyLinkPrompt':  'Copiez ce lien pour le partager :'
     },
     ar: {
         'An.index.title': 'السجلات الكونية',
@@ -111,8 +109,7 @@ const AN_translations = {
         'An.index.timeAgo': 'قبل ساعتين',
         'An.index.share':           'مشاركة',
         'An.index.linkCopied':      'تم نسخ الرابط إلى الحافظة!',
-        'An.index.copyLinkPrompt':  'انسخ هذا الرابط للمشاركة:',
-'An.index.showMoreEvents': 'عرض المزيد من الأحداث'
+        'An.index.copyLinkPrompt':  'انسخ هذا الرابط للمشاركة:'
     }
 };
 
@@ -384,20 +381,8 @@ newsData.sort((a, b) => new Date(b.date) - new Date(a.date));
 }
 
 
-Object.keys(AN_index_share_translations).forEach(lang => {
-    if (AN_translations[lang]) {
-        Object.assign(AN_translations[lang], AN_index_share_translations[lang]);
-    }
-});
 
-/* Small helper, mirrors the one used in AN_explore.html */
-function AN_shareT(key, language) {
-    if (AN_translations[language] && AN_translations[language][key]) {
-        return AN_translations[language][key];
-    }
-    return AN_translations.en[key] || key;
-}
-// Add this CSS for badges in main.css
+// CSS for badges in main.css
 const badgeStyles = `
     .AN-news-badge {
         position: absolute;
