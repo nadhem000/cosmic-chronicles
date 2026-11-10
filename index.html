@@ -233,16 +233,18 @@ function AN_shareEvent(eventId, language) {
             title: content.title,
             text: content.subtitle || (content.body || '').substring(0, 120),
             url
-        }).catch(() => AN_fallbackShareEvent(url));
+        }).catch(() => AN_fallbackShareEvent(url, language));
     } else {
-        AN_fallbackShareEvent(url);
+        AN_fallbackShareEvent(url, language);
     }
 }
 
-function AN_fallbackShareEvent(url) {
+function AN_fallbackShareEvent(url, language) {
+    const copiedMsg = AN_shareT('An.index.linkCopied', language);
+    const promptMsg = AN_shareT('An.index.copyLinkPrompt', language);
     navigator.clipboard.writeText(url)
-        .then(() => AN_showEventToast('Link copied to clipboard!'))
-        .catch(() => prompt('Copy this link to share:', url));
+        .then(() => AN_showEventToast(copiedMsg))
+        .catch(() => prompt(promptMsg, url));
 }
 
 function AN_showEventToast(message) {
@@ -507,9 +509,9 @@ function closeEventModal(fromPopstate = false) {
     data-i18n="An.index.readMore">
     ${AN_translations[language]['An.index.readMore']}
 </button>
-<button class="AN-event-share-btn" data-id="${event.id}" title="Share"
-        style="background:none;border:1px solid var(--AN-primary-color);color:var(--AN-primary-color);
-               border-radius:var(--AN-radius);padding:8px 12px;margin-left:8px;cursor:pointer;">
+<button class="AN-event-share-btn" data-id="${event.id}"
+        title="${AN_shareT('An.index.share', language)}"
+        aria-label="${AN_shareT('An.index.share', language)}">
     <i class="fas fa-share-alt"></i>
 </button>
 				</div>

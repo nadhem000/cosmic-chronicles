@@ -1215,7 +1215,67 @@
     margin-top: 10px;
     font-size: 14px;
 }
+/* ── Show More Events button (theme-aware, no inline styles) ── */
+.AN-show-more-events {
+    align-self: center;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    padding: 10px 24px;
+    background-color: transparent;
+    color: var(--AN-primary-color);
+    border: 1px solid var(--AN-primary-color);
+    border-radius: var(--AN-radius);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--AN-transition);
+}
 
+.AN-show-more-events:hover {
+    background-color: var(--AN-primary-color);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.AN-dark-mode .AN-show-more-events:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+}
+
+.AN-show-more-count {
+    opacity: 0.75;
+    font-weight: 500;
+}
+
+/* ── Event share button (was inline styles) ── */
+.AN-event-share-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    color: var(--AN-primary-color);
+    border: 1px solid var(--AN-primary-color);
+    border-radius: var(--AN-radius);
+    padding: 8px 12px;
+    margin-left: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: var(--AN-transition);
+}
+
+.AN-event-share-btn:hover {
+    background-color: var(--AN-primary-color);
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.AN-rtl .AN-event-share-btn {
+    margin-left: 0;
+    margin-right: 8px;
+}
 .AN-event-item .AN-read-more:hover {
     background-color: var(--AN-primary-color);
     color: white;
