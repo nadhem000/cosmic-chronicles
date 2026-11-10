@@ -1220,7 +1220,16 @@
     background-color: var(--AN-primary-color);
     color: white;
 }
-
+.AN-toast {
+    position: fixed; bottom: 20px; right: 20px;
+    background-color: #4caf50; color: #fff;
+    padding: 15px 25px; border-radius: var(--AN-radius);
+    z-index: 10000; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transform: translateY(100px); opacity: 0;
+    transition: transform .3s ease, opacity .3s ease;
+}
+.AN-toast-show { transform: translateY(0); opacity: 1; }
+.AN-toast-content { display: flex; align-items: center; gap: 10px; }
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .AN-event-modal-info {

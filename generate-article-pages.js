@@ -197,7 +197,17 @@ function main() {
       count++;
     }
   }
+const indexTpl      = fs.readFileSync('./index.html', 'utf8');
+const eventArticles = allNews.filter(x => x.type === 'event');
 
+for (const article of eventArticles) {
+  for (const lang of LANGS) {
+    const content = article[lang] || article.en;
+    if (!content) continue;
+    writeOne({ template: indexTpl, article, content, urlPrefix: 'events', lang });
+    count++;
+  }
+}
   console.log(`✅ Generated ${count} article pages.`);
 
   // ─── Regenerate sitemap (all languages) ───
@@ -227,6 +237,17 @@ function main() {
       });
     }
   }
+
+for (const a of eventArticles) {
+  for (const lang of LANGS) {
+    if (!(a[lang] || a.en)) continue;
+    const suffix = (lang === 'en') ? '' : `/${lang}`;
+    urls.push({
+      loc: `${SITE_URL}/events/${a.id}${suffix}`,
+      priority: '0.7', freq: 'monthly'
+    });
+  }
+}
 
   const today = new Date().toISOString().slice(0, 10);
   const xml =

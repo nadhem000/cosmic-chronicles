@@ -49,7 +49,23 @@
   from = "/explore/:article/:lang"
   to = "/AN_explore.html?article=:article&lang=:lang"
   status = 200
+# Per-language event paths (specific first)
+[[redirects]]
+  from = "/events/:id/:lang"
+  to = "/events/:id/:lang/index.html"
+  status = 200
 
+# Default-language event paths
+[[redirects]]
+  from = "/events/:id"
+  to = "/events/:id/index.html"
+  status = 200
+
+# Backwards-compat: query-string version still works for humans
+[[redirects]]
+  from = "/events/:event"
+  to = "/?event=:event"
+  status = 200
 # ── Cache / security headers ──
 [[headers]]
   for = "/*"
